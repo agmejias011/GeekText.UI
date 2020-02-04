@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {}
+    "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {
+    "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj",
+        "projectUniqueName": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj",
         "projectName": "GeekText.Database",
-        "projectPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj",
-        "packagesPath": "C:\\Users\\Andres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\obj\\",
+        "projectPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj",
+        "packagesPath": "C:\\Users\\Patrick Golden\\.nuget\\packages\\",
+        "outputPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andres\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Patrick Golden\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -32,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj": {
-                "projectPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj"
+              "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj": {
+                "projectPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj"
               }
             }
           }
@@ -75,23 +73,21 @@
         }
       }
     },
-    "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj": {
+    "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj",
+        "projectUniqueName": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj",
         "projectName": "GeekText.Domain",
-        "projectPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj",
-        "packagesPath": "C:\\Users\\Andres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Domain\\obj\\",
+        "projectPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\GeekText.Domain.csproj",
+        "packagesPath": "C:\\Users\\Patrick Golden\\.nuget\\packages\\",
+        "outputPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andres\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Patrick Golden\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

@@ -230,7 +230,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-
-# Security
-appsettings.json
-appsettings.Development.json

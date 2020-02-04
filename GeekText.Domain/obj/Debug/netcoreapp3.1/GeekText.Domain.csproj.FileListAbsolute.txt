@@ -14,3 +14,10 @@ C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Domain\obj\Debug\netc
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.AssemblyInfo.cs
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.dll
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\bin\Debug\netcoreapp3.1\GeekText.Domain.deps.json
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\bin\Debug\netcoreapp3.1\GeekText.Domain.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\bin\Debug\netcoreapp3.1\GeekText.Domain.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.AssemblyInfoInputs.cache
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.AssemblyInfo.cs
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Domain\obj\Debug\netcoreapp3.1\GeekText.Domain.pdb

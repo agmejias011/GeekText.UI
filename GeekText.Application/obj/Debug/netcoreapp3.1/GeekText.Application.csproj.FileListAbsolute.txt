@@ -24,3 +24,16 @@ C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Application\obj\Debug
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.csproj.CopyComplete
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.dll
 C:\Users\Andres\Documents\GitHub\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Application.deps.json
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Application.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Application.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Database.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Domain.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Database.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\bin\Debug\netcoreapp3.1\GeekText.Domain.pdb
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.csprojAssemblyReference.cache
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.AssemblyInfoInputs.cache
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.AssemblyInfo.cs
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.csproj.CopyComplete
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.dll
+C:\Patrick\School Work\2020\Spring\CEN-4010\ecommercewebsite\GeekText.Application\obj\Debug\netcoreapp3.1\GeekText.Application.pdb

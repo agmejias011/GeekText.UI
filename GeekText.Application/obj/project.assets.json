@@ -817,27 +817,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andres\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Patrick Golden\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Application\\GeekText.Application.csproj",
+      "projectUniqueName": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Application\\GeekText.Application.csproj",
       "projectName": "GeekText.Application",
-      "projectPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Application\\GeekText.Application.csproj",
-      "packagesPath": "C:\\Users\\Andres\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Application\\obj\\",
+      "projectPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Application\\GeekText.Application.csproj",
+      "packagesPath": "C:\\Users\\Patrick Golden\\.nuget\\packages\\",
+      "outputPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andres\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Patrick Golden\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -849,8 +846,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {
-              "projectPath": "C:\\Users\\Andres\\Documents\\GitHub\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj"
+            "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj": {
+              "projectPath": "C:\\Patrick\\School Work\\2020\\Spring\\CEN-4010\\ecommercewebsite\\GeekText.Database\\GeekText.Database.csproj"
             }
           }
         }
