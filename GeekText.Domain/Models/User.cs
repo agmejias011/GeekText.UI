@@ -18,6 +18,6 @@ namespace GeekText.Domain.Models
         public string home_address { get; set; }
         public int user_nickname { get; set; }
 
-        public List<Wishlist> Wishlists { get; set; }
+        public List<Wishlist> wishlists { get; set; }
     }
 }
