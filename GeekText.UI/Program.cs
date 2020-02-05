@@ -15,13 +15,6 @@ namespace ecommercewebsite
     {
         public static void Main(string[] args)
         {
-            //This below is to create the tables in the database
-            using (var context = new DbContextApplication())
-            {                
-                var cars = context.Books.ToArray();
-                var users = context.Users.ToArray();
-            }
-
             CreateHostBuilder(args).Build().Run();
         }
 

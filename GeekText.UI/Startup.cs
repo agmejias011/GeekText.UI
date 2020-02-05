@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace ecommercewebsite
 {
@@ -27,16 +28,22 @@ namespace ecommercewebsite
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "GeekText.UI/ClientApp/build";
             });
 
             services.AddDbContext<DbContextApplication>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("DbContextApplication")));
+                options.UseNpgsql(Configuration.GetConnectionString("PgDatabase"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,14 +60,12 @@ namespace ecommercewebsite
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "GeekText.UI/ClientApp";
 
                 if (env.IsDevelopment())
                 {
