@@ -11,6 +11,8 @@ namespace GeekText.Database
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<WishlistBook> WishlistsBooks { get; set; }
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
 
@@ -20,8 +22,22 @@ namespace GeekText.Database
                 .UseSnakeCaseNamingConvention();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-            => modelBuilder.Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+        {
+            modelBuilder
+                .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
+                .HasIdentityOptions(startValue: 1000);
+            modelBuilder
+                .Entity<WishlistBook>()
+                .HasKey(wb => new { wb.wishlist_id, wb.book_id });
+            modelBuilder
+                .Entity<WishlistBook>()
+                .HasOne(wb => wb.wishlist)
+                .WithMany(w => w.wishlist_books);
+            modelBuilder
+                .Entity<WishlistBook>()
+                .HasOne(wb => wb.book)
+                .WithMany(b => b.wishlist_books);
+        }
 
     }
 }

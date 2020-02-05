@@ -22,6 +22,8 @@ namespace GeekText.Domain.Models
         [ForeignKey("genre_id")]
         public int genre_id  { get; set; }
 
+        public List<WishlistBook> wishlist_books { get; set; }
+
         //not complete, refer to the lucidchart link for more fields
     }
 }
