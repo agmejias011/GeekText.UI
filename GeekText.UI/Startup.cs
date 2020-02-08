@@ -31,8 +31,9 @@ namespace ecommercewebsite
                 configuration.RootPath = "GeekText.UI/ClientApp/build";
             });
 
+            string connectionString = Configuration.GetConnectionString("PgDatabase");
             services.AddDbContext<DbContextApplication>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PgDatabase"))
+                options.UseNpgsql(connectionString)
             );
         }
 
