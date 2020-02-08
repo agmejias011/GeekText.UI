@@ -1,0 +1,12 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "PgDatabase": "Host=127.0.0.1;Port=5432;Database=cen4010;Username=school;Password=school"
+  }
+}
