@@ -30,6 +30,8 @@ namespace GeekText.Domain.Models
         [ForeignKey("genre"), Required] //Enter the name of the table
         public int genre_id  { get; set; }
 
+        public List<WishlistBook> wishlist_books { get; set; }
+
         //not complete, refer to the lucidchart link for more fields
     }
 }
