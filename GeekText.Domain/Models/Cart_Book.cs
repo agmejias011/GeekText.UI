@@ -8,9 +8,9 @@ namespace GeekText.Domain.Models
 {
     public class Cart_Book
     {
-        [ForeignKey("cart"), Required]
-        public int cart_id { get; set; }
-        [ForeignKey("book"), Required]
-        public int book_id { get; set; }
+        [ForeignKey("cart_id"), Required]
+        public Cart cart { get; set; }
+        [ForeignKey("book_id"), Required]
+        public Book book { get; set; }
     }
 }
