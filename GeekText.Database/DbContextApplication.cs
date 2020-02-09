@@ -17,6 +17,7 @@ namespace GeekText.Database
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart_Book> Cart_Books { get; set; }
+        public DbSet<Payment_Method> payment_methods { get; set; }
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
 
