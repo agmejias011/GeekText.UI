@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekText.Application.Publisher
+namespace GeekText.Application.Genres
 {
     class CreatePublisher
     {
@@ -14,13 +14,16 @@ namespace GeekText.Application.Publisher
             this.context = context;
         }
 
-        public void Create(int id, string name, string bio, string photograph_url)
+        public void Create(int id, string name, string description)
         {
-            
+            Publisher newPublisher = new Publisher();
+            newPublisher.publisher_id = id;
+            newPublisher.name = name;
+            newPublisher.description = description;
 
-            
+            this.context.Publishers.Add(newPublisher);
             context.SaveChanges();
+
         }
     }
 }
-
