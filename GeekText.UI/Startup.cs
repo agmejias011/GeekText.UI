@@ -31,8 +31,10 @@ namespace ecommercewebsite
                 configuration.RootPath = "GeekText.UI/ClientApp/build";
             });
 
+            string connectionString = Configuration.GetConnectionString("PgDatabase");
             services.AddDbContext<DbContextApplication>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PgDatabase")));
+                options.UseNpgsql(connectionString)
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

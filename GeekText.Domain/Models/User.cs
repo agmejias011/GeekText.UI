@@ -7,15 +7,24 @@ namespace GeekText.Domain.Models
 {
     public class User
     {
-        [Key]
+        [Key, Required]
         public int id { get; set; }
+        [Required]
         public string username { get; set; }
+        [Required]
         public string first_name { get; set; }
+        [Required]
         public string last_name { get; set; }
+        [Required]
         public string email { get; set; }
+        [Required]
         public string user_password { get; set; }
+        [Required]
         public string nickname { get; set; }
+        [Required]
         public string home_address { get; set; }
         public int user_nickname { get; set; }
+
+        public List<Wishlist> wishlists { get; set; }
     }
 }
