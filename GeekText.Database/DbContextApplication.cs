@@ -11,6 +11,14 @@ namespace GeekText.Database
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        //public DbSet<Book_Author> Book_Authors { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+      //  public DbSet<Book_Publisher> Book_Publishers { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+
+
+
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
 

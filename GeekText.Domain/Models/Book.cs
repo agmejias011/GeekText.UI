@@ -22,6 +22,9 @@ namespace GeekText.Domain.Models
         [ForeignKey("genre_id")]
         public int genre_id  { get; set; }
 
+        //public List<Book_Author> book_author { get; set; }
+        //public List<Book_Publisher> book_publisher { get; set; }
+
         //not complete, refer to the lucidchart link for more fields
     }
 }

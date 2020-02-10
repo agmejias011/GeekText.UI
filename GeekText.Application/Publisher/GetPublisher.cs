@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekText.Application.Author
+namespace GeekText.Application.Publisher
 {
-    class Author
+    class GetPublisher
     {
     }
 }

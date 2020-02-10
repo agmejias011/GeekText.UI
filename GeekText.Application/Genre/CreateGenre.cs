@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekText.Application.Publisher
+namespace GeekText.Application.Genre
 {
-    class Publisher
+    class CreateGenre
     {
     }
 }
