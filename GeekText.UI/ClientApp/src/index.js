@@ -11,10 +11,10 @@ ReactDOM.render(
 	<Router>
 		<SiteContainer>
 			<Switch>
-				<Route path="/">
+				<Route path="/example-route">
 					<SampleComponent/>
 				</Route>
-				<Route path="/example-route">
+				<Route path="/">
 					<SampleComponent/>
 				</Route>
 			</Switch>
