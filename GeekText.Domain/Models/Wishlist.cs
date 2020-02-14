@@ -13,6 +13,7 @@ namespace GeekText.Domain.Models
         public string name { get; set; }
         public bool primary { get; set; }
 
+        public int user_id { get; set; }
         [ForeignKey("user_id")]
         public User user { get; set; }
 

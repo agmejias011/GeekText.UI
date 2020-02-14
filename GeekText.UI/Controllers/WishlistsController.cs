@@ -39,6 +39,8 @@ namespace GeekText.UI.Controllers
                 return NotFound();
             }
 
+            await _context.Entry(wishlist).Reference(w => w.user).LoadAsync();
+            await _context.Entry(wishlist).Collection(w => w.wishlist_books).LoadAsync();
             return wishlist;
         }
 
