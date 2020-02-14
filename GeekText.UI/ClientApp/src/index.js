@@ -12,7 +12,7 @@ ReactDOM.render(
 		<SiteContainer>
 			<Switch>
 				<Route path="/example-route">
-					<SampleComponent/>
+					Hello world.
 				</Route>
 				<Route path="/">
 					<SampleComponent/>
