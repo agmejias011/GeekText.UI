@@ -17,7 +17,11 @@ namespace GeekText.Database
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart_Book> Cart_Books { get; set; }
-        public DbSet<Payment_Method> payment_methods { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Publisher> Publishers{ get; set; }
+        public DbSet<Book_Publisher> Book_Publishers { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
 
@@ -64,6 +68,22 @@ namespace GeekText.Database
                  eb.HasNoKey();                
              });
 
+            modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
+            .HasIdentityOptions(startValue: 1000);
+
+            modelBuilder.Entity<Publisher>().Property(b => b.publisher_id).UseIdentityAlwaysColumn()
+            .HasIdentityOptions(startValue: 1000);
+
+            modelBuilder.Entity<Genre>().Property(b => b.genre_id).UseIdentityAlwaysColumn()
+           .HasIdentityOptions(startValue: 1000);
+
+            modelBuilder
+             .Entity<Book_Publisher>()
+             .HasKey(pb => new { pb.publisher_id, pb.book_id });
+
+            modelBuilder
+            .Entity<Book_Author>()
+            .HasKey(ab => new { ab.author_id, ab.book_id });
 
             modelBuilder.HasDefaultSchema("public");
             base.OnModelCreating(modelBuilder);
