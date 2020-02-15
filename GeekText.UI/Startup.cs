@@ -23,7 +23,19 @@ namespace ecommercewebsite
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services
+                .AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -40,13 +52,10 @@ namespace ecommercewebsite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-          
-                using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                {
-                    scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
-                }
-
-           
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
+            }
 
             if (env.IsDevelopment())
             {
@@ -59,7 +68,7 @@ namespace ecommercewebsite
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
