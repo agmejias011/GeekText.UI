@@ -148,7 +148,7 @@ namespace GeekText.UI.Controllers
 
                 _context.Entry(tmp).State = EntityState.Modified;
             }
-            else
+            else if (tmp == null)
             {
                 tmp = await _context.Wishlists
                     .Where(w =>
