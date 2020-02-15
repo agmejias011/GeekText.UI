@@ -13,7 +13,6 @@ code {
 }
 
 .home {
-  background-color: aqua;
 }
 
 .searchBar {
@@ -42,4 +41,21 @@ code {
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+}
+
+.heroImage {
+  background-color: grey;
+  width: 100%;
+  height: 500px;
+  padding: 10px;
+}
+
+.favorites {
+  margin-top: 20px;
+}
+
+.book {
+  width: 150px;
+  height: 200px;
+  background-color: #eeeeee;
 }

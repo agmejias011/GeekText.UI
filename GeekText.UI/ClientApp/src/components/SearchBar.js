@@ -29,10 +29,10 @@ export default class SearchBar extends React.Component {
           </div>
         </Grid>
         <Grid item md={1}>
-          <FaShoppingCart color="#727272" size={36} />
+          <FaShoppingCart color="#42a5f5" size={36} />
         </Grid>
         <Grid item md={1}>
-          <FaHeart color="#727272" size={36} />
+          <FaHeart color="#ec407a" size={36} />
         </Grid>
       </Grid>
     );
