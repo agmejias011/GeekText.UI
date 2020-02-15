@@ -29,6 +29,14 @@ namespace ecommercewebsite
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
 
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -60,7 +68,7 @@ namespace ecommercewebsite
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
