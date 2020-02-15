@@ -80,7 +80,7 @@ class WishlistRow extends React.Component {
 		let data          = {
 			name    : name_input.value,
 			primary : primary_input.checked,
-			user_id : 1001
+			user_id : 1000
 		};
 
 		if (!data.name) {
