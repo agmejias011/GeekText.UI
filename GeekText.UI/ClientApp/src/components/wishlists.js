@@ -52,7 +52,7 @@ class Wishlists extends React.Component {
 	}
 	
 	async addWishlist(data) {
-		await fetch(
+		let res = await fetch(
 			`${API_URL}/Wishlists/`,
 			{
 				method  : "POST",
@@ -62,11 +62,20 @@ class Wishlists extends React.Component {
 				body : JSON.stringify(data)
 			}
 		);
+
+		try {
+			res = await res.json();
+			
+			if (res.error) {
+				alert(res.message);
+			}
+		} catch {}
+
 		await this.loadWishlists();
 	}
 
 	async updateWishlist(data) {
-		await fetch(
+		let res = await fetch(
 			`${API_URL}/Wishlists/${data.id}`,
 			{
 				method  : "PUT",
@@ -76,16 +85,34 @@ class Wishlists extends React.Component {
 				body : JSON.stringify(data)
 			}
 		);
+
+		try {
+			res = await res.json();
+			
+			if (res.error) {
+				alert(res.message);
+			}
+		} catch {}
+
 		await this.loadWishlists();
 	}
 
 	async deleteWishlist(id) {
-		await fetch(
+		let res = await fetch(
 			`${API_URL}/Wishlists/${id}`,
 			{
 				method : "DELETE"
 			}
 		);
+
+		try {
+			res = await res.json();
+			
+			if (res.error) {
+				alert(res.message);
+			}
+		} catch {}
+
 		await this.loadWishlists();
 	}
 
@@ -95,14 +122,6 @@ class Wishlists extends React.Component {
 		wishlists = await wishlists.json();
 
 		wishlists.sort((a, b) => {
-			if (a.primary) {
-				return -1;
-			}
-
-			if (b.primary) {
-				return 1;
-			}
-
 			return (a.name < b.name) ? -1 : 1;
 		});
 
