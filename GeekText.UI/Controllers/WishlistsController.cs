@@ -14,6 +14,9 @@ namespace GeekText.UI.Controllers
     [ApiController]
     public class WishlistsController : ControllerBase
     {
+        private const int MULTIPLE_PRIMARY = -2;
+        private const int MISSING_PRIMARY = -1;
+
         private readonly DbContextApplication _context;
 
         public WishlistsController(DbContextApplication context)
@@ -55,6 +58,13 @@ namespace GeekText.UI.Controllers
                 return BadRequest();
             }
 
+            int primary_check = await PrimaryIsValid(wishlist);
+
+            if (primary_check != 0)
+            {
+                return this.RenderError(primary_check);
+            }
+
             _context.Entry(wishlist).State = EntityState.Modified;
 
             try
@@ -82,6 +92,13 @@ namespace GeekText.UI.Controllers
         [HttpPost]
         public async Task<ActionResult<Wishlist>> PostWishlist(Wishlist wishlist)
         {
+            int primary_check = await PrimaryIsValid(wishlist);
+
+            if (primary_check != 0)
+            {
+                return this.RenderError(primary_check);
+            }
+
             _context.Wishlists.Add(wishlist);
             await _context.SaveChangesAsync();
 
@@ -98,6 +115,13 @@ namespace GeekText.UI.Controllers
                 return NotFound();
             }
 
+            int primary_check = await PrimaryIsValid(wishlist);
+
+            if (primary_check != 0)
+            {
+                return this.RenderError(primary_check);
+            }
+
             _context.Wishlists.Remove(wishlist);
             await _context.SaveChangesAsync();
 
@@ -107,6 +131,69 @@ namespace GeekText.UI.Controllers
         private bool WishlistExists(int id)
         {
             return _context.Wishlists.Any(e => e.id == id);
+        }
+
+        private async Task<int> PrimaryIsValid(Wishlist wishlist)
+        {
+            Wishlist tmp = await _context.Wishlists
+                .Where(w =>
+                    w.id != wishlist.id
+                    && w.primary == true
+                )
+                .FirstOrDefaultAsync();
+
+            if (tmp != null && wishlist.primary)
+            {
+                tmp.primary = false;
+
+                _context.Entry(tmp).State = EntityState.Modified;
+            }
+            else
+            {
+                tmp = await _context.Wishlists
+                    .Where(w =>
+                        w.id != wishlist.id
+                    )
+                    .FirstOrDefaultAsync();
+
+                if (tmp != null)
+                {
+                    tmp.primary = true;
+
+                    _context.Entry(tmp).State = EntityState.Modified;
+                } else
+                {
+                    wishlist.primary = true;
+                }
+            }
+
+            return 0;
+        }
+
+        private class Error
+        {
+            public readonly bool error = true;
+            public string message = "";
+        }
+
+        private JsonResult RenderError(int error_code)
+        {
+            Error error = new Error();
+
+            switch (error_code)
+            {
+                case MULTIPLE_PRIMARY:
+                    error.message = "You may only have one primary wish list.";
+
+                    break;
+
+                case MISSING_PRIMARY:
+                    error.message = "You must have a primary wish list.";
+
+                    break;
+            }
+
+            return new JsonResult(error) { StatusCode = 409 };
         }
     }
 }

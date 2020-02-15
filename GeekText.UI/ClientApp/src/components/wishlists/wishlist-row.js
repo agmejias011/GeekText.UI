@@ -19,7 +19,7 @@ class WishlistRow extends React.Component {
 		super(props);
 
 		this.state = {
-			primary_checked : false
+			primary_checked : (this.props.wishlist) ? this.props.wishlist.primary : false
 		}
 	}
 
@@ -27,6 +27,14 @@ class WishlistRow extends React.Component {
 		this.setState(prev_state => ({
 			primary_checked : !prev_state.primary_checked
 		}));
+	}
+
+	componentDidUpdate() {
+		let wishlist = this.props.wishlist;
+
+		if (wishlist && wishlist.primary !== this.state.primary_checked) {
+			this.togglePrimary();
+		}
 	}
 
 	render() {
@@ -40,7 +48,7 @@ class WishlistRow extends React.Component {
 					<TableCell>{wishlist.name}</TableCell>
 					<TableCell>0</TableCell>
 					<TableCell>
-						<Checkbox defaultChecked={wishlist.primary} onChange={this.makePrimary.bind(this, wishlist)}/>
+						<Checkbox checked={this.state.primary_checked} onChange={this.makePrimary.bind(this, wishlist)}/>
 					</TableCell>
 					<TableCell className={classes.root}>
 						<Button variant="contained" onClick={this.delete.bind(this, wishlist)}>Delete</Button>
@@ -92,6 +100,7 @@ class WishlistRow extends React.Component {
 	makePrimary(wishlist, e) {
 		wishlist.primary = e.target.checked;
 
+		this.togglePrimary();
 		this.props.updateWishlist(wishlist);
 	}
 
