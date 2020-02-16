@@ -54,20 +54,19 @@ namespace GeekText.Database
             //Do the same for any other class you need 
 
             modelBuilder.Entity<User>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy:1);
 
             modelBuilder.Entity<Cart>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Cart_Book>(eb =>
              {
-                 eb.HasNoKey();                
+                 eb.HasNoKey();
              });
-
-            
+               
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);
 
