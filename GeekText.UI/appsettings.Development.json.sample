@@ -7,6 +7,6 @@
     }
   },
   "ConnectionStrings": {
-    "PgDatabase": "Host=127.0.0.1;Port=5432;Database=cen4010;Username=school;Password=school"
+    "PgDatabase": "Server=localhost; Port=5432; Database=postgres;Username=postgres; Password=CoreDatabase;"
   }
 }
