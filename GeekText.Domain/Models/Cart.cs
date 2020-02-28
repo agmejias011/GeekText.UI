@@ -16,7 +16,7 @@ namespace GeekText.Domain.Models
         public decimal total_cost { get; set; }
         [Required]
         public bool saved_for_later { get; set; }
-        [ForeignKey("user"), Required]
-        public decimal user_id { get; set; }
+        [ForeignKey("user_id"), Required]
+        public User user { get; set; }
     }
 }
