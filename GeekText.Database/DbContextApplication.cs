@@ -17,6 +17,7 @@ namespace GeekText.Database
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart_Book> Cart_Books { get; set; }
+        public DbSet<Payment_Method> payment_methods { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers{ get; set; }
         public DbSet<Book_Publisher> Book_Publishers { get; set; }
@@ -51,23 +52,21 @@ namespace GeekText.Database
 
             //Code below is for the book and user to have a serial ID starting at 1000
             //Do the same for any other class you need 
-            modelBuilder.Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
 
             modelBuilder.Entity<User>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy:1);
 
             modelBuilder.Entity<Cart>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000);
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Cart_Book>(eb =>
              {
-                 eb.HasNoKey();                
+                 eb.HasNoKey();
              });
-
+               
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);
 
