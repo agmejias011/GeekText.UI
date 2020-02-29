@@ -24,7 +24,6 @@ namespace GeekText.Database
         public DbSet<Book_Publisher> Books_Publishers { get; set; }
         public DbSet<Book_Author> Books_Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Payment_Method> payment_methods { get; set; }
         public DbSet<Book_Genre> Books_Genres { get; set; }
 
 
