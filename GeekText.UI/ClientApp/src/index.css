@@ -51,11 +51,12 @@ code {
   margin-bottom: 20px;
 }
 
-.favorites {
+.showcase {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
 }
+
 .book {
   width: 150px;
   height: 200px;
@@ -66,4 +67,11 @@ code {
   width: 100%;
   max-width: 175px;
   height: 220px;
+}
+
+.browse {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: flex-start;
 }

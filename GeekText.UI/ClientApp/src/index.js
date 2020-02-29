@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
+import Browse from "./components/Browse";
 import SiteContainer from "./components/site-container";
 import Wishlists from "./components/wishlists";
 import "./index.css";
@@ -14,6 +15,9 @@ ReactDOM.render(
         <Route path="/example-route">Hello world.</Route>
         <Route path="/wishlists">
           <Wishlists />
+        </Route>
+        <Route path="/browse">
+          <Browse />
         </Route>
         <Route path="/">
           <Home />
