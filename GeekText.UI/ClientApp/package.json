@@ -10,8 +10,9 @@
     "env-cmd": "^10.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-icons": "^3.9.0",
+    "react-scripts": "3.2.0",
+    "react-router-dom": "^5.1.2"
   },
   "scripts": {
     "start": "env-cmd -e default,development react-scripts start",
