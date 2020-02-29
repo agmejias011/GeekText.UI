@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Container } from "@material-ui/core";
 
 import SearchBar from "./SearchBar";
@@ -8,7 +9,7 @@ class SiteContainer extends React.Component {
 		return (
 			<div id="site-container">
 				<Container maxWidth="lg" className="home">
-					<SearchBar />
+					<SearchBar user={this.props.user}/>
 					{this.props.children}
 				</Container>
 			</div>
@@ -16,4 +17,6 @@ class SiteContainer extends React.Component {
 	}
 }
 
-export default SiteContainer;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps)(SiteContainer);
