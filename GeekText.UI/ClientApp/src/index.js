@@ -8,22 +8,20 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-	<Router>
-		<SiteContainer>
-			<Switch>
-				<Route path="/example-route">
-					Hello world.
-				</Route>
-				<Route path="/wishlists">
-					<Wishlists/>
-				</Route>
-				<Route path="/">
-					<SampleComponent/>
-				</Route>
-			</Switch>
-		</SiteContainer>
-	</Router>
-	document.getElementById("root")
+  <Router>
+    <SiteContainer>
+      <Switch>
+        <Route path="/example-route">Hello world.</Route>
+        <Route path="/wishlists">
+          <Wishlists />
+        </Route>
+        <Route path="/">
+          <SampleComponent />
+        </Route>
+      </Switch>
+    </SiteContainer>
+  </Router>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
