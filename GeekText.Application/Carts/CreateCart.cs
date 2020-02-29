@@ -20,7 +20,6 @@ namespace GeekText.Application.Carts
             newCart.id = id;
             newCart.quantity_items = quantity_items;
             newCart.total_cost = total_cost;
-            newCart.saved_for_later = saved_for_later;
             newCart.user = user;
 
             this.context.Carts.Add(newCart);
