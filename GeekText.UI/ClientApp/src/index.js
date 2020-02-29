@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
 import SampleComponent from "./components/sample-component";
 import Wishlists from "./components/wishlists";
+
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
@@ -16,7 +19,7 @@ ReactDOM.render(
           <Wishlists />
         </Route>
         <Route path="/">
-          <SampleComponent />
+          <Home />
         </Route>
       </Switch>
     </SiteContainer>
