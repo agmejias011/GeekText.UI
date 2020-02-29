@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import { Book } from "./Book";
 
 export default class Home extends React.Component {
   render() {
@@ -8,25 +9,26 @@ export default class Home extends React.Component {
         <div className="heroImage">
           <h2>Coming Soon</h2>
         </div>
+        <h2>Favorite Books!</h2>
         <div className="favorites">
-          <h2>Favorite Books!</h2>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            spacing={3}
-          >
-            <Grid item md={4}>
-              <div className="book"></div>
-            </Grid>
-            <Grid item md={4}>
-              <div className="book"></div>
-            </Grid>
-            <Grid item md={4}>
-              <div className="book"></div>
-            </Grid>
-          </Grid>
+          <Book
+            title="Harry Potter and the Order of the Phoenix"
+            img="https://images.bwbcovers.com/043/Harry-Potter-and-the-Order-of-the-Phoenix-Rowling-J-K-9780439358064.jpg"
+            author="J. K. Rowling"
+            price="$9.99"
+          />
+          <Book
+            title="The Very Hungry Caterpillar"
+            img="https://images.bwbcovers.com/039/The-Very-Hungry-Caterpillar-9780399226908.jpg"
+            author="Eric Carle"
+            price="$4.99"
+          />
+          <Book
+            title="Holes"
+            img="https://images.bwbcovers.com/044/Holes-9780440228592.jpg"
+            author="Louis Sachar"
+            price="$6.99"
+          />
         </div>
       </React.Fragment>
     );
