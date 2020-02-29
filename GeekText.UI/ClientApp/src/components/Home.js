@@ -1,12 +1,10 @@
 import React from "react";
-import { Container, Grid } from "@material-ui/core";
-import SearchBar from "./SearchBar";
+import { Grid } from "@material-ui/core";
 
 export default class Home extends React.Component {
   render() {
     return (
-      <Container maxWidth="lg" className="home">
-        <SearchBar />
+      <React.Fragment>
         <div className="heroImage">
           <h2>Coming Soon</h2>
         </div>
@@ -30,7 +28,7 @@ export default class Home extends React.Component {
             </Grid>
           </Grid>
         </div>
-      </Container>
+      </React.Fragment>
     );
   }
 }
