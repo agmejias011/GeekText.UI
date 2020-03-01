@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
 import Wishlists from "./components/wishlists";
+import Books from "./components/Books";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
@@ -15,6 +16,9 @@ ReactDOM.render(
 			<Switch>
 				<Route path="/example-route">
 					Hello world.
+				</Route>
+				<Route path="/books">
+					<Books/>
 				</Route>
 				<Route path="/wishlists">
 					<Wishlists/>

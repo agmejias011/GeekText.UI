@@ -54,15 +54,15 @@ namespace ecommercewebsite
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbContextApplication context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
+               scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
+                //uncoment for seeding the database
+                //var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
+                //DbSeedingClass.SeedDataContext(context);
             }
-
-            // uncomented for seeding or updating the database 
-            //context.SeedDataContext();
 
             if (env.IsDevelopment())
             {

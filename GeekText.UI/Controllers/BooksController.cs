@@ -22,7 +22,7 @@ namespace GeekText.UI.Controllers
 
         //GET ALL Books
         //api/books
-        [HttpGet]
+        [HttpGet("[action]")]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
         public IActionResult GetBooks()
@@ -40,12 +40,12 @@ namespace GeekText.UI.Controllers
                  id = book.id,
                  title = book.title,
                  isbn = book.isbn,
-                 //description = book.description,
-                 //rating = book.rating,
-                 //img_url = book.img_url,
-                 //date = book.date,
-                 //top_seller = book.top_seller,
-                 //featured = book.featured
+                 description = book.description,
+                 rating = book.rating,
+                 img_url = book.img_url,
+                 date = book.date,
+                 top_seller = book.top_seller,
+                 featured = book.featured
                 });
             }
             return Ok(booksDto);
