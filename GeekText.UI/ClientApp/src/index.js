@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import SiteContainer from "./components/site-container";
 import SampleComponent from "./components/sample-component";
 import Wishlists from "./components/wishlists";
+import BookDetailsPage from './components/BookDetailsPage'
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
@@ -17,6 +17,9 @@ ReactDOM.render(
 				</Route>
 				<Route path="/wishlists">
 					<Wishlists/>
+				</Route>
+				<Route path="/bookDetails/">
+					<BookDetailsPage/>
 				</Route>
 				<Route path="/">
 					<SampleComponent/>
