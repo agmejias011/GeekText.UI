@@ -3,10 +3,19 @@ import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './confirm';
 import Success from './success';
+import { withStyles } from '@material-ui/core/styles';
 
 
-
+const useStyles = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    
+        width: '100%', // Fix IE 11 issue.
+    }
+    
 export class UserForm extends Component {
+   
     state = {
         step: 1,
         username: '',
@@ -40,6 +49,8 @@ export class UserForm extends Component {
     };
 
     render() {
+
+
         const { step } = this.state;
         const { username, first_name, last_name, email, user_password, nickname, home_address } = this.state;
         const values = { username, first_name, last_name, email, user_password, nickname, home_address}
@@ -47,24 +58,29 @@ export class UserForm extends Component {
         switch (step) {
             case 1:
                 return (
-                    <FormUserDetails
+                    <div style={useStyles}>
+                    <FormUserDetails 
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={values}
-                    />
+                        />
+                    </div>
                 );
             case 2:
                 return (
-                    <FormPersonalDetails
+                    <div style={useStyles}>
+
+                    <FormPersonalDetails style={useStyles}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         handleChange={this.handleChange}
                         values={values}
-                    />
+                        />
+                    </div>
                 );
             case 3:
                 return (
-                    <Confirm
+                    <Confirm style={useStyles}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         values={values}
@@ -72,10 +88,10 @@ export class UserForm extends Component {
                 );
 
             case 4:
-                return <Success />;
+                return <Success style={useStyles} />;
 
         }
     }
 }
 
-export default UserForm;
+export default (withStyles(useStyles)(UserForm));
