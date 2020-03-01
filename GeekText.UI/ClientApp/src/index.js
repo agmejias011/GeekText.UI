@@ -7,6 +7,8 @@ import SampleComponent from "./components/sample-component";
 import Wishlists from "./components/wishlists";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+import { UserForm } from './components/userForm';
+
 
 ReactDOM.render(
 	<Router>
@@ -19,7 +21,7 @@ ReactDOM.render(
 					<Wishlists/>
 				</Route>
 				<Route path="/">
-					<SampleComponent/>
+					<UserForm />
 				</Route>
 			</Switch>
 		</SiteContainer>
