@@ -10,12 +10,9 @@ import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
 import LoginPage from "./components/login-page";
 import Wishlists from "./components/wishlists";
-import signUppage from "./components/signUp-page";
-import UserForm from "./components/userForm";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -31,11 +28,8 @@ ReactDOM.render(
 					<Route path="/login">
 						<LoginPage/>
 					</Route>
-					<Route path="/signUp">
-						<UserForm />
-					</Route>
 					<Route path="/">
-						<Home />
+						<Home/>
 					</Route>
 				</Switch>
 			</SiteContainer>

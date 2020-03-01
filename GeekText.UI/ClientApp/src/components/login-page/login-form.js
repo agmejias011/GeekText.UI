@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 import { connect } from "react-redux";
 import { updateState } from "../../redux/actions/index";
 
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 const useStyles = theme => ({
@@ -104,7 +103,7 @@ class LoginForm extends React.Component {
 						</Button>
 						<Grid container>
 							<Grid item>
-								<Link href={"/signUp"} variant="body2">
+								<Link href="#" variant="body2">
 								{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
