@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
 import LoginPage from "./components/login-page";
 import Wishlists from "./components/wishlists";
+import Books from "./components/Books";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
@@ -28,9 +29,12 @@ ReactDOM.render(
 					<Route path="/login">
 						<LoginPage/>
 					</Route>
+					<Route path="/books">
+						<Books/>
+					</Route>
 					<Route path="/">
 						<Home/>
-					</Route>
+					</Route>	
 				</Switch>
 			</SiteContainer>
 		</Router>
