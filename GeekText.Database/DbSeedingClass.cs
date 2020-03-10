@@ -71,7 +71,7 @@ namespace GeekText.Database
                     {
                        isbn = "17VQFDSF23",
                        title = "The Call Of The Wild",
-                       description = "",
+                       description = "Testing",
                        price = 45.0,
                        rating = 5,
                        img_url ="https://www.gstatic.com/tv/thumb/v22vodart/16926237/p16926237_v_v8_ab.jpg",
@@ -98,7 +98,7 @@ namespace GeekText.Database
                     {
                        isbn = "17VQFDSF23",
                        title = "The Count of Monte Cristo",
-                       description = "",
+                       description = "Testing",
                        price = 10.0,
                        rating = 4.6,
                        img_url ="https://images-na.ssl-images-amazon.com/images/I/51uSVURMnVL._SX306_BO1,204,203,200_.jpg",

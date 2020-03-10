@@ -43,6 +43,7 @@ class Books extends React.Component
                             <BookCard
                                 key={b.id}
                                 title={b.title}
+                                rating={b.rating}
                                 price={b.price}
                                 description={b.description}
                                 img_url={b.img_url}
