@@ -18,7 +18,7 @@ namespace GeekText.Application.Authors
         {
             Author newAuthor = new Author();
             newAuthor.author_id = id;
-            newAuthor.name = name;
+            newAuthor.firstName = name;
             newAuthor.bio = bio;
             newAuthor.photograph_url = photograph_url;
 

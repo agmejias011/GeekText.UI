@@ -28,7 +28,7 @@ namespace GeekText.Application.Books
             newUser.home_address = home_address;
             newUser.user_nickname = user_nickname;
 
-            this.context.User.Add(newUser);
+            this.context.Users.Add(newUser);
             context.SaveChanges();
 
         }
