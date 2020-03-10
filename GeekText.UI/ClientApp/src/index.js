@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Books from "./components/Books";
 
 // Redux
 import { Provider } from "react-redux";
@@ -27,6 +28,9 @@ ReactDOM.render(
 					</Route>
 					<Route path="/wishlists">
 						<Wishlists/>
+					</Route>
+					<Route path="/books">
+						<Books />
 					</Route>
 					<Route path="/login">
 						<LoginPage/>
