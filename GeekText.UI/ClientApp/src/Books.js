@@ -4,7 +4,7 @@ export const books = [
     img: "",
     author: "Eric Carle",
     rating: 5,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/1999"),
     price: "5.99"
   },
   {
@@ -12,7 +12,7 @@ export const books = [
     img: "",
     author: "J.K. Rowling",
     rating: 5,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/2000"),
     price: "10.99"
   },
   {
@@ -20,7 +20,7 @@ export const books = [
     img: "",
     author: "J.K. Rowling",
     rating: 4,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/2001"),
     price: "8.99"
   },
   {
@@ -28,7 +28,7 @@ export const books = [
     img: "",
     author: "Stephen King",
     rating: 5,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/2002"),
     price: "9.99"
   },
   {
@@ -36,7 +36,7 @@ export const books = [
     img: "",
     author: "Lois Lowry",
     rating: 3,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/1999"),
     price: "13.99"
   },
   {
@@ -44,7 +44,7 @@ export const books = [
     img: "",
     author: "Anthony Bourdain",
     rating: 5,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/1999"),
     price: "17.99"
   },
   {
@@ -52,7 +52,7 @@ export const books = [
     img: "",
     author: "Orson Scott Card",
     rating: 1,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("01/01/1999"),
     price: "7.99"
   },
   {
@@ -60,7 +60,7 @@ export const books = [
     img: "",
     author: "Frank Herbert",
     rating: 2,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("05/01/2005"),
     price: "13.99"
   },
   {
@@ -68,23 +68,23 @@ export const books = [
     img: "",
     author: "Suzanne Collins",
     rating: 3,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("02/03/1989"),
     price: "11.99"
   },
   {
-    title: "Dune",
+    title: "Othello",
     img: "",
-    author: "Frank Herbert",
+    author: "William Shakespeare",
     rating: 2,
-    releaseDate: "01/01/1999",
-    price: "13.99"
+    releaseDate: new Date("07/01/1956"),
+    price: "19.99"
   },
   {
     title: "To Kill a Mockingbird",
     img: "",
     author: "Harper Lee",
     rating: 5,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("02/01/2007"),
     price: "13.99"
   },
   {
@@ -92,7 +92,7 @@ export const books = [
     img: "",
     author: "J.D Salinger",
     rating: 2,
-    releaseDate: "01/01/1999",
+    releaseDate: new Date("09/25/2011"),
     price: "13.99"
   }
 ];
