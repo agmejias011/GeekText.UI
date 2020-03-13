@@ -14,8 +14,6 @@ namespace GeekText.Domain.Models
         public int quantity_items { get; set; }
         [Required]
         public decimal total_cost { get; set; }
-        [Required]
-        public bool saved_for_later { get; set; }
         [ForeignKey("user_id"), Required]
         public User user { get; set; }
     }
