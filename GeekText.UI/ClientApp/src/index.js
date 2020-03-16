@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Books from "./components/Books";
+import Cart from "./components/ShoppingCart/cartView";
 
 // Redux
 import { Provider } from "react-redux";
@@ -17,35 +18,35 @@ import UserForm from "./components/userForm";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-
 ReactDOM.render(
-	<Provider store={store}>
-		<Router>
-			<SiteContainer>
-				<Switch>
-					<Route path="/example-route">
-						Hello world.
-					</Route>
-					<Route path="/wishlists">
-						<Wishlists/>
-					</Route>
-					<Route path="/books">
-						<Books />
-					</Route>
-					<Route path="/login">
-						<LoginPage/>
-					</Route>
-					<Route path="/signUp">
-						<UserForm />
-					</Route>
-					<Route path="/">
-						<Home />
-					</Route>
-				</Switch>
-			</SiteContainer>
-		</Router>
-	</Provider>,
-	document.getElementById("root")
+  <Provider store={store}>
+    <Router>
+      <SiteContainer>
+        <Switch>
+          <Route path="/example-route">Hello world.</Route>
+          <Route path="/wishlists">
+            <Wishlists />
+          </Route>
+          <Route path="/books">
+            <Books />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/signUp">
+            <UserForm />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </SiteContainer>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

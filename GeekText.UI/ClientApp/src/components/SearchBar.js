@@ -1,20 +1,31 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import CartBar from "./ShoppingCart/CartBar";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import Badge from "@material-ui/core/Badge";
+import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
 
 export default class SearchBar extends React.Component {
   render() {
-    let account_buttons = (this.props.user)
-      ? (
-        <Grid item>
-          <FavoriteIcon htmlColor="#ec407a" fontSize="large"/>
-        </Grid>
-      )
-      : null;
-    let account_path    = (this.props.user) ? "account" : "login";
+    const StyledBadge = withStyles(theme => ({
+      badge: {
+        right: -3,
+        top: 13,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: "0 4px"
+      }
+    }))(Badge);
+    let account_buttons = this.props.user ? (
+      <Grid item>
+        <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+      </Grid>
+    ) : null;
+    let account_path = this.props.user ? "account" : "login";
     return (
       <Grid
         container
@@ -40,10 +51,22 @@ export default class SearchBar extends React.Component {
           </div>
         </Grid>
         <Grid item>
-          <a href={"/" + account_path}><AccountCircleIcon color="primary" fontSize="large"/></a>
+          <a href={"/" + account_path}>
+            <AccountCircleIcon color="primary" fontSize="large" />
+          </a>
         </Grid>
         <Grid item>
-          <ShoppingCartIcon htmlColor="#42a5f5" fontSize="large"/>
+          <Link to="/cart">
+            <IconButton aria-label="cart">
+              <StyledBadge
+                badgeContent={this.props.itemsTotal}
+                color="secondary"
+                style={{ color: "#42a5f5" }}
+              >
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Link>
         </Grid>
         {account_buttons}
       </Grid>
