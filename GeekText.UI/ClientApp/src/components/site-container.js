@@ -9,7 +9,10 @@ class SiteContainer extends React.Component {
     return (
       <div id="site-container">
         <Container maxWidth="lg" className="home">
-          <SearchBar user={this.props.user} />
+          <SearchBar
+            user={this.props.user}
+            itemsCartTotal={this.props.itemsCartTotal}
+          />
           {this.props.children}
         </Container>
       </div>

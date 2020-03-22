@@ -6,18 +6,18 @@ using System.Text;
 
 namespace GeekText.Application.Carts
 {
-    public class GetPayment_Method
+    public class GetPaymentMethod
     {
         private DbContextApplication context;
 
-        public GetPayment_Method(DbContextApplication context)
+        public GetPaymentMethod(DbContextApplication context)
         {
             this.context = context;
         }
 
         public Payment_Method Get(int id)
         {
-            return context.payment_methods.Find(id);
+            return context.Payment_methods.Find(id);
         }
     }
 }

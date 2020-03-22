@@ -6,11 +6,11 @@ using System.Text;
 
 namespace GeekText.Application.Carts
 {
-    public class GetCart_Book
+    public class GetCartBook
     {
         private DbContextApplication context;
 
-        public GetCart_Book(DbContextApplication context)
+        public GetCartBook(DbContextApplication context)
         {
             this.context = context;
         }

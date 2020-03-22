@@ -33,6 +33,7 @@ namespace GeekText.Domain.Models
         public virtual ICollection<Book_Author> Book_Authors { get; set; }
         public virtual ICollection<Book_Publisher> Book_Publishers { get; set; }
         public virtual ICollection<Book_Genre> Book_Genres { get; set; }
+        public virtual ICollection<Saved_for_Later> Saved_for_Later { get; set; }
 
         //not complete, refer to the lucidchart link for more fields
     }

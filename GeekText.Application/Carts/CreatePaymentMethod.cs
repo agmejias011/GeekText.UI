@@ -6,10 +6,10 @@ using System.Text;
 
 namespace GeekText.Application.Carts
 {
-    public class CreatePayment_Method
+    public class CreatePaymentMethod
     {
         private DbContextApplication context;
-        public CreatePayment_Method(DbContextApplication context)
+        public CreatePaymentMethod(DbContextApplication context)
         {
             this.context = context;
         }
@@ -23,7 +23,7 @@ namespace GeekText.Application.Carts
             newPaymentMethod.expiration = expiration;
             newPaymentMethod.cvv = cvv;
 
-            this.context.payment_methods.Add(newPaymentMethod);
+            this.context.Payment_methods.Add(newPaymentMethod);
             context.SaveChanges();
         }
     }

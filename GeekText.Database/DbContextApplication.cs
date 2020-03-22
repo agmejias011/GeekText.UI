@@ -17,16 +17,16 @@ namespace GeekText.Database
         public DbSet<WishlistBook> WishlistsBooks { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Cart_Book> Cart_Books { get; set; }
-        public DbSet<Payment_Method> payment_methods { get; set; }
+        public DbSet<Cart_Book> Cart_Books { get; set; }       
+        public DbSet<Saved_for_Later> Saved_for_Later { get; set; }
+          public DbSet<Payment_Method> Payment_methods { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers{ get; set; }
         public DbSet<Book_Publisher> Books_Publishers { get; set; }
         public DbSet<Book_Author> Books_Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Book_Genre> Books_Genres { get; set; }
-
-
+               
 
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
@@ -64,14 +64,50 @@ namespace GeekText.Database
             modelBuilder.Entity<Cart>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
+            modelBuilder.Entity<Cart>()
+                      .HasKey(ba => new { ba.id });
+
+            modelBuilder.Entity<Cart>()
+                        .HasOne(b => b.user)
+                        .WithMany(bp => bp.Cart)
+                        .HasForeignKey(b => b.user);
+
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
+            modelBuilder.Entity<Order>()
+                     .HasKey(ba => new { ba.id });
+
+            modelBuilder.Entity<Order>()
+                       .HasOne(b => b.user)
+                       .WithMany(bp => bp.Order)
+                       .HasForeignKey(ba => new { ba.user, ba.cart });
+
+            modelBuilder.Entity<Order>()
+                      .HasOne(b => b.cart)
+                      .WithOne(bp => bp.order);
+
             modelBuilder.Entity<Cart_Book>(eb =>
-             {
-                 eb.HasNoKey();
-             });
-               
+            {
+                eb.HasNoKey();
+            });
+
+            modelBuilder.Entity<Cart_Book>()
+                        .HasOne(b => b.cart)
+                        .WithMany(bp => bp.cart_Book)
+                        .HasForeignKey(ba => new { ba.book, ba.cart });
+
+
+            modelBuilder.Entity<Saved_for_Later>(eb =>
+            {
+                eb.HasNoKey();
+            });
+            modelBuilder.Entity<Saved_for_Later>()
+                          .HasOne(b => b.user)
+                          .WithMany(bp => bp.Saved_for_Later)
+                          .HasForeignKey(ba => new { ba.books, ba.user });
+
+
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);
 

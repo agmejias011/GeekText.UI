@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Books from "./components/Books";
-import Cart from "./components/ShoppingCart/cartView";
+import Cart from "./components/ShoppingCart/cartList";
+import ThankyouPage from "./components/ShoppingCart/thankYou";
 
 // Redux
 import { Provider } from "react-redux";
@@ -17,6 +18,7 @@ import UserForm from "./components/userForm";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+import SearchBar from "./components/SearchBar";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -38,6 +40,9 @@ ReactDOM.render(
           </Route>
           <Route path="/cart">
             <Cart />
+          </Route>
+          <Route path="/orderthankyou">
+            <ThankyouPage />
           </Route>
           <Route path="/">
             <Home />
