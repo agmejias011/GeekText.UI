@@ -67,10 +67,10 @@ namespace GeekText.Database
             modelBuilder.Entity<Cart>()
                       .HasKey(ba => new { ba.id });
 
-            modelBuilder.Entity<Cart>()
-                        .HasOne(b => b.user)
-                        .WithMany(bp => bp.Cart)
-                        .HasForeignKey(b => b.user);
+            //modelBuilder.Entity<Cart>()
+            //            .HasOne(b => b.user)
+            //            .WithMany(bp => bp.Cart)
+            //            .HasForeignKey(b => b.user);
 
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy: 1);
@@ -78,10 +78,10 @@ namespace GeekText.Database
             modelBuilder.Entity<Order>()
                      .HasKey(ba => new { ba.id });
 
-            modelBuilder.Entity<Order>()
-                       .HasOne(b => b.user)
-                       .WithMany(bp => bp.Order)
-                       .HasForeignKey(ba => new { ba.user, ba.cart });
+            //modelBuilder.Entity<Order>()
+            //           .HasOne(b => b.user)
+            //           .WithMany(bp => bp.Order)
+            //           .HasForeignKey(ba => new { ba.user, ba.cart });
 
             modelBuilder.Entity<Order>()
                       .HasOne(b => b.cart)
@@ -92,21 +92,25 @@ namespace GeekText.Database
                 eb.HasNoKey();
             });
 
-            modelBuilder.Entity<Cart_Book>()
-                        .HasOne(b => b.cart)
-                        .WithMany(bp => bp.cart_Book)
-                        .HasForeignKey(ba => new { ba.book, ba.cart });
+            //modelBuilder.Entity<Cart_Book>()
+            //            .HasOne(b => b.cart)
+            //            .WithMany(bp => bp.cart_Book)
+            //            .HasForeignKey(ba => new { ba.book, ba.cart });
 
 
             modelBuilder.Entity<Saved_for_Later>(eb =>
             {
                 eb.HasNoKey();
             });
-            modelBuilder.Entity<Saved_for_Later>()
-                          .HasOne(b => b.user)
-                          .WithMany(bp => bp.Saved_for_Later)
-                          .HasForeignKey(ba => new { ba.books, ba.user });
+            //modelBuilder.Entity<Saved_for_Later>()
+            //              .HasOne(b => b.user)
+            //              .WithMany(bp => bp.Saved_for_Later)
+            //              .HasForeignKey(ba => new { ba.books, ba.user });
 
+            modelBuilder.Entity<Book>()
+                          .HasMany(b => b.Saved_for_Later)
+                          .WithMany(bp => bp.)
+                          .HasForeignKey(ba => new { ba.books, ba.user });
 
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);
