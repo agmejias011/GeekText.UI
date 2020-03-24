@@ -6,16 +6,14 @@ using System.Text;
 
 namespace GeekText.Domain.Models
 {
-    public class Cart
-    {
-        [Key]
-        public int id { get; set; }
-
-        [Required]       
-        public decimal cart_total { get; set; }   
-        
+    public class Saved_for_Later
+    {        
+        [ForeignKey("book_id"), Required]
+        public Book book { get; set; }
         [ForeignKey("user_id"), Required]
-        public User user { get; set; }       
+        public User user { get; set; }
+        [Required]
+        public int saved_qty { get; set; }
         
     }
 }

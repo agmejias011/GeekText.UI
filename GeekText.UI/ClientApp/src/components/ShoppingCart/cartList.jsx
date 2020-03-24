@@ -14,6 +14,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import NumberFormat from "react-number-format";
 import Button from "@material-ui/core/Button";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import SearchBar from "../SearchBar";
 
 const StyledBadge = withStyles(theme => ({
   badge: {
@@ -33,6 +35,11 @@ var cellStyle = {
   width: "100%"
 };
 
+const CartIconStyle = {
+  position: "absolute",
+  top: "0.81em",
+  left: "92.1em"
+};
 const margingStyle = {
   marginLeft: 20,
   marginTop: 40
@@ -49,11 +56,14 @@ const verticalDividerStyle = {
 
 const summaryOrderStyle = {
   position: "absolute",
-  top: "3.5em",
-  left: "50em",
+  top: "7em",
+  left: "75em",
   maxWidth: "30%"
 };
 
+const CartStyle = {
+  marginLeft: "15em"
+};
 const orderDetailStyle = {
   position: "absolute",
   top: "6em",
@@ -154,16 +164,20 @@ class CartList extends Component {
 
   renderSave() {
     if (this.state.saveForLater.length > 0) {
-      return this.state.saveForLater.map(b => (
-        <SaveForLater
-          onIncrementSave={this.handleIncrementSave}
-          onDecrementSave={this.handleDecrementSave}
-          onDeleteSave={this.handleDeleteSave}
-          onMoveToCart={this.handleMoveToCart}
-          key={b.id}
-          book={b}
-        ></SaveForLater>
-      ));
+      return (
+        <div style={CartStyle}>
+          {this.state.saveForLater.map(b => (
+            <SaveForLater
+              onIncrementSave={this.handleIncrementSave}
+              onDecrementSave={this.handleDecrementSave}
+              onDeleteSave={this.handleDeleteSave}
+              onMoveToCart={this.handleMoveToCart}
+              key={b.id}
+              book={b}
+            ></SaveForLater>
+          ))}
+        </div>
+      );
     }
   }
 
@@ -171,8 +185,8 @@ class CartList extends Component {
     if (this.state.saveForLater.length > 0) {
       return (
         <>
-          <div style={margingStyleTop}>
-            <h1 style={margingStyle}>Save for Later</h1>
+          <div style={CartStyle}>
+            <h1>Save for Later</h1>
           </div>
         </>
       );
@@ -221,20 +235,24 @@ class CartList extends Component {
 
   renderCarts() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) <= 0) {
-      return <div style={margingStyle}>Your cart is empty</div>;
+      return <div style={CartStyle}>Your cart is empty</div>;
     } else {
-      return this.state.books.map(b => (
-        <>
-          <Cart
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-            onSave={this.handleSave}
-            key={b.id}
-            book={b}
-          ></Cart>
-        </>
-      ));
+      return (
+        <div style={CartStyle}>
+          {this.state.books.map(b => (
+            <>
+              <Cart
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onDelete={this.handleDelete}
+                onSave={this.handleSave}
+                key={b.id}
+                book={b}
+              ></Cart>
+            </>
+          ))}
+        </div>
+      );
     }
   }
 
@@ -313,16 +331,17 @@ class CartList extends Component {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              fullWidth
-              style={{ height: "4em" }}
-              onClick={() => this.props.onCheckout(this.state.books)}
-            >
-              Place Order
-            </Button>
+            <Link to="orderthankyou">
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                style={{ height: "4em" }}
+              >
+                Place Order
+              </Button>
+            </Link>
           </div>
         </div>
       );
@@ -331,16 +350,10 @@ class CartList extends Component {
   render() {
     return (
       <>
-        <IconButton
-          aria-label="cart"
-          style={{ textAlign: "right", marginLeft: "50em" }}
-        >
-          <StyledBadge badgeContent={this.renderBadge()} color="secondary">
-            <ShoppingCartIcon fontSize="large" />
-          </StyledBadge>
-        </IconButton>
-        <div></div>
         <div>
+          <div style={CartIconStyle}>
+            <CartBar itemsTotal={this.renderBadge()}></CartBar>
+          </div>
           <TableContainer style={orderDetailStyle}>
             <Table aria-label="simple table" style={Tablestyle}>
               <TableBody>
@@ -361,6 +374,7 @@ class CartList extends Component {
               </TableBody>
             </Table>
           </TableContainer>
+
           <div>{this.renderOrderSummary()}</div>
         </div>
       </>

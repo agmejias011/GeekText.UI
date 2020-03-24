@@ -26,5 +26,7 @@ namespace GeekText.Domain.Models
         public string user_nickname { get; set; }
 
         public List<Wishlist> wishlists { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

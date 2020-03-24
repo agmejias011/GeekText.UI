@@ -16,10 +16,6 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 class CartBadges extends Component {
-  state = {
-    itemsTotal: this.props.itemsTotal
-  };
-
   handleCartClick() {
     console.log("Click!");
   }
@@ -27,9 +23,9 @@ class CartBadges extends Component {
   render() {
     return (
       <Link to="/cart">
-        <IconButton aria-label="cart" onClick={this.handleCartClick}>
+        <IconButton aria-label="cart" size="medium">
           <StyledBadge
-            badgeContent={this.state.itemsTotal}
+            badgeContent={this.props.itemsTotal}
             color="secondary"
             style={{ color: "#42a5f5" }}
           >
