@@ -17,7 +17,8 @@ namespace GeekText.Database
         public DbSet<WishlistBook> WishlistsBooks { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Cart_Book> Cart_Books { get; set; }       
+        public DbSet<Cart_Order> Cart_Orders { get; set; }
+        public DbSet<Cart_Book_Line> Cart_Book_Line { get; set; }       
         public DbSet<Saved_for_Later> Saved_for_Later { get; set; }
           public DbSet<Payment_Method> Payment_methods { get; set; }
         public DbSet<Author> Authors { get; set; }
@@ -25,8 +26,7 @@ namespace GeekText.Database
         public DbSet<Book_Publisher> Books_Publishers { get; set; }
         public DbSet<Book_Author> Books_Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Book_Genre> Books_Genres { get; set; }
-               
+        public DbSet<Book_Genre> Books_Genres { get; set; }              
 
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
@@ -55,62 +55,31 @@ namespace GeekText.Database
                 .HasOne(wb => wb.book)
                 .WithMany(b => b.wishlist_books);
 
-            //Code below is for the book and user to have a serial ID starting at 1000
-            //Do the same for any other class you need 
-
             modelBuilder.Entity<User>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy:1);
 
             modelBuilder.Entity<Cart>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);             
 
-            modelBuilder.Entity<Cart>()
-                      .HasKey(ba => new { ba.id });
+            modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
+          .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
-            //modelBuilder.Entity<Cart>()
-            //            .HasOne(b => b.user)
-            //            .WithMany(bp => bp.Cart)
-            //            .HasForeignKey(b => b.user);
+            modelBuilder.Entity<Payment_Method>().Property(b => b.id).UseIdentityAlwaysColumn()
+          .HasIdentityOptions(startValue: 1000, incrementBy: 1);   
 
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
-            modelBuilder.Entity<Order>()
-                     .HasKey(ba => new { ba.id });
+            modelBuilder.Entity<Cart_Book_Line>()
+                        .HasNoKey();
 
-            //modelBuilder.Entity<Order>()
-            //           .HasOne(b => b.user)
-            //           .WithMany(bp => bp.Order)
-            //           .HasForeignKey(ba => new { ba.user, ba.cart });
+            modelBuilder.Entity<Cart_Order>()
+                       .HasNoKey();
 
-            modelBuilder.Entity<Order>()
-                      .HasOne(b => b.cart)
-                      .WithOne(bp => bp.order);
-
-            modelBuilder.Entity<Cart_Book>(eb =>
-            {
-                eb.HasNoKey();
-            });
-
-            //modelBuilder.Entity<Cart_Book>()
-            //            .HasOne(b => b.cart)
-            //            .WithMany(bp => bp.cart_Book)
-            //            .HasForeignKey(ba => new { ba.book, ba.cart });
+            modelBuilder.Entity<Saved_for_Later>()
+                     .HasNoKey();
 
 
-            modelBuilder.Entity<Saved_for_Later>(eb =>
-            {
-                eb.HasNoKey();
-            });
-            //modelBuilder.Entity<Saved_for_Later>()
-            //              .HasOne(b => b.user)
-            //              .WithMany(bp => bp.Saved_for_Later)
-            //              .HasForeignKey(ba => new { ba.books, ba.user });
-
-            modelBuilder.Entity<Book>()
-                          .HasMany(b => b.Saved_for_Later)
-                          .WithMany(bp => bp.)
-                          .HasForeignKey(ba => new { ba.books, ba.user });
 
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);

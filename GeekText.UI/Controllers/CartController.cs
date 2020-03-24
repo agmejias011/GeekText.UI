@@ -35,7 +35,7 @@ namespace GeekText.UI.Controllers
         {
             var cart = await _context.Carts.FindAsync(id);
 
-            cart = _context.Carts.Include(c => c.user).FirstOrDefault(a => a.id == id);
+            cart = _context.Carts.Include(c => c.user).FirstOrDefault(a => a.id == id);           
 
             if (cart == null)
             {

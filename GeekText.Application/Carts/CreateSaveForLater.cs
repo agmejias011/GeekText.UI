@@ -14,10 +14,10 @@ namespace GeekText.Application.Carts
             this.context = context;
         }
 
-        public void Create(ICollection<Book> books, User user, int saved_qty)
+        public void Create(Book book, User user, int saved_qty)
         {
             Saved_for_Later savedForLater = new Saved_for_Later();
-            savedForLater.books = books;
+            savedForLater.book = book;
             savedForLater.user = user;
             savedForLater.saved_qty = saved_qty;
 

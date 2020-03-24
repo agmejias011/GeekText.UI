@@ -14,15 +14,13 @@ namespace GeekText.Application.Carts
             this.context = context;
         }
 
-        public void Create(int id, decimal total_cost, User user, Order order, ICollection<Cart_Book> cart_Book)
+        public void Create(int id, decimal total_cost, User user)
         {
             Cart newCart = new Cart();
             newCart.id = id;
             newCart.cart_total = total_cost;
             newCart.user = user;
-            newCart.order = order;
-            newCart.cart_Book = cart_Book;
-
+           
             this.context.Carts.Add(newCart);
             context.SaveChanges();
         }

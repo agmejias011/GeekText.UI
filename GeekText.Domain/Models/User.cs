@@ -28,6 +28,5 @@ namespace GeekText.Domain.Models
         public List<Wishlist> wishlists { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<Order> Order { get; set; }
-        public virtual ICollection<Saved_for_Later> Saved_for_Later { get; set; }
     }
 }

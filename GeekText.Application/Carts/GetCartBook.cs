@@ -15,9 +15,9 @@ namespace GeekText.Application.Carts
             this.context = context;
         }
 
-        public Cart_Book Get(Cart cart)
+        public Cart_Book_Line Get(Cart cart)
         {
-            return context.Cart_Books.Find(cart);
+            return context.Cart_Book_Line.Find(cart);
         }
     }
 }

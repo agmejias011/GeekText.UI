@@ -17,13 +17,13 @@ namespace GeekText.Application.Carts
 
         public void Create(Cart cart, Book book, int ordered_qty, decimal book_price)
         {
-            Cart_Book newCartBook = new Cart_Book();
+            Cart_Book_Line newCartBook = new Cart_Book_Line();
             newCartBook.cart = cart;
             newCartBook.book = book;
             newCartBook.ordered_qty = ordered_qty;
             newCartBook.book_price = book_price;
 
-            this.context.Cart_Books.Add(newCartBook);
+            this.context.Cart_Book_Line.Add(newCartBook);
             context.SaveChanges();
         }
     }

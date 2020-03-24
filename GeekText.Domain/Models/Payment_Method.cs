@@ -7,7 +7,7 @@ namespace GeekText.Domain.Models
 {
     public class Payment_Method
     {
-        [Key, Required]
+        [Key]
         public int id { get; set; }
         [Required]
         public string card_nickname { get; set; }

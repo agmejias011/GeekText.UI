@@ -8,8 +8,8 @@ namespace GeekText.Domain.Models
 {
     public class Saved_for_Later
     {        
-        [ForeignKey("books_id"), Required]
-        public virtual ICollection<Book> books { get; set; }
+        [ForeignKey("book_id"), Required]
+        public Book book { get; set; }
         [ForeignKey("user_id"), Required]
         public User user { get; set; }
         [Required]
