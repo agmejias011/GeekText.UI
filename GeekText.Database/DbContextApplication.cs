@@ -18,9 +18,11 @@ namespace GeekText.Database
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart_Order> Cart_Orders { get; set; }
+        public DbSet<Cart_User> Cart_User{ get; set; }
         public DbSet<Cart_Book_Line> Cart_Book_Line { get; set; }       
         public DbSet<Saved_for_Later> Saved_for_Later { get; set; }
           public DbSet<Payment_Method> Payment_methods { get; set; }
+        public DbSet<user_payment_options> user_payment_options { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers{ get; set; }
         public DbSet<Book_Publisher> Books_Publishers { get; set; }
@@ -55,6 +57,7 @@ namespace GeekText.Database
                 .HasOne(wb => wb.book)
                 .WithMany(b => b.wishlist_books);
 
+
             modelBuilder.Entity<User>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy:1);
 
@@ -70,15 +73,19 @@ namespace GeekText.Database
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
-            modelBuilder.Entity<Cart_Book_Line>()
-                        .HasNoKey();
+            modelBuilder.Entity<Cart_Book_Line>().Property(b => b.id).UseIdentityAlwaysColumn()
+           .HasIdentityOptions(startValue: 1000, incrementBy: 1);            
 
             modelBuilder.Entity<Cart_Order>()
                        .HasNoKey();
 
+            modelBuilder.Entity<Cart_User>()
+                    .HasNoKey();
+
             modelBuilder.Entity<Saved_for_Later>()
                      .HasNoKey();
-
+            modelBuilder.Entity<user_payment_options>()
+                    .HasNoKey();
 
 
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
