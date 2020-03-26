@@ -10,12 +10,13 @@ namespace GeekText.Domain.Models
     {
         [Key]
         public int id { get; set; }
-
+        
         [Required]       
-        public decimal cart_total { get; set; }   
-        
-        [ForeignKey("user_id"), Required]
-        public User user { get; set; }       
-        
+        public decimal cart_total { get; set; }
+
+        [Required]
+        public int item_total { get; set; }
+
+
     }
 }

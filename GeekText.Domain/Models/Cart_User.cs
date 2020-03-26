@@ -6,13 +6,13 @@ using System.Text;
 
 namespace GeekText.Domain.Models
 {
-    public class Cart_Order
+    public class Cart_User
     {
         [Key]
         public int id { get; set; }
         [ForeignKey("cart_id"), Required]
         public Cart cart { get; set; }
-        [ForeignKey("order_id"), Required]
-        public Order order { get; set; }
+        [ForeignKey("user_id"), Required]
+        public User user { get; set; }
     }
 }

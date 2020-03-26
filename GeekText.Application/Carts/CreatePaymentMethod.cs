@@ -14,7 +14,7 @@ namespace GeekText.Application.Carts
             this.context = context;
         }
 
-        public void Create(int id, string card_nickname, int card_number, string expiration, int cvv)
+        public void Create(int id, string card_nickname, string card_number, string expiration, int cvv)
         {
             Payment_Method newPaymentMethod = new Payment_Method();
             newPaymentMethod.id = id;
