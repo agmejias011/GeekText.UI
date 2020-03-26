@@ -12,7 +12,7 @@ namespace GeekText.Domain.Models
         [Required]
         public string card_nickname { get; set; }
         [Required]
-        public string card_number{ get; set; }
+        public int card_number{ get; set; }
         [Required]
         public string expiration { get; set; }
         [Required]

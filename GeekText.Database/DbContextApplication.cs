@@ -62,28 +62,27 @@ namespace GeekText.Database
             .HasIdentityOptions(startValue: 1000, incrementBy:1);
 
             modelBuilder.Entity<Cart>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000, incrementBy: 1);             
+            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
+
+            modelBuilder.Entity<Cart_Book_Line>().Property(b => b.id).UseIdentityAlwaysColumn()
+          .HasIdentityOptions(startValue: 1000, incrementBy: 1);
+
+            modelBuilder.Entity<Cart_Order>().Property(b => b.id).UseIdentityAlwaysColumn()
+         .HasIdentityOptions(startValue: 1000, incrementBy: 1);
+
+            modelBuilder.Entity<Cart_User>().Property(b => b.id).UseIdentityAlwaysColumn()
+        .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
           .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
             modelBuilder.Entity<Payment_Method>().Property(b => b.id).UseIdentityAlwaysColumn()
-          .HasIdentityOptions(startValue: 1000, incrementBy: 1);   
+          .HasIdentityOptions(startValue: 1000, incrementBy: 1);
 
-            modelBuilder.Entity<Order>().Property(b => b.id).UseIdentityAlwaysColumn()
-            .HasIdentityOptions(startValue: 1000, incrementBy: 1);
-
-            modelBuilder.Entity<Cart_Book_Line>().Property(b => b.id).UseIdentityAlwaysColumn()
-           .HasIdentityOptions(startValue: 1000, incrementBy: 1);            
-
-            modelBuilder.Entity<Cart_Order>()
-                       .HasNoKey();
-
-            modelBuilder.Entity<Cart_User>()
-                    .HasNoKey();
-
-            modelBuilder.Entity<Saved_for_Later>()
-                     .HasNoKey();
+            modelBuilder.Entity<Saved_for_Later>().Property(b => b.id).UseIdentityAlwaysColumn()
+         .HasIdentityOptions(startValue: 1000, incrementBy: 1);
+      
+           
             modelBuilder.Entity<user_payment_options>()
                     .HasNoKey();
 

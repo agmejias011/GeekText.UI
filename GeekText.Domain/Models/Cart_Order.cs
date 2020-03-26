@@ -8,6 +8,8 @@ namespace GeekText.Domain.Models
 {
     public class Cart_Order
     {
+        [Key]
+        public int id { get; set; }
         [ForeignKey("cart_id"), Required]
         public Cart cart { get; set; }
         [ForeignKey("order_id"), Required]

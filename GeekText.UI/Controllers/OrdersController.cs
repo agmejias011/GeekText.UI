@@ -78,19 +78,41 @@ namespace GeekText.UI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("create")]
-        public async Task<ActionResult<Order>> PostOrder([FromBody]Order order)
+        public async Task<ActionResult<Order>> PostOrder([FromBody]OrderCreationRequestJson orderCreation)
         {
-            IQueryable<user_payment_options> query = _context.user_payment_options;
+            var contextPO = _context.user_payment_options.
+                Include(u => u.user).
+                Include(p => p.payment_method).
+                Where(p => p.user.id == orderCreation.user_id);     
+            
+            Payment_Method payment = new Payment_Method();
+            payment = contextPO.FirstOrDefault<user_payment_options>().payment_method;
 
-            var payment_method = query.Where(up => up.user.id == order.user.id)
-                                                              .Select(p => p.payment_method);                                
+            //var user_payment_options = queryPayment.FirstOrDefault<user_payment_options>();
+        
 
-            order.payment_method = (Payment_Method)payment_method;// check if this works
+            var queryUser = _context.Users;
+            var user = queryUser.Where(up => up.id == orderCreation.user_id);           
+            User userOrder = new User();
+            userOrder = user.FirstOrDefault<User>();
+         
 
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            Order newOrder = new Order();
+            newOrder.payment_method = payment;
+            newOrder.user = userOrder;
 
-            return CreatedAtAction("GetOrder", new { id = order.id }, order);
+            _context.Orders.Add(newOrder);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return CreatedAtAction("GetOrder", new { id = newOrder.id }, newOrder.id);
         }
 
         // DELETE: api/Orders/5
