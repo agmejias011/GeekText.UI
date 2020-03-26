@@ -60,8 +60,8 @@ namespace ecommercewebsite
             {
                scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
                 //uncoment for seeding the database
-                //var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
-                //DbSeedingClass.SeedDataContext(context);
+                var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
+                DbSeedingClass.SeedDataContext(context);
             }
 
             if (env.IsDevelopment())

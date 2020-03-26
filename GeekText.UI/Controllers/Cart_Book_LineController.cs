@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GeekText.Database;
 using GeekText.Domain.Models;
+using GeekText.UI.Controllers.MapperClasses;
 
 namespace GeekText.UI.Controllers
 {
-    [Route("api/cart-book-lines")]
+    [Route("api/cart-book-line")]
     [ApiController]
     public class Cart_Book_LineController : ControllerBase
     {
@@ -78,8 +79,17 @@ namespace GeekText.UI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("create")]
-        public async Task<ActionResult<Cart_Book_Line>> PostCart_Book_Line([FromBody]Cart_Book_Line cart_Book_Line)
+        public async Task<ActionResult<Cart_Book_Line>> PostCart_Book_Line([FromBody]Cart_Book_LineJSON cart_Book_LineJSON)
         {
+            var contextBook = _context.Books.Where(p => p.id == cart_Book_LineJSON.book_id);
+            var contextCart = _context.Carts.Where(c => c.id == cart_Book_LineJSON.cart_id);
+
+            Cart_Book_Line cart_Book_Line = new Cart_Book_Line();
+            cart_Book_Line.cart = contextCart.FirstOrDefault<Cart>();
+            cart_Book_Line.book = contextBook.FirstOrDefault<Book>();
+            cart_Book_Line.book_price = cart_Book_LineJSON.book_price;
+            cart_Book_Line.ordered_qty = cart_Book_LineJSON.ordered_qty;
+
             _context.Cart_Book_Line.Add(cart_Book_Line);
             await _context.SaveChangesAsync();
 
