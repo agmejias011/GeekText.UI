@@ -16,12 +16,12 @@ namespace GeekText.Database
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<WishlistBook> WishlistsBooks { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Cart_Book_Line> Cart_Book_Line { get; set; }
         public DbSet<Cart_Order> Cart_Orders { get; set; }
-        public DbSet<Cart_User> Cart_User{ get; set; }
-        public DbSet<Cart_Book_Line> Cart_Book_Line { get; set; }       
-        public DbSet<Saved_for_Later> Saved_for_Later { get; set; }
-          public DbSet<Payment_Method> Payment_methods { get; set; }
+        public DbSet<Cart_User> Cart_User { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Payment_Method> Payment_methods { get; set; }
+        public DbSet<Saved_for_Later> Saved_for_Later { get; set; }          
         public DbSet<user_payment_options> user_payment_options { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers{ get; set; }
