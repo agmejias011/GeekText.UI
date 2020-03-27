@@ -101,7 +101,12 @@ class CartList extends Component {
         itemSubtotal: 3 * 4.5 // this will come from the add to cart
       }
     ],
-    saveForLater: []
+    saveForLater: [],
+    user_id: 1001 // this will come from signed in user.
+  };
+
+  handlePlaceOrder = cartState => {
+    console.log(cartState);
   };
 
   handleIncrement = book => {
@@ -338,6 +343,7 @@ class CartList extends Component {
                 size="large"
                 fullWidth
                 style={{ height: "4em" }}
+                onClick={() => this.handlePlaceOrder(this.state)}
               >
                 Place Order
               </Button>
