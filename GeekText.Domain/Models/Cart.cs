@@ -8,15 +8,15 @@ namespace GeekText.Domain.Models
 {
     public class Cart
     {
-        [Key, Required]
+        [Key]
         public int id { get; set; }
+        
+        [Required]       
+        public decimal cart_total { get; set; }
+
         [Required]
-        public int quantity_items { get; set; }
-        [Required]
-        public decimal total_cost { get; set; }
-        [Required]
-        public bool saved_for_later { get; set; }
-        [ForeignKey("user_id"), Required]
-        public User user { get; set; }
+        public int item_total { get; set; }
+
+
     }
 }

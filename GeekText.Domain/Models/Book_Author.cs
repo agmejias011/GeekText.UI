@@ -10,8 +10,11 @@ namespace GeekText.Domain.Models
     {
         [ForeignKey("author_id")]
         public int author_id { get; set; }
+        public Author author  { get; set; }
 
         [ForeignKey("book_id")]
         public int book_id { get; set; }
+        public Book book { get; set; }
     }
 }
+
