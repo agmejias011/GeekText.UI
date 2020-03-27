@@ -6,15 +6,15 @@ using System.Text;
 
 namespace GeekText.Application.Carts
 {
-    public class CreatePayment_Method
+    public class CreatePaymentMethod
     {
         private DbContextApplication context;
-        public CreatePayment_Method(DbContextApplication context)
+        public CreatePaymentMethod(DbContextApplication context)
         {
             this.context = context;
         }
 
-        public void Create(int id, string card_nickname, int card_number, string expiration, int cvv)
+        public void Create(int id, string card_nickname, string card_number, string expiration, int cvv)
         {
             Payment_Method newPaymentMethod = new Payment_Method();
             newPaymentMethod.id = id;
@@ -23,7 +23,7 @@ namespace GeekText.Application.Carts
             newPaymentMethod.expiration = expiration;
             newPaymentMethod.cvv = cvv;
 
-            this.context.payment_methods.Add(newPaymentMethod);
+            this.context.Payment_methods.Add(newPaymentMethod);
             context.SaveChanges();
         }
     }

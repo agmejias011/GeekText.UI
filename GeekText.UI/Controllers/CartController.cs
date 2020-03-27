@@ -26,22 +26,20 @@ namespace GeekText.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCarts()
         {
-            return await _context.Carts.Include(c => c.user).ToListAsync();
+            return await _context.Carts.ToListAsync();
         }
 
         // GET: api/Cart/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Cart>> GetCart(int id)
         {
-            var cart = await _context.Carts.FindAsync(id);
-
-            cart = _context.Carts.Include(c => c.user).FirstOrDefault(a => a.id == id);
+            var cart = await _context.Carts.FindAsync(id);    
 
             if (cart == null)
             {
                 return NotFound();
             }
-
+           
             return cart;
         }
 
@@ -91,9 +89,9 @@ namespace GeekText.UI.Controllers
             catch (FormatException)
             {
                 return BadRequest();
-            }           
-
-            return CreatedAtAction("GetCart", new { id = cart.id }, cart);
+            }
+            
+            return CreatedAtAction("GetCart", new { id = cart.id }, cart.id);
         }
 
         // DELETE: api/Cart/5
