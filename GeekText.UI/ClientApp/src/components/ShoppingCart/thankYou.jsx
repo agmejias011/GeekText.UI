@@ -24,9 +24,12 @@ class ThankyouPage extends Component {
                   <h2>Thank you for your order!</h2>
                   <p>
                     Your order number is
-                    <span style={{ fontWeight: "bold" }}> #2001539</span>. We
-                    have emailed your order confirmation, and will send you an
-                    update when your order has shipped.
+                    <span style={{ fontWeight: "bold" }}>
+                      {" "}
+                      #{this.props.orderNumber}
+                    </span>
+                    . We have emailed your order confirmation, and will send you
+                    an update when your order has shipped.
                   </p>
                   <Link to="/">
                     <Button
