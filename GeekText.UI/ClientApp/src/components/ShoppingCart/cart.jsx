@@ -97,12 +97,14 @@ class Cart extends Component {
                     </ButtonGroup>
                   </TableCell>
                   <TableCell align="center" style={cellStyle}>
-                    <NumberFormat
-                      value={this.props.book.itemSubtotal}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"$"}
-                    />
+                    <h3>
+                      <NumberFormat
+                        value={this.props.book.itemSubtotal}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                    </h3>
                   </TableCell>
                 </TableRow>
               </>

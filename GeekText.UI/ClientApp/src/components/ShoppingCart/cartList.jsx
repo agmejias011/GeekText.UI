@@ -101,7 +101,26 @@ class CartList extends Component {
         itemSubtotal: 3 * 4.5 // this will come from the add to cart
       }
     ],
-    saveForLater: []
+    saveForLater: [],
+    user_id: 1001 // this will come from signed in user.
+  };
+
+  handlePlaceOrder = cartState => {
+    console.log(cartState.books.reduce((acc, b) => acc + b.itemSubtotal, 0));
+    console.log(cartState.books.reduce((acc, b) => acc + b.orderQTY, 0));
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cart_total: cartState.books.reduce((acc, b) => acc + b.itemSubtotal, 0),
+        item_total: cartState.books.reduce((acc, b) => acc + b.orderQTY, 0),
+        user_id: cartState.user_id
+      })
+    };
+    fetch("https://jsonplaceholder.typicode.com/posts", requestOptions)
+      .then(response => response.json())
+      .then(data => this.setState({ postId: data.id }));
   };
 
   handleIncrement = book => {
@@ -111,12 +130,6 @@ class CartList extends Component {
     books[index].orderQTY++;
     books[index].itemSubtotal = books[index].price * books[index].orderQTY;
     this.setState({ books });
-
-    this.setState({ itemTotal: this.state.itemTotal + 1 });
-
-    this.setState({
-      subtotal: this.state.books.reduce((acc, b) => acc + b.itemSubtotal, 0)
-    });
   };
 
   handleDecrement = book => {
@@ -132,21 +145,11 @@ class CartList extends Component {
       books[index].itemSubtotal = books[index].price * books[index].orderQTY;
       this.setState({ books });
     }
-
-    this.setState({ itemTotal: this.state.itemTotal - 1 });
-    this.setState({
-      subtotal: this.state.books.reduce((acc, b) => acc + b.itemSubtotal, 0)
-    });
   };
 
   handleDelete = book => {
     const deletedQTY = book.orderQTY;
     this.setState({ books: this.state.books.filter(b => b.id !== book.id) });
-
-    this.setState({ itemTotal: this.state.itemTotal - deletedQTY });
-    this.setState({
-      subtotal: this.state.books.reduce((acc, b) => acc + b.itemSubtotal, 0)
-    });
   };
 
   handleSave = book => {
@@ -338,6 +341,7 @@ class CartList extends Component {
                 size="large"
                 fullWidth
                 style={{ height: "4em" }}
+                onClick={() => this.handlePlaceOrder(this.state)}
               >
                 Place Order
               </Button>
