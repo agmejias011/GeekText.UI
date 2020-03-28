@@ -8,19 +8,14 @@ namespace GeekText.Domain.Models
 {
     public class Order
     {
-        [Key, Required]
+        [Key]
         public int id { get; set; }
-
-        public int payment_id { get; set; }
+        
         [ForeignKey("payment_id"), Required]
-        public Payment_Method payment_method { get; set; }       
-
-        public int user_id { get; set; }
+        public Payment_Method payment_method { get; set; }      
+     
         [ForeignKey("user_id"), Required]
         public User user { get; set; }
-
-        public int cart_id { get; set; }
-        [ForeignKey("cart_id"), Required]
-        public Cart cart { get; set; }
+              
     }
 }

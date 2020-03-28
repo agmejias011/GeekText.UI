@@ -19,8 +19,8 @@ namespace GeekText.Application.Books
             Book newBook = new Book();
             newBook.id = id;
             newBook.title = title;
-            newBook.description = description;
-            newBook.price = price;
+           // newBook.description = description;
+           // newBook.price = price;
 
             this.context.Books.Add(newBook);
             context.SaveChanges();

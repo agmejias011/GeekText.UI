@@ -10,28 +10,29 @@ namespace GeekText.Domain.Models
     {
         [Key, Required]
         public int id { get; set; }
-
-        [Required]
+        //[Required]
+        public string isbn { get; set; }
+        //[Required]
         public string title { get; set; }
-        [Required]
+        //[Required]
         public string description { get; set; }
-        [Required]
+        //[Required]
         public double price { get; set; }
+        //[Required]
         public double rating { get; set; }
-        [Required]
+        //[Required]
         public string img_url { get; set; }
-        [Required]
+        //[Required]
         public DateTime date { get; set; }
-        [Required]
+        //[Required]
         public bool top_seller { get; set; }
-        [Required]
+        //[Required]
         public bool featured { get; set; }
 
-        [ForeignKey("genre"), Required] //Enter the name of the table
-        public int genre_id  { get; set; }
-
         public List<WishlistBook> wishlist_books { get; set; }
-
-        //not complete, refer to the lucidchart link for more fields
+        public virtual ICollection<Book_Author> Book_Authors { get; set; }
+        public virtual ICollection<Book_Publisher> Book_Publishers { get; set; }
+        public virtual ICollection<Book_Genre> Book_Genres { get; set; }
+   
     }
 }

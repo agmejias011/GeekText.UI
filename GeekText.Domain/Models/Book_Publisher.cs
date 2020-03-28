@@ -11,9 +11,11 @@ namespace GeekText.Domain.Models
     {
         [ForeignKey("publisher_id"), Required]
         public int publisher_id { get; set; }
+        public Publisher publisher { get; set; }
 
         [ForeignKey("book_id"), Required]
         public int book_id { get; set; }
+        public Book book { get; set; }
 
     }
 }
