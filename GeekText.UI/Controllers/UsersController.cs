@@ -10,50 +10,50 @@ using GeekText.Domain.Models;
 
 namespace GeekText.UI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
-    public class Cart_User1Controller : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly DbContextApplication _context;
 
-        public Cart_User1Controller(DbContextApplication context)
+        public UsersController(DbContextApplication context)
         {
             _context = context;
         }
 
-        // GET: api/Cart_User1
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cart_User>>> GetCart_User()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Cart_User.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Cart_User1/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cart_User>> GetCart_User(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var cart_User = await _context.Cart_User.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (cart_User == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return cart_User;
+            return user;
         }
 
-        // PUT: api/Cart_User1/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCart_User(int id, Cart_User cart_User)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != cart_User.id)
+            if (id != user.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cart_User).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace GeekText.UI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Cart_UserExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace GeekText.UI.Controllers
             return NoContent();
         }
 
-        // POST: api/Cart_User1
+        // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Cart_User>> PostCart_User(Cart_User cart_User)
+        [HttpPost("create")]
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Cart_User.Add(cart_User);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCart_User", new { id = cart_User.id }, cart_User);
+            return CreatedAtAction("GetUser", new { id = user.id }, user);
         }
 
-        // DELETE: api/Cart_User1/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Cart_User>> DeleteCart_User(int id)
+        public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var cart_User = await _context.Cart_User.FindAsync(id);
-            if (cart_User == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Cart_User.Remove(cart_User);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return cart_User;
+            return user;
         }
 
-        private bool Cart_UserExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Cart_User.Any(e => e.id == id);
+            return _context.Users.Any(e => e.id == id);
         }
     }
 }
