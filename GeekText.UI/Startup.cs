@@ -1,4 +1,5 @@
 using GeekText.Database;
+using GeekText.UI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -47,6 +48,9 @@ namespace ecommercewebsite
             services.AddDbContext<DbContextApplication>(options =>
                 options.UseNpgsql(connectionString)
             );
+            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +59,9 @@ namespace ecommercewebsite
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<DbContextApplication>().Database.EnsureCreated();
+                //uncoment for seeding the database
+                //var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
+                //DbSeedingClass.SeedDataContext(context);
             }
 
             if (env.IsDevelopment())

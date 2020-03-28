@@ -25,7 +25,6 @@ export class Success extends Component {
                         maxWidth='sm'
                         onClose={this.onClose}
                     >
-                        <button onClick={this.onClose} />
 
                         <AppBar title="Success" />
                         <h1>Thank You For Your Submission</h1>

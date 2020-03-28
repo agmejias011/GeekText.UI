@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,3 +19,4 @@ namespace GeekText.Domain.Models
         public Shipping_address shipping_address { get; set; }
     }
 }
+*/
