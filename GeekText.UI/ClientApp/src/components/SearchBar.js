@@ -15,7 +15,9 @@ export default class SearchBar extends React.Component {
   renderSearchBarWithCartAmount() {
     let account_buttons = this.props.user ? (
       <Grid item>
-        <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        <Link to="/wishlists">
+          <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        </Link>
       </Grid>
     ) : null;
     let account_path = this.props.user ? "account" : "login";
@@ -86,9 +88,9 @@ export default class SearchBar extends React.Component {
             </div>
           </Grid>
           <Grid item>
-            <a href={"/" + account_path}>
+            <Link to={"/" + account_path}>
               <AccountCircleIcon color="primary" fontSize="large" />
-            </a>
+            </Link>
           </Grid>
           <Grid item>
             <CartBar itemsTotal={this.props.itemsCartTotal}></CartBar>
