@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import BookCard from "./BookCard";
@@ -25,6 +26,8 @@ class Books extends React.Component {
   }
 
   renderAllBooksTable(books) {
+    let user_id = (this.props.state.authenticated) ? this.props.state.user.id : false;
+
     return (
       <div className="App">
         <Grid container spacing={10} style={{ padding: "24px" }}>
@@ -32,6 +35,8 @@ class Books extends React.Component {
             <Grid key={b.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
               <BookCard
                 key={b.id}
+                id={b.id}
+                user_id={user_id}
                 title={b.title}
                 rating={b.rating}
                 price={b.price}
@@ -64,4 +69,10 @@ class Books extends React.Component {
   }
 }
 
-export default Books;
+const mapStateToProps = (state) => {
+  return {
+    state : state
+  };
+}
+
+export default connect(mapStateToProps)(Books);

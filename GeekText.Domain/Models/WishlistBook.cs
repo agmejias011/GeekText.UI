@@ -9,6 +9,9 @@ namespace GeekText.Domain.Models
     [Table("wishlists_books")]
     public class WishlistBook
     {
+        [Key]
+        public int id { get; set; }
+
         public int wishlist_id { get; set; }
         [ForeignKey("wishlist_id")]
         public Wishlist wishlist { get; set; }

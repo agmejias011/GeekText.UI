@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -25,6 +26,10 @@ class Wishlists extends React.Component {
 	}
 
 	render() {
+		let insert_row = (this.state.wishlists.length === 3)
+			? null
+			: <WishlistRow key="wishlist-row-insert" addWishlist={this.addWishlist.bind(this)} user_id={this.props.state.user.id}/>;
+
 		return (
 			<TableContainer component={Paper}>
 				<Table aria-label="simple table">
@@ -37,7 +42,7 @@ class Wishlists extends React.Component {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						<WishlistRow key="wishlist-row-insert" addWishlist={this.addWishlist.bind(this)}/>
+						{insert_row}
 						{this.state.wishlists.map(wishlist => (
 							<WishlistRow
 								wishlist={wishlist}
@@ -117,9 +122,11 @@ class Wishlists extends React.Component {
 	}
 
 	async loadWishlists() {
-		let wishlists = await fetch(`${API_URL}/Wishlists`);
+		let user = await fetch(`${API_URL}/User/${this.props.state.user.id}`);
 
-		wishlists = await wishlists.json();
+		user = await user.json();
+
+		let wishlists = user.wishlists;
 
 		wishlists.sort((a, b) => {
 			return (a.name < b.name) ? -1 : 1;
@@ -131,4 +138,10 @@ class Wishlists extends React.Component {
 	}
 }
 
-export default Wishlists;
+const mapStateToProps = (state) => {
+	return {
+		state : state
+	};
+}
+
+export default connect(mapStateToProps)(Wishlists);

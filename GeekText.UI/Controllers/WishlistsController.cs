@@ -44,6 +44,12 @@ namespace GeekText.UI.Controllers
 
             await _context.Entry(wishlist).Reference(w => w.user).LoadAsync();
             await _context.Entry(wishlist).Collection(w => w.wishlist_books).LoadAsync();
+
+            foreach (WishlistBook tmp in wishlist.wishlist_books)
+            {
+                await _context.Entry(tmp).Reference(wb => wb.book).LoadAsync();
+            }
+
             return wishlist;
         }
 
@@ -139,6 +145,7 @@ namespace GeekText.UI.Controllers
                 .Where(w =>
                     w.id != wishlist.id
                     && w.primary == true
+                    && w.user_id == wishlist.user_id
                 )
                 .FirstOrDefaultAsync();
 
@@ -153,6 +160,7 @@ namespace GeekText.UI.Controllers
                 tmp = await _context.Wishlists
                     .Where(w =>
                         w.id != wishlist.id
+                        && w.user_id == wishlist.user_id
                     )
                     .FirstOrDefaultAsync();
 
