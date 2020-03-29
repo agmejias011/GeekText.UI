@@ -41,7 +41,7 @@ ReactDOM.render(
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path="/orderthankyou">
+          <Route path="/thankyou">
             <ThankyouPage />
           </Route>
           <Route path="/">

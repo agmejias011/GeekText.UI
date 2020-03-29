@@ -16,6 +16,7 @@ import NumberFormat from "react-number-format";
 import Button from "@material-ui/core/Button";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import SearchBar from "../SearchBar";
+import ThankyouPage from "./thankYou";
 
 const StyledBadge = withStyles(theme => ({
   badge: {
@@ -102,25 +103,60 @@ class CartList extends Component {
       }
     ],
     saveForLater: [],
-    user_id: 1001 // this will come from signed in user.
+    user_id: 1001, // this will come from signed in user.
+    order_id: 0,
+    placed_order: false
   };
 
-  handlePlaceOrder = cartState => {
-    console.log(cartState.books.reduce((acc, b) => acc + b.itemSubtotal, 0));
-    console.log(cartState.books.reduce((acc, b) => acc + b.orderQTY, 0));
+  handlePlaceOrder = () => {
+    let item_line_all = []; //item_line json to send
+    let item_line = {};
+
+    this.state.books.map(
+      b => (
+        (item_line = {
+          cart_id: 0,
+          book_id: b.id,
+          ordered_qty: b.orderQTY,
+          book_price: b.itemSubtotal
+        }),
+        (item_line_all = item_line_all.concat(item_line))
+      )
+    );
+
+    let saveForLater_all = []; //saveForLater json to send
+    let saveForLater = {};
+
+    this.state.saveForLater.map(
+      b => (
+        (saveForLater = {
+          book_id: b.id,
+          saved_qty: b.orderQTY
+        }),
+        (saveForLater_all = saveForLater_all.concat(saveForLater))
+      )
+    );
 
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cart_total: cartState.books.reduce((acc, b) => acc + b.itemSubtotal, 0),
-        item_total: cartState.books.reduce((acc, b) => acc + b.orderQTY, 0),
-        user_id: cartState.user_id
+        cart_total: this.state.books.reduce(
+          (acc, b) => acc + b.itemSubtotal,
+          0
+        ),
+        item_total: this.state.books.reduce((acc, b) => acc + b.orderQTY, 0),
+        user_id: this.state.user_id,
+        item_line: item_line_all,
+        item_line_saved: saveForLater_all
       })
     };
-    fetch("https://jsonplaceholder.typicode.com/posts", requestOptions)
+
+    fetch("http://localhost:5000/api/cart/create", requestOptions)
       .then(response => response.json())
-      .then(data => this.setState({ postId: data.id }));
+      .then(data => this.setState({ order_id: data.id }));
+
+    this.setState({ placed_order: true });
   };
 
   handleIncrement = book => {
@@ -334,24 +370,28 @@ class CartList extends Component {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Link to="orderthankyou">
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-                style={{ height: "4em" }}
-                onClick={() => this.handlePlaceOrder(this.state)}
-              >
-                Place Order
-              </Button>
-            </Link>
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+              style={{ height: "4em" }}
+              onClick={() => this.handlePlaceOrder()}
+            >
+              Place Order
+            </Button>
           </div>
         </div>
       );
     }
   }
-  render() {
+
+  renderCartView() {
+    if (this.state.placed_order === true) {
+      return <ThankyouPage orderNumber={this.state.order_id}></ThankyouPage>;
+    }
+
     return (
       <>
         <div>
@@ -383,6 +423,9 @@ class CartList extends Component {
         </div>
       </>
     );
+  }
+  render() {
+    return this.renderCartView();
   }
 }
 
