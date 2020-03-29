@@ -134,7 +134,7 @@ class Wishlists extends React.Component {
 
 		this.setState({
 			wishlists : wishlists
-		})
+		});
 	}
 }
 

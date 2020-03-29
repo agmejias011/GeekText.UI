@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -86,9 +87,11 @@ class Wishlist extends React.Component {
 	}
 
 	async loadWishlists() {
-		let wishlists = await fetch(`${API_URL}/Wishlists`);
+		let user = await fetch(`${API_URL}/User/${this.props.state.user.id}`);
 
-		wishlists = await wishlists.json();
+		user = await user.json();
+
+		let wishlists = user.wishlists;
 
 		wishlists.sort((a, b) => {
 			return (a.name < b.name) ? -1 : 1;
@@ -96,7 +99,7 @@ class Wishlist extends React.Component {
 
 		this.setState({
 			wishlists : wishlists
-		})
+		});
 	}
 
 	async updateBook(data) {
@@ -142,4 +145,10 @@ class Wishlist extends React.Component {
 	}
 }
 
-export default withRouter(Wishlist);
+const mapStateToProps = (state) => {
+	return {
+		state : state
+	};
+}
+
+export default connect(mapStateToProps)(withRouter(Wishlist));
