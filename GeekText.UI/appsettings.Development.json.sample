@@ -1,7 +1,4 @@
 {
- 
-
-  "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "1.0.0-preview2-final",
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -10,6 +7,6 @@
     }
   },
   "ConnectionStrings": {
-    "PgDatabase": "Host=ec2-34-197-171-33.compute-1.amazonaws.com;Database=dbqjkrlrbhs27k;Username=vlieqagwjdfdjh;Password=7415b25c9af8cbeaf88dc88e8af6e4bd80fe956ad9b6ce5047a9320dc7d5d917;"
+    "PgDatabase": "Server=localhost; Port=5432; Database=postgres;Username=postgres; Password=CoreDatabase;"
   }
 }
