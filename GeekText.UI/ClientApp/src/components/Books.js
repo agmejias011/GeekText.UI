@@ -31,7 +31,7 @@ class Books extends React.Component {
           {books.map(b => (
             <Grid key={b.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
               <BookCard
-                key={b.id}
+                id={b.id}
                 title={b.title}
                 rating={b.rating}
                 price={b.price}

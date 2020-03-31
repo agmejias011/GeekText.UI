@@ -3,16 +3,22 @@ import { connect } from "react-redux";
 import { Container } from "@material-ui/core";
 import CartBar from "./ShoppingCart/CartBar";
 import SearchBar from "./SearchBar";
+import { Grid } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
+const cartStyle = {
+  position: "absolute",
+  top: "10px"
+};
 class SiteContainer extends React.Component {
   render() {
     return (
       <div id="site-container">
         <Container maxWidth="lg" className="home">
-          <SearchBar
-            user={this.props.user}
-            itemsCartTotal={this.props.itemsCartTotal}
-          />
+          <div>
+            <SearchBar user={this.props.user} />
+          </div>
+
           {this.props.children}
         </Container>
       </div>

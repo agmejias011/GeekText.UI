@@ -91,7 +91,7 @@ export default class SearchBar extends React.Component {
             </a>
           </Grid>
           <Grid item>
-            <CartBar itemsTotal={this.props.itemsCartTotal}></CartBar>
+            <CartBar></CartBar>
           </Grid>
           {account_buttons}
         </Grid>

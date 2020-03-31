@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import CartBar from "./ShoppingCart/CartBar";
 
 // import material ui smaller components to create card component
 
@@ -20,8 +21,46 @@ const useStyles = makeStyles({
   }
 });
 
+let addToCartEvent = (id, title, description, price, img_url, e) => {
+  window.$cartTotal = window.$cartTotal + 1;
+
+  const book = window.$item_line.filter(p => p.id === id);
+
+  if (book.length === 0) {
+    let booknew = {
+      id: id,
+      name: title,
+      description: description,
+      price: price,
+      orderQTY: 1,
+      itemSubtotal: price,
+      img_url: img_url
+    };
+
+    window.$item_line = window.$item_line.concat(booknew);
+  } else {
+    let updateBook = {
+      id: book[0].id,
+      name: book[0].name,
+      description: description,
+      price: book[0].price,
+      orderQTY: book[0].orderQTY,
+      itemSubtotal: book[0].itemSubtotal,
+      img_url: book[0].img_url
+    };
+
+    const books = [...window.$item_line];
+    const index = books.findIndex(item => item.id === updateBook.id);
+    books[index] = { ...updateBook };
+    books[index].orderQTY++;
+    books[index].itemSubtotal = books[index].price * books[index].orderQTY;
+
+    window.$item_line = books;
+  }
+};
+
 // customize the media card from material ui to suit our user cards.
-export default function BookCard({ title, price, description, img_url }) {
+export default function BookCard({ id, title, price, description, img_url }) {
   const classes = useStyles();
 
   return (
@@ -40,6 +79,20 @@ export default function BookCard({ title, price, description, img_url }) {
       <CardActions>
         <Button href={img_url} size="small" color="primary">
           Enlarge Image
+        </Button>
+      </CardActions>
+      <CardActions>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          style={{ height: "4em" }}
+          onClick={e =>
+            addToCartEvent(id, title, description, price, img_url, e)
+          }
+        >
+          Add to Cart
         </Button>
       </CardActions>
     </Card>

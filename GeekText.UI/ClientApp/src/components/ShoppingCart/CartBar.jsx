@@ -25,7 +25,7 @@ class CartBadges extends Component {
       <Link to="/cart">
         <IconButton aria-label="cart" size="medium">
           <StyledBadge
-            badgeContent={this.props.itemsTotal}
+            badgeContent={window.$cartTotal}
             color="secondary"
             style={{ color: "#42a5f5" }}
           >
