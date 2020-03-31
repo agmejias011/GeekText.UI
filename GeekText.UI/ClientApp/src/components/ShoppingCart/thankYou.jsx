@@ -7,6 +7,9 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 
 class ThankyouPage extends Component {
+  handleContinueShopping() {
+    window.$cartTotal = [];
+  }
   render() {
     return (
       <>
@@ -31,7 +34,7 @@ class ThankyouPage extends Component {
                     . We have emailed your order confirmation, and will send you
                     an update when your order has shipped.
                   </p>
-                  <Link to="/">
+                  <Link to="/books">
                     <Button
                       variant="contained"
                       color="primary"

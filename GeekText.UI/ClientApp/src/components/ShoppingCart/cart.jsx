@@ -14,6 +14,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import BookCardCart from "./bookCardInCart";
 
 const Tablestyle = {
   maxWidth: "100%"
@@ -38,7 +39,11 @@ class Cart extends Component {
               <>
                 <TableRow>
                   <TableCell align="left" style={cellStyle}>
-                    <h3>{this.props.book.name}</h3>
+                    <BookCardCart
+                      title={this.state.book.title}
+                      description={this.state.book.description}
+                      img_url={this.state.book.img_url}
+                    ></BookCardCart>
                     <Button
                       size="small"
                       color="secondary"
@@ -46,7 +51,9 @@ class Cart extends Component {
                       style={{
                         position: "relative",
                         bottom: "1.5em",
-                        right: "0.5em"
+                        right: "0.5em",
+                        marginTop: "15px",
+                        margingLeft: "10px"
                       }}
                       onClick={() => this.props.onDelete(this.props.book)}
                     >
@@ -61,14 +68,16 @@ class Cart extends Component {
                       style={{
                         position: "relative",
                         bottom: "1.5em",
-                        right: "0.5em"
+                        right: "0.5em",
+                        marginTop: "15px",
+                        margingLeft: "10px"
                       }}
                       onClick={() => this.props.onSave(this.props.book)}
                     >
                       Save for Later
                     </Button>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" style={cellStyle}>
                     <h3>
                       <NumberFormat
                         value={this.props.book.price}
@@ -78,7 +87,7 @@ class Cart extends Component {
                       />
                     </h3>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" style={cellStyle}>
                     <ButtonGroup
                       size="small"
                       aria-label="small outlined button group"

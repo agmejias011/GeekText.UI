@@ -17,6 +17,10 @@ import Button from "@material-ui/core/Button";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import ThankyouPage from "./thankYou";
+import { Grid } from "@material-ui/core";
+
+window.$cartTotal = 0;
+window.$item_line = [];
 
 const StyledBadge = withStyles(theme => ({
   badge: {
@@ -72,36 +76,7 @@ const orderDetailStyle = {
 };
 class CartList extends Component {
   state = {
-    books: [
-      {
-        id: 1,
-        name: "How to Win Friends & Influence People   ",
-        price: 14,
-        orderQTY: 2,
-        itemSubtotal: 2 * 14 // this will come from the add to cart
-      },
-      {
-        id: 2,
-        name: "The 7 Habits of Highly Effective People",
-        price: 17,
-        orderQTY: 1,
-        itemSubtotal: 17 // this will come from the add to cart
-      },
-      {
-        id: 3,
-        name: "Principles: Life and Work. Better Habbit",
-        price: 18,
-        orderQTY: 2,
-        itemSubtotal: 2 * 18 // this will come from the add to cart
-      },
-      {
-        id: 4,
-        name: "Never Split the Difference. Negotiate it instead",
-        price: 4.5,
-        orderQTY: 3,
-        itemSubtotal: 3 * 4.5 // this will come from the add to cart
-      }
-    ],
+    books: window.$item_line,
     saveForLater: [],
     user_id: 1001, // this will come from signed in user.
     order_id: 0,
@@ -297,7 +272,12 @@ class CartList extends Component {
 
   renderBadge() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) >= 0) {
-      return this.state.books.reduce((acc, b) => acc + b.orderQTY, 0);
+      window.$cartTotal = this.state.books.reduce(
+        (acc, b) => acc + b.orderQTY,
+        0
+      );
+
+      return window.$cartTotal;
     }
 
     return 0;
@@ -314,7 +294,7 @@ class CartList extends Component {
   renderOrderSummary() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) > 0) {
       return (
-        <div style={summaryOrderStyle}>
+        <div>
           <h1>Order Summary</h1>
           <div style={{ backgroundColor: "#f2f2f1" }}>
             <TableContainer>
@@ -395,31 +375,33 @@ class CartList extends Component {
     return (
       <>
         <div>
-          <div style={CartIconStyle}>
-            <CartBar itemsTotal={this.renderBadge()}></CartBar>
-          </div>
-          <TableContainer style={orderDetailStyle}>
-            <Table aria-label="simple table" style={Tablestyle}>
-              <TableBody>
-                <TableRow>
-                  <TableCell aligh="center" style={cellStyle}>
-                    <div
-                      style={{
-                        padding: "0.5em",
-                        marginLeft: "5em"
-                      }}
-                    >
-                      <div>{this.renderCarts()}</div>
-                      <div>{this.renderSaveHeader()}</div>
-                      <div>{this.renderSave()}</div>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <div>{this.renderOrderSummary()}</div>
+          <Grid container>
+            <Grid item sm>
+              <TableContainer style={orderDetailStyle}>
+                <Table aria-label="simple table" style={Tablestyle}>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell aligh="center" style={cellStyle}>
+                        <div
+                          style={{
+                            padding: "0.5em",
+                            marginLeft: "5em"
+                          }}
+                        >
+                          <div>{this.renderCarts()}</div>
+                          <div>{this.renderSaveHeader()}</div>
+                          <div>{this.renderSave()}</div>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+            <Grid item sm>
+              <div>{this.renderOrderSummary()}</div>
+            </Grid>
+          </Grid>
         </div>
       </>
     );
