@@ -10,13 +10,14 @@ using GeekText.Domain.Models;
 
 namespace GeekText.UI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/user")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly DbContextApplication _context;
 
-        public UsersController(DbContextApplication context)
+        public UserController(DbContextApplication context)
         {
             _context = context;
         }
@@ -45,8 +46,9 @@ namespace GeekText.UI.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
+        
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser([FromBody] int id, User user)
+        public async Task<IActionResult> PutUser( int id, User user)
         {
             if (id != user.id)
             {
@@ -73,12 +75,13 @@ namespace GeekText.UI.Controllers
 
             return NoContent();
         }
+        
 
         // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("create")]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromBody] User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();

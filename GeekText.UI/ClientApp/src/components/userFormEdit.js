@@ -33,7 +33,7 @@ export class UserForm extends Component {
         email: '',
         user_password: '',
         nickname: '',
-        home_address: '',
+        home_address: ''
         }
 
         this.username = this.username.bind(this);
@@ -66,6 +66,14 @@ export class UserForm extends Component {
     }
     home_address(event) {
         this.setState({ home_address: event.target.value })
+    }
+
+    populateUserData() {
+        axios.get("http://localhost:5000/api/user/GetUser").then(response => {
+            this.setState({
+                books: response.data, loading: false
+            });
+        });
     }
 
     async addUser(event) {

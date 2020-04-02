@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+﻿import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './confirm';
@@ -7,39 +7,37 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import LoginForm from './login-page/login-form';
 import Wishlists from './wishlists';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
-import { withRouter } from "react-router-dom";
 
 
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const useStyles = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%', // Fix IE 11 issue.
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%', // Fix IE 11 issue.
+    marginTop: 100,
 }
-    
-export class UserForm extends Component {
+
+export class profile extends Component {
 
     constructor(props) {
         super(props);
-        this.addUser = this.addUser.bind(this);
-
 
         this.state = {
+            //step: 1,
             username: '',
             first_name: '',
             last_name: '',
             email: '',
             user_password: '',
             nickname: '',
-            home_address: ''
+            home_address: '',
         };
 
         this.username = this.username.bind(this);
@@ -75,16 +73,7 @@ export class UserForm extends Component {
         this.setState({ home_address: event.target.value })
     }
 
-    handleChange(e) {
-        let state = {};
-
-        state[e.target.name] = e.target.value;
-
-        this.setState(state);
-    }
-
     async addUser(event) {
-        event.preventDefault();
 
         let data = {
             username: this.state.username,
@@ -96,7 +85,7 @@ export class UserForm extends Component {
             home_address: this.state.home_address,
         }
 
-        let res = await fetch(
+        fetch(
             `${API_URL}/user/create`,
             {
                 method: "POST",
@@ -104,22 +93,12 @@ export class UserForm extends Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
-            });
-        try {
-
-            res = await res.json();
-
-            if (res.error) 
-                alert(res.message);
-
-            this.props.updateState({
-                key: "user",
-                value: res.user
-            });
-            this.props.history.push('/login');
-
-        }
-        catch{}
+            }).then((Response) => Response.json()).then((Result) => {
+                if (Result.Status == 'Success')
+                    this.props.history.push("/login");
+                else
+                    alert('sorry')
+            })
     }
 
 
@@ -140,10 +119,10 @@ export class UserForm extends Component {
     };
 
     // Handle fields change
-    //handleChange = input => e => {
-      //  this.setState({ [input]: e.target.value });
-    //};
-    
+    handleChange = input => e => {
+        this.setState({ [input]: e.target.value });
+    };
+
     render() {
         const { step } = this.state;
         const { username, first_name, last_name, email, user_password, nickname, home_address } = this.state;
@@ -152,85 +131,106 @@ export class UserForm extends Component {
         const { classes } = this.props;
 
         return (
-            <MuiThemeProvider>
+
+            <Container component="main" maxWidth="xs">
+
+                <div style={useStyles}>
+                    <Avatar style={{ height: 70, width: 70 }} alt="P" src="/profilePic.svg" />
+
+                    <br />
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={this.addUser}
+                        style={styles.button}
+                    >Edit Profile</Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={this.addUser}
+                        style={styles.button}
+                    >Wishlists</Button>
+                </div>
+            </Container>
+
+        );
+
+        /* user form
+          <MuiThemeProvider>
 
                 <React.Fragment>
                     <div style={useStyles}>
 
-                        <TextField
-                            placeholder="Enter Your First Name"
-                            label="First Name"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.first_name}
-                            margin="normal"
-                        />
-                        <br />
-                        <TextField
-                            placeholder="Enter Your Last Name"
-                            label="Last Name"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.last_name}
-                            margin="normal"
-                        />
-                        <br />
+                    <TextField
+                        placeholder="Enter Your First Name"
+                        label="First Name"
+                        onChange={this.first_name}
+                        defaultValue={values.first_name}
+                        margin="normal"
+                    />
+                    <br />
+                    <TextField
+                        placeholder="Enter Your Last Name"
+                        label="Last Name"
+                        onChange={this.last_name}
+                        defaultValue={values.last_name}
+                        margin="normal"
+                    />
+                    <br />
 
-                        <TextField
-                            placeholder="Enter Your Nickname"
-                            label="Nickname"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.nickname}
-                            margin="normal"
-                        />
-                        <br />
+                    <TextField
+                        placeholder="Enter Your Nickname"
+                        label="Nickname"
+                        onChange={this.nickname}
+                        defaultValue={values.nickname}
+                        margin="normal"
+                    />
+                    <br />
 
-                        <TextField
-                            placeholder="Enter Your Username"
-                            label="Username"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.username}
-                            margin="normal"
-                        />
-                        <br />
-                        <TextField
-                            placeholder="Enter Your Password"
-                            label="Password"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.user_password}
-                            margin="normal"
-                        />
-                        <br />
+                    <TextField
+                        placeholder="Enter Your Username"
+                        label="Username"
+                        onChange={this.username}
+                        defaultValue={values.username}
+                        margin="normal"
+                    />
+                    <br />
+                    <TextField
+                        placeholder="Enter Your Password"
+                        label="Password"
+                        onChange={this.user_password}
+                        defaultValue={values.user_password}
+                        margin="normal"
+                    />
+                    <br />
 
-                        <TextField
-                            placeholder="Enter Your Email"
-                            label="Email"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.email}
-                            margin="normal"
-                        />
-                        <br />
+                    <TextField
+                        placeholder="Enter Your Email"
+                        label="Email"
+                        onChange={this.email}
+                        defaultValue={values.email}
+                        margin="normal"
+                    />
+                    <br />
 
-                        <TextField
-                            placeholder="Enter Your Home Address"
-                            label="Home Address"
-                            onChange={this.handleChange.bind(this)}
-                            defaultValue={values.home_address}
-                            margin="normal"
-                        />
-                        <br />
+                    <TextField
+                        placeholder="Enter Your Home Address"
+                        label="Home Address"
+                        onChange={this.home_address}
+                        defaultValue={values.home_address}
+                        margin="normal"
+                    />
+                    <br />
 
-                        <Button
-                            color="primary"
-                            variant="contained"
-                            onClick={this.handleChange.bind(this)}
-                            style={styles.button}
-                        >Register</Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={this.addUser}
+                        style={styles.button}
+                    >Register</Button>
                     </div>
                 </React.Fragment>
             </MuiThemeProvider>
-        );
-
-        /* user form
-          
          */
 
         /* user form with transitions
@@ -276,8 +276,8 @@ export class UserForm extends Component {
 }
 const styles = {
     button: {
-        margin: 8
+        margin: 15
     }
 }
 
-export default withRouter(UserForm);
+export default profile;

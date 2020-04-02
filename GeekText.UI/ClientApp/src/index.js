@@ -12,7 +12,7 @@ import LoginPage from "./components/login-page";
 import Wishlists from "./components/wishlists";
 import signUppage from "./components/signUp-page";
 import UserForm from "./components/userForm";
-
+import profile from "./components/profile";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
@@ -36,6 +36,9 @@ ReactDOM.render(
 					</Route>
 					<Route path="/">
 						<Home />
+					</Route>
+					<Route path="/UserProfile">
+						<profile/>
 					</Route>
 				</Switch>
 			</SiteContainer>

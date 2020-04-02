@@ -15,7 +15,7 @@ namespace GeekText.Application.Books
         }
 
         public void Create(int id, string username, string first_name, string last_name,
-           string email, string user_password, string nickname, string home_address, string user_nickname)
+           string email, string user_password, string nickname, string home_address, int user_nickname)
         {
             User newUser = new User();
             newUser.id = id;
