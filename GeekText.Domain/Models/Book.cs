@@ -35,7 +35,6 @@ namespace GeekText.Domain.Models
         public List<WishlistBook> wishlist_books { get; set; }
         public virtual ICollection<Book_Author> Book_Authors { get; set; }
         public virtual ICollection<Book_Genre> Book_Genres { get; set; }
-
-        //not complete, refer to the lucidchart link for more fields
+   
     }
 }
