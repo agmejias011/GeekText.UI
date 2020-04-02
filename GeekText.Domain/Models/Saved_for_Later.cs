@@ -6,18 +6,16 @@ using System.Text;
 
 namespace GeekText.Domain.Models
 {
-
-    public class Book_Publisher
+    public class Saved_for_Later
     {
-        [ForeignKey("publisher_id"), Required]
-        public int publisher_id { get; set; }
-        public Publisher publisher { get; set; }
-
+        [Key]
+        public int id { get; set; }
         [ForeignKey("book_id"), Required]
-        public int book_id { get; set; }
         public Book book { get; set; }
-
+        [ForeignKey("user_id"), Required]
+        public User user { get; set; }
+        [Required]
+        public int saved_qty { get; set; }
+        
     }
 }
-
-

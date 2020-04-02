@@ -10,5 +10,6 @@ namespace GeekText.Domain.Models
         [Key]
         public int genre_id { get; set; }
         public string name { get; set; }
+        public virtual ICollection<Book_Genre> Books_Genre { get; set; }
     }
 }
