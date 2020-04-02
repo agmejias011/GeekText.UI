@@ -6,18 +6,18 @@ using System.Text;
 
 namespace GeekText.Application.Carts
 {
-    public class GetCart_Book
+    public class GetCartBook
     {
         private DbContextApplication context;
 
-        public GetCart_Book(DbContextApplication context)
+        public GetCartBook(DbContextApplication context)
         {
             this.context = context;
         }
 
-        public Cart_Book Get(Cart cart)
+        public Cart_Book_Line Get(Cart cart)
         {
-            return context.Cart_Books.Find(cart);
+            return context.Cart_Book_Line.Find(cart);
         }
     }
 }
