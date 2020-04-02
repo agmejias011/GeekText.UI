@@ -39,9 +39,9 @@ namespace GeekText.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
-                .HasIdentityOptions(startValue: 1000);
+            //modelBuilder
+            //    .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
+            //    .HasIdentityOptions(startValue: 1000);
 
             modelBuilder
                 .Entity<WishlistBook>()
