@@ -25,7 +25,6 @@ namespace GeekText.UI.Controllers
         //GET ALL author
         //api/authors
         [HttpGet]
-        [Route("GetAllAuthors")]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         public IActionResult GetAuthors()
@@ -110,39 +109,6 @@ namespace GeekText.UI.Controllers
         }
 
         // TO DO GetAllBooksForAuthor
-        //api/authors/authorId/books
-        [HttpGet("booksOfAuthor/{authorId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
-        public IActionResult GetBooksByAuthor(int authorId)
-        {
-            if (!_bookRepository.BookExists(authorId))
-                return NotFound();
-            var books = _authorRepository.GetBooksOfAuthor(authorId);
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var booksDto = new List<BookDto>();
-            foreach (var book in books)
-            {
-                booksDto.Add(new BookDto()
-                {
-                    id = book.id,
-                    title = book.title,
-                    author = book.author,
-                    genre = book.genre,
-                    price = book.price,
-                    isbn = book.isbn,
-                    description = book.description,
-                    rating = book.rating,
-                    img_url = book.img_url,
-                    publisher = book.publisher,
-                    date = book.date
-                });
-            }
-            return Ok(booksDto);
-        }
 
     }
 

@@ -15,6 +15,9 @@ namespace GeekText.Application.Publishers
             this.context = context;
         }
 
-     
+        public Publisher Get(int id)
+        {
+            return context.Publishers.Find(id);
+        }
     }
 }

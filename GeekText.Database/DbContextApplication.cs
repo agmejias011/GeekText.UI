@@ -20,9 +20,14 @@ namespace GeekText.Database
         public DbSet<Cart_Book> Cart_Books { get; set; }
         public DbSet<Payment_Method> payment_methods { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Publisher> Publishers{ get; set; }
+        public DbSet<Book_Publisher> Books_Publishers { get; set; }
         public DbSet<Book_Author> Books_Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Book_Genre> Books_Genres { get; set; }
+
+
+
 
         public DbContextApplication(DbContextOptions<DbContextApplication> options) : base(options) {}
 
@@ -34,9 +39,9 @@ namespace GeekText.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
-                .HasIdentityOptions(startValue: 1000);
+            //modelBuilder
+            //    .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
+            //    .HasIdentityOptions(startValue: 1000);
 
             modelBuilder
                 .Entity<WishlistBook>()
@@ -70,9 +75,22 @@ namespace GeekText.Database
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);
 
+            modelBuilder.Entity<Publisher>().Property(b => b.publisher_id).UseIdentityAlwaysColumn()
+            .HasIdentityOptions(startValue: 1000);
+
             modelBuilder.Entity<Genre>().Property(b => b.genre_id).UseIdentityAlwaysColumn()
            .HasIdentityOptions(startValue: 1000);
 
+            modelBuilder.Entity<Book_Publisher>()
+                        .HasKey(bp => new { bp.book_id, bp.publisher_id });
+            modelBuilder.Entity<Book_Publisher>()
+                        .HasOne(b => b.book)
+                        .WithMany(bp => bp.Book_Publishers)
+                        .HasForeignKey(b => b.book_id);
+            modelBuilder.Entity<Book_Publisher>()
+                        .HasOne(p => p.publisher)
+                        .WithMany(bp => bp.Books_Publisher)
+                        .HasForeignKey(p => p.publisher_id);
 
             modelBuilder.Entity<Book_Author>()
                         .HasKey(ba => new { ba.book_id, ba.author_id });
