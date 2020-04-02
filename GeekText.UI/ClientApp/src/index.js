@@ -7,6 +7,8 @@ import Book from "./components/bookDetail/Book";
 import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
 import { BookProvider } from "./components/bookDetail/Context";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Cart from "./components/ShoppingCart/cartList";
+import ThankyouPage from "./components/ShoppingCart/thankYou";
 
 
 // Redux
@@ -47,7 +49,13 @@ ReactDOM.render(
 					</Route>
 				    <Route path="/BooksOfAuthor">
 							< BooksOfAuthor/>
+					</Route>
+					<Route path="/cart">
+						<Cart />
 				    </Route>
+					<Route path="/thankyou">
+						<ThankyouPage />
+					</Route>
 					<Route path="/login">
 						<LoginPage/>
 					</Route>
