@@ -27,7 +27,7 @@ namespace GeekText.UI.Services
 
         public ICollection<Book> GetBooks()
         {
-            return _bookContext.Books.ToList();
+            return _bookContext.Books.OrderBy(b => b.title).ToList();
         }
 
         public Book GetBook(int bookId)
