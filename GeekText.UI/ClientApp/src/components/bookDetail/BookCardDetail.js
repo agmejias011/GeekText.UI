@@ -48,7 +48,6 @@ export default function BookCardDetail({ title, author, publisher, price, rating
 
                     <Typography gutterBottom variant="h5" component="h2">
                         {author}
-
                     </Typography>
 
                     <Typography gutterBottom variant="h5" component="h2">

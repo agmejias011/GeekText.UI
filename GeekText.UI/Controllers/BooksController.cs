@@ -37,14 +37,17 @@ namespace GeekText.UI.Controllers
             {
                 booksDto.Add(new BookDto
                 {
-                 id = book.id,
-                 title = book.title,
-                 isbn = book.isbn,
-                 description = book.description,
-                 rating = book.rating,
-                 img_url = book.img_url,
-                 publisher = book.publisher,
-                 date = book.date,
+                    id = book.id,
+                    title = book.title,
+                    author = book.author,
+                    genre = book.genre,
+                    price = book.price,
+                    isbn = book.isbn,
+                    description = book.description,
+                    rating = book.rating,
+                    img_url = book.img_url,
+                    publisher = book.publisher,
+                    date = book.date,
                 });
             }
             return Ok(booksDto);
