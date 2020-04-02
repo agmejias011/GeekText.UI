@@ -15,6 +15,10 @@ namespace GeekText.Domain.Models
         //[Required]
         public string title { get; set; }
         //[Required]
+        public string author { get; set; }
+        //[Required]
+        public string genre { get; set; }
+        //[Required]
         public string description { get; set; }
         //[Required]
         public double price { get; set; }
@@ -23,15 +27,13 @@ namespace GeekText.Domain.Models
         //[Required]
         public string img_url { get; set; }
         //[Required]
+        public string publisher { get; set; }
+        //[Required]
         public DateTime date { get; set; }
-        //[Required]
-        public bool top_seller { get; set; }
-        //[Required]
-        public bool featured { get; set; }
+     
 
         public List<WishlistBook> wishlist_books { get; set; }
         public virtual ICollection<Book_Author> Book_Authors { get; set; }
-        public virtual ICollection<Book_Publisher> Book_Publishers { get; set; }
         public virtual ICollection<Book_Genre> Book_Genres { get; set; }
    
     }
