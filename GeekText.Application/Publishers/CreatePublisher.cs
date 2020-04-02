@@ -14,6 +14,16 @@ namespace GeekText.Application.Genres
             this.context = context;
         }
 
-      
+        public void Create(int id, string name, string description)
+        {
+            Publisher newPublisher = new Publisher();
+            newPublisher.publisher_id = id;
+            newPublisher.name = name;
+            newPublisher.description = description;
+
+            this.context.Publishers.Add(newPublisher);
+            context.SaveChanges();
+
+        }
     }
 }

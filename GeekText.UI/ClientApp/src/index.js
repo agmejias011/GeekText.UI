@@ -1,13 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Books from "./components/bookDetail/Books";
-import Details from "./components/bookDetail/Details";
-import Book from "./components/bookDetail/Book";
-import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
-import { BookProvider } from "./components/bookDetail/Context";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
+import Books from "./components/Books";
 
 // Redux
 import { Provider } from "react-redux";
@@ -28,7 +22,6 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<SiteContainer>
-				<BookProvider>
 				<Switch>
 					<Route path="/example-route">
 						Hello world.
@@ -39,15 +32,6 @@ ReactDOM.render(
 					<Route path="/books">
 						<Books />
 					</Route>
-					<Route path="/details">
-						<Details />
-					</Route>
-				    <Route path="/book">
-						<Book />
-					</Route>
-				    <Route path="/BooksOfAuthor">
-							< BooksOfAuthor/>
-				    </Route>
 					<Route path="/login">
 						<LoginPage/>
 					</Route>
@@ -58,7 +42,6 @@ ReactDOM.render(
 						<Home />
 					</Route>
 				</Switch>
-					</BookProvider>
 			</SiteContainer>
 		</Router>
 	</Provider>,
