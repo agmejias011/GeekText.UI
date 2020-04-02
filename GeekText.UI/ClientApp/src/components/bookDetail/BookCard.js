@@ -51,7 +51,7 @@ export default function BookCard({ id, title, author, publisher, price, rating, 
                     </Typography>
 
                     <Typography gutterBottom variant="h5" component="h2">
-                        $ {price}   
+                        $ {price}
                     </Typography>
 
                     <Typography gutterBottom variant="h5" component="h2">

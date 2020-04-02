@@ -19,7 +19,7 @@ class BookProvider extends Component
     }
     populateBooksData =() => {
         axios.get("http://localhost:5000/api/books/GetBooks").then(response => {
-            console.log(response.data);
+          
             this.setState({
                 books: response.data
             })
