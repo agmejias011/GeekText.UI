@@ -17,7 +17,8 @@ import Button from "@material-ui/core/Button";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import ThankyouPage from "./thankYou";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
+import ThankyouSaved from "./ThankyouDialog";
 
 window.$cartTotal = 0;
 window.$item_line = [];
@@ -74,13 +75,46 @@ const orderDetailStyle = {
   top: "6em",
   left: "-2em"
 };
+
+const saveButton = {};
 class CartList extends Component {
   state = {
     books: window.$item_line,
     saveForLater: [],
     user_id: 1001, // this will come from signed in user.
     order_id: 0,
-    placed_order: false
+    placed_order: false,
+    savedbooks: false
+  };
+
+  //complete the back end with the json format and finish the integration here
+  handleSaveForNoCart = () => {
+    let savedForLaterBooks = [];
+    let savedBook = {};
+
+    this.state.saveForLater.map(
+      b => (
+        (savedBook = {
+          book_id: b.id,
+          user_id: this.state.user_id,
+          saved_qty: b.orderQTY
+        }),
+        (savedForLaterBooks = savedForLaterBooks.concat(savedBook))
+      )
+    );
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(savedForLaterBooks)
+    };
+
+    fetch(
+      "http://localhost:5000/api/save-books/create",
+      requestOptions
+    ).then(response => response.json());
+
+    this.setState({ savedbooks: true });
   };
 
   handlePlaceOrder = () => {
@@ -132,6 +166,8 @@ class CartList extends Component {
       .then(data => this.setState({ order_id: data.id }));
 
     this.setState({ placed_order: true });
+    window.$cartTotal = 0;
+    window.$item_line = [];
   };
 
   handleIncrement = book => {
@@ -176,21 +212,57 @@ class CartList extends Component {
     this.forceUpdate();
   };
 
+  renderSaveButton() {
+    return (
+      <Grid container style={({ marginTop: "50px" }, CartStyle)}>
+        <Grid item>
+          <TableContainer>
+            <Table aria-label="simple table">
+              <TableBody>
+                <TableRow>
+                  <TableCell aligh="center">
+                    If you want to save these books for later, click save.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      fullWidth
+                      style={{ height: "4em" }}
+                      onClick={() => this.handleSaveForNoCart()}
+                    >
+                      Save
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
+    );
+  }
   renderSave() {
     if (this.state.saveForLater.length > 0) {
       return (
-        <div style={CartStyle}>
-          {this.state.saveForLater.map(b => (
-            <SaveForLater
-              onIncrementSave={this.handleIncrementSave}
-              onDecrementSave={this.handleDecrementSave}
-              onDeleteSave={this.handleDeleteSave}
-              onMoveToCart={this.handleMoveToCart}
-              key={b.id}
-              book={b}
-            ></SaveForLater>
-          ))}
-        </div>
+        <>
+          <div style={CartStyle}>
+            {this.state.saveForLater.map(b => (
+              <SaveForLater
+                onIncrementSave={this.handleIncrementSave}
+                onDecrementSave={this.handleDecrementSave}
+                onDeleteSave={this.handleDeleteSave}
+                onMoveToCart={this.handleMoveToCart}
+                key={b.id}
+                book={b}
+              ></SaveForLater>
+            ))}
+          </div>
+          <div>{this.renderSaveButton()}</div>
+        </>
       );
     }
   }
@@ -296,7 +368,7 @@ class CartList extends Component {
       return (
         <div>
           <h1>Order Summary</h1>
-          <div style={{ backgroundColor: "#f2f2f1" }}>
+          <Paper elevation={3}>
             <TableContainer>
               <Table aria-label="simple table" style={{ maxWidth: "100%" }}>
                 <TableBody>
@@ -361,7 +433,7 @@ class CartList extends Component {
             >
               Place Order
             </Button>
-          </div>
+          </Paper>
         </div>
       );
     }
@@ -372,10 +444,47 @@ class CartList extends Component {
       return <ThankyouPage orderNumber={this.state.order_id}></ThankyouPage>;
     }
 
+    if (this.state.savedbooks === true) {
+      return (
+        <>
+          <ThankyouSaved></ThankyouSaved>
+          <div>
+            <Grid container direction="row">
+              <Grid item sm>
+                <TableContainer style={orderDetailStyle}>
+                  <Table aria-label="simple table" style={Tablestyle}>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell aligh="center" style={cellStyle}>
+                          <div
+                            style={{
+                              padding: "0.5em",
+                              marginLeft: "5em"
+                            }}
+                          >
+                            <div>{this.renderCarts()}</div>
+                            <div>{this.renderSaveHeader()}</div>
+                            <div>{this.renderSave()}</div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
+              <Grid item sm>
+                <div>{this.renderOrderSummary()}</div>
+              </Grid>
+            </Grid>
+          </div>
+        </>
+      );
+    }
+
     return (
       <>
         <div>
-          <Grid container>
+          <Grid container direction="row">
             <Grid item sm>
               <TableContainer style={orderDetailStyle}>
                 <Table aria-label="simple table" style={Tablestyle}>
