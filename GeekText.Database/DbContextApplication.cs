@@ -79,11 +79,6 @@ namespace GeekText.Database
 
             modelBuilder.Entity<Saved_for_Later>().Property(b => b.id).UseIdentityAlwaysColumn()
          .HasIdentityOptions(startValue: 1000, incrementBy: 1);
-      
-           
-            modelBuilder.Entity<user_payment_options>()
-                    .HasNoKey();
-
 
             modelBuilder.Entity<Author>().Property(b => b.author_id).UseIdentityAlwaysColumn()
             .HasIdentityOptions(startValue: 1000);

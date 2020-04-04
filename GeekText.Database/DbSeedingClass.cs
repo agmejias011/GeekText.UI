@@ -196,6 +196,25 @@ namespace GeekText.Database
             context.Payment_methods.AddRange(paymentMethods);
             context.SaveChanges();
 
+            var user_payment = new List<user_payment_options>()
+            {
+                new user_payment_options()
+                {
+                    user = users[0],
+                    payment_method = paymentMethods[0]
+
+                },
+                  new user_payment_options()
+                {
+                    user = users[1],
+                    payment_method = paymentMethods[1]
+
+                }
+            };
+
+            context.user_payment_options.AddRange(user_payment);
+            context.SaveChanges();
+
         }
 
 
