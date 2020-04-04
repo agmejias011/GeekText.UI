@@ -177,6 +177,7 @@ class CartList extends Component {
     books[index].orderQTY++;
     books[index].itemSubtotal = books[index].price * books[index].orderQTY;
     this.setState({ books });
+    window.$item_line = this.state.books;
   };
 
   handleDecrement = (book) => {
@@ -194,10 +195,11 @@ class CartList extends Component {
       books[index].itemSubtotal = books[index].price * books[index].orderQTY;
       this.setState({ books });
     }
+
+    window.$item_line = this.state.books;
   };
 
   handleDelete = (book) => {
-    const deletedQTY = book.orderQTY;
     this.setState({ books: this.state.books.filter((b) => b.id !== book.id) });
   };
 
@@ -216,7 +218,7 @@ class CartList extends Component {
 
   renderSaveButton() {
     return (
-      <Grid container style={({ marginTop: "50px" }, CartStyle)}>
+      <Grid container>
         <Grid item>
           <TableContainer>
             <Table aria-label="simple table">
@@ -251,7 +253,10 @@ class CartList extends Component {
     if (this.state.saveForLater.length > 0) {
       return (
         <>
-          <div style={CartStyle}>
+          <Typography>
+            <h1>Save for Later</h1>
+          </Typography>
+          <div>
             {this.state.saveForLater.map((b) => (
               <SaveForLater
                 onIncrementSave={this.handleIncrementSave}
@@ -264,18 +269,6 @@ class CartList extends Component {
             ))}
           </div>
           <div>{this.renderSaveButton()}</div>
-        </>
-      );
-    }
-  }
-
-  renderSaveHeader() {
-    if (this.state.saveForLater.length > 0) {
-      return (
-        <>
-          <div style={CartStyle}>
-            <h1>Save for Later</h1>
-          </div>
         </>
       );
     }
@@ -318,34 +311,43 @@ class CartList extends Component {
   handleMoveToCart = (book) => {
     this.setState({ books: this.state.books.concat(book) });
 
+    window.$item_line = this.state.books;
+
     this.handleDeleteSave(book);
   };
 
-  renderCarts() {
+  emptyCart() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) <= 0) {
       return (
-        <div style={{ marginLeft: "15em", marginBottom: "50px" }}>
-          Your cart is empty
-        </div>
-      );
-    } else {
-      return (
-        <div style={CartStyle}>
-          {this.state.books.map((b) => (
-            <>
-              <Cart
-                onIncrement={this.handleIncrement}
-                onDecrement={this.handleDecrement}
-                onDelete={this.handleDelete}
-                onSave={this.handleSave}
-                key={b.id}
-                book={b}
-              ></Cart>
-            </>
-          ))}
-        </div>
+        <Typography
+          style={{
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          Your cart is currently empty
+        </Typography>
       );
     }
+  }
+
+  renderCarts() {
+    return (
+      <div>
+        {this.state.books.map((b) => (
+          <>
+            <Cart
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
+              onDelete={this.handleDelete}
+              onSave={this.handleSave}
+              key={b.id}
+              book={b}
+            ></Cart>
+          </>
+        ))}
+      </div>
+    );
   }
 
   renderBadge() {
@@ -374,11 +376,10 @@ class CartList extends Component {
   renderOrderSummary() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) > 0) {
       return (
-        <div style={{ margin: "50px" }}>
+        <div>
           <Typography>
-            <h1>Order Summary</h1>
-
-            <Paper elevation={3}>
+            <Paper elevation={1} style={{ height: "100%" }}>
+              <h2 style={{ textAlign: "center" }}>Order Summary</h2>
               <TableContainer>
                 <Table aria-label="simple table" style={{ maxWidth: "100%" }}>
                   <TableBody>
@@ -435,11 +436,16 @@ class CartList extends Component {
 
               <Button
                 variant="contained"
-                color="primary"
                 size="large"
                 fullWidth
                 style={{ height: "4em" }}
                 onClick={() => this.handlePlaceOrder()}
+                style={{
+                  borderRadius: 0,
+                  color: "#fff",
+                  background: "#111",
+                  height: "50px",
+                }}
               >
                 Place Order
               </Button>
@@ -459,77 +465,57 @@ class CartList extends Component {
       return (
         <>
           <ThankyouSaved></ThankyouSaved>
-          <div>
+          <Paper elevation={0} style={{ marginTop: "50px" }}>
             <Grid container direction="row">
               <Grid item sm>
-                <TableContainer style={orderDetailStyle}>
-                  <Table aria-label="simple table" style={Tablestyle}>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell aligh="center" style={cellStyle}>
-                          <div
-                            style={{
-                              padding: "0.5em",
-                              marginLeft: "5em",
-                            }}
-                          >
-                            <div>{this.renderCarts()}</div>
-                            <div>{this.renderSaveHeader()}</div>
-                            <div style={{ marginTop: "50px" }}>
-                              {this.renderSave()}
-                            </div>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                {this.renderCarts()}
               </Grid>
               <Grid item sm>
-                <div>{this.renderOrderSummary()}</div>
+                {this.renderOrderSummary()}
               </Grid>
             </Grid>
-          </div>
+          </Paper>
+          <Paper elevation={3} style={{ marginTop: "80px" }}>
+            <Grid container>
+              <Grid item sm>
+                <div>{this.renderSave()}</div>
+              </Grid>
+            </Grid>
+          </Paper>
         </>
       );
     }
 
     return (
       <>
-        <div>
+        <Paper style={{ marginTop: "50px" }}>
           <Grid container direction="row">
             <Grid item sm>
-              <TableContainer style={orderDetailStyle}>
-                <Table aria-label="simple table" style={Tablestyle}>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell aligh="center" style={cellStyle}>
-                        <div
-                          style={{
-                            padding: "0.5em",
-                            marginLeft: "5em",
-                          }}
-                        >
-                          <div>{this.renderCarts()}</div>
-                          <div>{this.renderSaveHeader()}</div>
-                          <div>{this.renderSave()}</div>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
+              {this.renderCarts()}
             </Grid>
             <Grid item sm>
-              <div>{this.renderOrderSummary()}</div>
+              {this.renderOrderSummary()}
             </Grid>
           </Grid>
-        </div>
+        </Paper>
+        <Paper style={{ marginTop: "80px" }}>
+          <Grid container>
+            <Grid item sm>
+              <div>{this.renderSave()}</div>
+            </Grid>
+          </Grid>
+        </Paper>
       </>
     );
   }
   render() {
-    return this.renderCartView();
+    return (
+      <>
+        <h1 style={{ textAlign: "center", marginTop: "50px" }}>Cart</h1>
+        {this.emptyCart()}
+        {this.renderCartView()}
+      </>
+    );
   }
 }
 

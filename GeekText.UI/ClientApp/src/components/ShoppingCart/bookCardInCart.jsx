@@ -60,23 +60,6 @@ export default function BookCardInCart({ book }) {
             readOnly
             className={classes.root}
           />
-          <ExpansionPanel style={{ width: "100%" }}>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography
-                style={{ fontWeight: "bold" }}
-                className={classes.heading}
-              >
-                Description
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>{book.description}</Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
         </CardContent>
       </CardActionArea>
     </Card>

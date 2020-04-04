@@ -35,7 +35,7 @@ export default function BookCardDetail({
 }) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} style={{ width: 250 }}>
       <CardActionArea href={img_url} size="large" color="primary">
         <CardMedia className={classes.media} image={img_url} />
         <CardContent>
