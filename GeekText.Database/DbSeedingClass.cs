@@ -121,6 +121,63 @@ namespace GeekText.Database
             };
             context.Books_Authors.AddRange(booksAuthors);
             context.SaveChanges();
+
+            var users = new List<User>()
+            {
+                new User()
+                {
+                   username = "ag2020",
+                   first_name = "Andres",
+                   last_name = "Gonzalez",
+                   email = "ag2020@fiu.edu",
+                   user_password = "ag2020",
+                   nickname = "ag2020",
+                   home_address = "2580 W 24 ST",
+                   user_nickname = "ag2020"
+
+                },
+
+                new User()
+                {
+                   username = "MJ2020",
+                   first_name = "John",
+                   last_name = "Miller",
+                   email = "mj2020@fiu.edu",
+                   user_password = "mj2020",
+                   nickname = "mj2020",
+                   home_address = "1500 W 12 ST",
+                   user_nickname = "jm2020"
+
+                }
+            };
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
+           
+            
+            var paymentMethods = new List<Payment_Method>()
+            {
+                new Payment_Method()
+                {
+                    card_nickname = "Visa 1568",
+                    card_number = "2563459876321568",
+                    expiration = "05/25",
+                    cvv = 123
+                },
+                 new Payment_Method()
+                {
+                    card_nickname = "Discovery 6325",
+                    card_number = "1236589678546325",
+                    expiration = "02/23",
+                    cvv = 123
+                }
+            };
+
+            context.Payment_methods.AddRange(paymentMethods);
+            context.SaveChanges();
+
         }
+
+
     }
 }

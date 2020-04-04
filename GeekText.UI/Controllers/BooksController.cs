@@ -39,6 +39,7 @@ namespace GeekText.UI.Controllers
                 {
                  id = book.id,
                  title = book.title,
+                 price = book.price,
                  isbn = book.isbn,
                  description = book.description,
                  rating = book.rating,

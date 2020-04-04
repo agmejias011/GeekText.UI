@@ -7,7 +7,7 @@ namespace GeekText.Domain.Models
 {
     public class User
     {
-        [Key, Required]
+        [Key]
         public int id { get; set; }
         [Required]
         public string username { get; set; }
@@ -26,5 +26,6 @@ namespace GeekText.Domain.Models
         public string user_nickname { get; set; }
 
         public List<Wishlist> wishlists { get; set; }
+     
     }
 }
