@@ -11,11 +11,11 @@ import store from "./redux/store";
 
 import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
-import LoginPage from "./components/login-page";
+import LoginPage from "./components/login-page/login-page";
 import Wishlists from "./components/wishlists";
-import signUppage from "./components/signUp-page";
-import UserForm from "./components/userForm";
-import profile from "./components/profile";
+import signUppage from "./components/ProfileManagement/signUp-page";
+import UserForm from "./components/ProfileManagement/userForm";
+import profile from "./components/ProfileManagement/profile";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import SearchBar from "./components/SearchBar";

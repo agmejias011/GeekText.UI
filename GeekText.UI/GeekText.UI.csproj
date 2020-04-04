@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\UserController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GeekText.Application\GeekText.Application.csproj" />
     <ProjectReference Include="..\GeekText.Database\GeekText.Database.csproj" />
   </ItemGroup>
