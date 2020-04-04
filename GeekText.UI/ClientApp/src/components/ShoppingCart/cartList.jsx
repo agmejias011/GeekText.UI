@@ -22,6 +22,10 @@ import ThankyouSaved from "./ThankyouDialog";
 
 window.$cartTotal = 0;
 window.$item_line = [];
+localStorage.setItem("item_total", JSON.stringify(0));
+
+localStorage.setItem("item_line", JSON.stringify(window.$item_line));
+JSON.parse(localStorage.getItem("item_line"));
 
 const StyledBadge = withStyles(theme => ({
   badge: {
@@ -167,6 +171,7 @@ class CartList extends Component {
 
     this.setState({ placed_order: true });
     window.$cartTotal = 0;
+    localStorage.setItem("item_total", JSON.stringify(window.$cartTotal));
     window.$item_line = [];
   };
 
@@ -348,6 +353,7 @@ class CartList extends Component {
         (acc, b) => acc + b.orderQTY,
         0
       );
+      localStorage.setItem("item_total", JSON.stringify(window.$cartTotal));
 
       return window.$cartTotal;
     }

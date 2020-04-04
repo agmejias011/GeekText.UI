@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Books from "./components/Books";
 import Cart from "./components/ShoppingCart/cartList";
 import ThankyouPage from "./components/ShoppingCart/thankYou";
+import CartBar from "./components/ShoppingCart/CartBar";
 
 // Redux
 import { Provider } from "react-redux";

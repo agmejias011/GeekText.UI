@@ -56,6 +56,10 @@ let addToCartEvent = (id, title, description, price, img_url, e) => {
     books[index].itemSubtotal = books[index].price * books[index].orderQTY;
 
     window.$item_line = books;
+    window.$cartTotal = window.$cartTotal + 1;
+    localStorage.setItem("item_total", JSON.stringify(window.$cartTotal));
+
+    window.updateTopMostParent();
   }
 };
 

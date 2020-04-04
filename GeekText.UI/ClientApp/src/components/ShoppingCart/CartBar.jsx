@@ -16,16 +16,12 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 class CartBadges extends Component {
-  handleCartClick() {
-    console.log("Click!");
-  }
-
   render() {
     return (
       <Link to="/cart">
         <IconButton aria-label="cart" size="medium">
           <StyledBadge
-            badgeContent={window.$cartTotal}
+            badgeContent={this.props.itemTotal}
             color="secondary"
             style={{ color: "#42a5f5" }}
           >

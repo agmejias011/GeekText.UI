@@ -10,13 +10,26 @@ const cartStyle = {
   position: "absolute",
   top: "10px"
 };
+
+window.updateTopMostParent = itemTotal => {
+  // Update state of topmost parent when this method is called
+  this.setState({ itemTotal });
+};
+
 class SiteContainer extends React.Component {
+  state = {
+    itemTotal: window.$cartTotal
+  };
+
   render() {
     return (
       <div id="site-container">
         <Container maxWidth="lg" className="home">
           <div>
-            <SearchBar user={this.props.user} />
+            <SearchBar
+              user={this.props.user}
+              itemTotal={this.state.itemTotal}
+            />
           </div>
 
           {this.props.children}
