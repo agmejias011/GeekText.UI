@@ -23,7 +23,6 @@ const Tablestyle = {
 
 var cellStyle = {
   borderBottom: "none",
-  maxWidth: "100%",
 };
 
 class Cart extends Component {
