@@ -17,6 +17,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import BookCardCart from "./bookCardInCart";
 import { Typography } from "@material-ui/core";
+import { CartConsumer } from "../ShoppingCart/contextCart";
 
 const Tablestyle = {
   maxWidth: 650,
@@ -51,18 +52,26 @@ class SaveForLater extends Component {
                   >
                     Remove
                   </Button>
-                  <Button
-                    size="small"
-                    color="primary"
-                    startIcon={<ArrowUpwardIcon />}
-                    style={{
-                      position: "relative",
-                      right: "0.5em",
+                  <CartConsumer>
+                    {(value) => {
+                      return (
+                        <Button
+                          size="small"
+                          color="primary"
+                          startIcon={<ArrowUpwardIcon />}
+                          style={{
+                            position: "relative",
+                            right: "0.5em",
+                          }}
+                          onClick={() =>
+                            this.props.onMoveToCart(this.props.book, value)
+                          }
+                        >
+                          Move to Cart
+                        </Button>
+                      );
                     }}
-                    onClick={() => this.props.onMoveToCart(this.props.book)}
-                  >
-                    Move to Cart
-                  </Button>
+                  </CartConsumer>
                 </TableCell>
                 <TableCell align="center" style={cellStyle}>
                   <NumberFormat

@@ -8,6 +8,9 @@ import Card from "@material-ui/core/Card";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Button from "@material-ui/core/Button";
+import ReactDOM from "react-dom";
+import siteContainer from "../site-container";
+import { CartConsumer } from "../ShoppingCart/contextCart";
 
 class Details extends React.Component {
   addToCartEvent = (
@@ -19,14 +22,59 @@ class Details extends React.Component {
     rating,
     description,
     img_url,
-    genre
+    genre,
+    value
   ) => {
-    window.$cartTotal = window.$cartTotal + 1;
+    let booksStorage = [];
+    let book = [];
+    booksStorage = JSON.parse(localStorage.getItem("cartItems"));
 
-    const book = window.$item_line.filter((p) => p.id === id);
+    if (booksStorage) {
+      book = booksStorage.filter((p) => p.id === id);
 
-    if (book.length === 0) {
-      //new book
+      if (book.length === 0) {
+        //new book
+        let booknew = {
+          id: id,
+          name: title,
+          author: author,
+          publisher: publisher,
+          price: price,
+          rating: rating,
+          description: description,
+          img_url: img_url,
+          genre: genre,
+          orderQTY: 1,
+          itemSubtotal: price,
+        };
+
+        const booksNew = booksStorage.concat(booknew);
+        localStorage.setItem("cartItems", JSON.stringify(booksNew));
+      } else {
+        // book was already added
+        let updateBook = {
+          id: book[0].id,
+          name: book[0].name,
+          author: book[0].author,
+          publisher: book[0].publisher,
+          price: book[0].price,
+          rating: book[0].rating,
+          description: book[0].description,
+          img_url: book[0].img_url,
+          genre: book[0].genre,
+          orderQTY: book[0].orderQTY,
+          itemSubtotal: book[0].itemSubtotal,
+        };
+
+        const books = [...booksStorage];
+        const index = books.findIndex((item) => item.id === updateBook.id);
+        books[index] = { ...updateBook };
+        books[index].orderQTY++;
+        books[index].itemSubtotal = books[index].price * books[index].orderQTY;
+
+        localStorage.setItem("cartItems", JSON.stringify(books));
+      }
+    } else {
       let booknew = {
         id: id,
         name: title,
@@ -41,32 +89,23 @@ class Details extends React.Component {
         itemSubtotal: price,
       };
 
-      window.$item_line = window.$item_line.concat(booknew);
-    } else {
-      // book was already added
-      let updateBook = {
-        id: book[0].id,
-        name: book[0].name,
-        author: book[0].author,
-        publisher: book[0].publisher,
-        price: book[0].price,
-        rating: book[0].rating,
-        description: book[0].description,
-        img_url: book[0].img_url,
-        genre: book[0].genre,
-        orderQTY: book[0].orderQTY,
-        itemSubtotal: book[0].itemSubtotal * (book[0].orderQTY + 1),
-      };
+      let booksNew = [];
+      booksNew = booksNew.concat(booknew);
 
-      const books = [...window.$item_line];
-      const index = books.findIndex((item) => item.id === updateBook.id);
-      books[index] = { ...updateBook };
-      books[index].orderQTY++;
-      books[index].itemSubtotal = books[index].price * books[index].orderQTY;
-
-      window.$item_line = books;
-      window.$cartTotal = window.$cartTotal + 1;
+      localStorage.setItem("cartItems", JSON.stringify(booksNew));
     }
+
+    let cartItemsTotal = JSON.parse(localStorage.getItem("cartItemsTotal"));
+
+    if (cartItemsTotal > 0) {
+      cartItemsTotal++;
+    } else {
+      cartItemsTotal = 1;
+    }
+
+    localStorage.setItem("cartItemsTotal", JSON.stringify(cartItemsTotal));
+
+    value.updateCartItemTotal(cartItemsTotal);
   };
 
   render() {
@@ -147,27 +186,40 @@ class Details extends React.Component {
                       readOnly
                     />
                   </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    style={{ height: "4em", marginTop: "20px" }}
-                    onClick={() =>
-                      this.addToCartEvent(
-                        id,
-                        title,
-                        author,
-                        publisher,
-                        price,
-                        rating,
-                        description,
-                        img_url,
-                        genre
-                      )
-                    }
-                  >
-                    Add to Cart
-                  </Button>
+                  <CartConsumer>
+                    {(value) => {
+                      return (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          style={{
+                            borderRadius: 0,
+                            color: "#fff",
+                            background: "#111",
+                            height: "4em",
+                            marginTop: "25px",
+                          }}
+                          onClick={() =>
+                            this.addToCartEvent(
+                              id,
+                              title,
+                              author,
+                              publisher,
+                              price,
+                              rating,
+                              description,
+                              img_url,
+                              genre,
+                              value
+                            )
+                          }
+                        >
+                          Add to Cart
+                        </Button>
+                      );
+                    }}
+                  </CartConsumer>
                 </div>
               </div>
             </div>

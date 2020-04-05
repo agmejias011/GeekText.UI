@@ -19,6 +19,8 @@ import SearchBar from "../SearchBar";
 import ThankyouPage from "./thankYou";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import ThankyouSaved from "./ThankyouDialog";
+import AlreadySavedBook from "./alreadySaved";
+import { CartConsumer } from "../ShoppingCart/contextCart";
 
 window.$cartTotal = 0;
 window.$item_line = [];
@@ -76,16 +78,30 @@ const orderDetailStyle = {
   left: "-2em",
 };
 
-const saveButton = {};
 class CartList extends Component {
   state = {
-    books: window.$item_line,
+    books: [],
     saveForLater: [],
     user_id: 1001, // this will come from signed in user.
     order_id: 0,
     placed_order: false,
     savedbooks: false,
+    bookAlreadySaved: false,
   };
+
+  componentWillMount() {
+    if (localStorage.getItem("cartItems")) {
+      this.setState({
+        books: JSON.parse(localStorage.getItem("cartItems")),
+      });
+    }
+
+    if (localStorage.getItem("cartItemsSaved")) {
+      this.setState({
+        saveForLater: JSON.parse(localStorage.getItem("cartItemsSaved")),
+      });
+    }
+  }
 
   //complete the back end with the json format and finish the integration here
   handleSaveForNoCart = () => {
@@ -115,9 +131,12 @@ class CartList extends Component {
     ).then((response) => response.json());
 
     this.setState({ savedbooks: true });
+
+    this.setState({ saveForLater: [] });
+    localStorage.setItem("cartItemsSaved", JSON.stringify([]));
   };
 
-  handlePlaceOrder = () => {
+  handlePlaceOrder = (value) => {
     let item_line_all = []; //item_line json to send
     let item_line = {};
 
@@ -166,54 +185,103 @@ class CartList extends Component {
       .then((data) => this.setState({ order_id: data.id }));
 
     this.setState({ placed_order: true });
-    window.$cartTotal = 0;
-    window.$item_line = [];
+
+    localStorage.setItem("cartItems", JSON.stringify([]));
+    localStorage.setItem("cartItemsSaved", JSON.stringify([]));
+
+    localStorage.setItem("cartItemsTotal", JSON.stringify(0));
+
+    value.updateCartItemTotal(0);
   };
 
-  handleIncrement = (book) => {
+  handleIncrement = (book, value) => {
     const books = [...this.state.books];
     const index = books.indexOf(book);
     books[index] = { ...book };
     books[index].orderQTY++;
     books[index].itemSubtotal = books[index].price * books[index].orderQTY;
     this.setState({ books });
-    window.$item_line = this.state.books;
+
+    localStorage.setItem("cartItems", JSON.stringify(books));
+
+    let cartItemsTotal = JSON.parse(localStorage.getItem("cartItems")).reduce(
+      (acc, b) => acc + b.orderQTY,
+      0
+    );
+    localStorage.setItem("cartItemsTotal", JSON.stringify(cartItemsTotal));
+
+    value.updateCartItemTotal(cartItemsTotal);
   };
 
-  handleDecrement = (book) => {
+  handleDecrement = (book, value) => {
     const books = [...this.state.books];
     const index = books.indexOf(book);
     books[index] = { ...book };
 
     if (books[index].orderQTY - 1 <= 0) {
       // remove from cart
+      let bookStorage = this.state.books.filter((b) => b.id !== book.id);
       this.setState({
-        books: this.state.books.filter((b) => b.id !== book.id),
+        books: bookStorage,
       });
+
+      localStorage.setItem("cartItems", JSON.stringify(bookStorage));
     } else {
       books[index].orderQTY--;
       books[index].itemSubtotal = books[index].price * books[index].orderQTY;
       this.setState({ books });
+
+      localStorage.setItem("cartItems", JSON.stringify(books));
     }
 
-    window.$item_line = this.state.books;
+    let cartItemsTotal = JSON.parse(localStorage.getItem("cartItems")).reduce(
+      (acc, b) => acc + b.orderQTY,
+      0
+    );
+    localStorage.setItem("cartItemsTotal", JSON.stringify(cartItemsTotal));
+
+    value.updateCartItemTotal(cartItemsTotal);
   };
 
-  handleDelete = (book) => {
-    this.setState({ books: this.state.books.filter((b) => b.id !== book.id) });
-  };
-
-  handleSave = (book) => {
-    this.setState({ saveForLater: this.state.saveForLater.concat(book) });
-
-    this.handleDelete(book);
-
-    this.renderSave();
+  handleDelete = (book, value) => {
+    const books = this.state.books.filter((b) => b.id !== book.id);
+    this.setState({ books });
+    this.forceUpdate();
+    localStorage.setItem("cartItems", JSON.stringify(books));
 
     this.setState({
       subtotal: this.state.books.reduce((acc, b) => acc + b.itemSubtotal, 0),
     });
-    this.forceUpdate();
+
+    let cartItemsTotal = books.reduce((acc, b) => acc + b.orderQTY, 0);
+    localStorage.setItem("cartItemsTotal", JSON.stringify(cartItemsTotal));
+
+    value.updateCartItemTotal(cartItemsTotal);
+  };
+
+  handleSave = (book, value) => {
+    let savedBook = this.state.saveForLater.filter((p) => p.id === book.id);
+
+    if (savedBook.length !== 0) {
+      //book already saved, just add the quantities
+      this.setState({ bookAlreadySaved: true });
+
+      const books = [...this.state.saveForLater];
+      const index = books.findIndex((item) => item.id === book.id);
+
+      books[index].orderQTY = books[index].orderQTY + book.orderQTY;
+      books[index].itemSubtotal = books[index].price * books[index].orderQTY;
+
+      this.setState({ saveForLater: books });
+
+      localStorage.setItem("cartItemsSaved", JSON.stringify(books));
+    } else {
+      const saveForLater = this.state.saveForLater.concat(book);
+      this.setState({ saveForLater });
+      localStorage.setItem("cartItemsSaved", JSON.stringify(saveForLater));
+    }
+    this.handleDelete(book, value);
+    this.renderSave();
   };
 
   renderSaveButton() {
@@ -235,7 +303,12 @@ class CartList extends Component {
                       color="primary"
                       size="large"
                       fullWidth
-                      style={{ height: "4em" }}
+                      style={{
+                        borderRadius: 0,
+                        color: "#fff",
+                        background: "#111",
+                        height: "4em",
+                      }}
                       onClick={() => this.handleSaveForNoCart()}
                     >
                       Save
@@ -282,6 +355,8 @@ class CartList extends Component {
     saveForLater[index].itemSubtotal =
       saveForLater[index].price * saveForLater[index].orderQTY;
     this.setState({ saveForLater });
+
+    localStorage.setItem("cartItemsSaved", JSON.stringify(saveForLater));
   };
 
   handleDecrementSave = (book) => {
@@ -291,29 +366,47 @@ class CartList extends Component {
 
     if (saveForLater[index].orderQTY - 1 <= 0) {
       // remove from cart
+      const bookSaved = this.state.saveForLater.filter((b) => b.id !== book.id);
       this.setState({
-        saveForLater: this.state.saveForLater.filter((b) => b.id !== book.id),
+        saveForLater: bookSaved,
       });
+
+      localStorage.setItem("cartItemsSaved", JSON.stringify(bookSaved));
     } else {
       saveForLater[index].orderQTY--;
       saveForLater[index].itemSubtotal =
         saveForLater[index].price * saveForLater[index].orderQTY;
       this.setState({ saveForLater });
+      localStorage.setItem("cartItemsSaved", JSON.stringify(saveForLater));
     }
   };
 
   handleDeleteSave = (book) => {
+    const saveForLater = this.state.saveForLater.filter(
+      (b) => b.id !== book.id
+    );
     this.setState({
-      saveForLater: this.state.saveForLater.filter((b) => b.id !== book.id),
+      saveForLater,
     });
+    localStorage.setItem("cartItemsSaved", JSON.stringify(saveForLater));
   };
 
-  handleMoveToCart = (book) => {
-    this.setState({ books: this.state.books.concat(book) });
+  handleMoveToCart = (book, value) => {
+    const books = this.state.books.concat(book);
+    this.setState({ books });
 
-    window.$item_line = this.state.books;
+    localStorage.setItem("cartItems", JSON.stringify(books));
 
     this.handleDeleteSave(book);
+
+    let cartItemsTotal = JSON.parse(localStorage.getItem("cartItems")).reduce(
+      (acc, b) => acc + b.orderQTY,
+      0
+    );
+
+    localStorage.setItem("cartItemsTotal", JSON.stringify(cartItemsTotal));
+
+    value.updateCartItemTotal(cartItemsTotal);
   };
 
   emptyCart() {
@@ -352,12 +445,7 @@ class CartList extends Component {
 
   renderBadge() {
     if (this.state.books.reduce((acc, b) => acc + b.orderQTY, 0) >= 0) {
-      window.$cartTotal = this.state.books.reduce(
-        (acc, b) => acc + b.orderQTY,
-        0
-      );
-
-      return window.$cartTotal;
+      return this.state.books.reduce((acc, b) => acc + b.orderQTY, 0);
     }
 
     return 0;
@@ -433,22 +521,27 @@ class CartList extends Component {
                   </TableBody>
                 </Table>
               </TableContainer>
-
-              <Button
-                variant="contained"
-                size="large"
-                fullWidth
-                style={{ height: "4em" }}
-                onClick={() => this.handlePlaceOrder()}
-                style={{
-                  borderRadius: 0,
-                  color: "#fff",
-                  background: "#111",
-                  height: "50px",
+              <CartConsumer>
+                {(value) => {
+                  return (
+                    <Button
+                      variant="contained"
+                      size="large"
+                      fullWidth
+                      style={{ height: "4em" }}
+                      onClick={() => this.handlePlaceOrder(value)}
+                      style={{
+                        borderRadius: 0,
+                        color: "#fff",
+                        background: "#111",
+                        height: "4em",
+                      }}
+                    >
+                      Place Order
+                    </Button>
+                  );
                 }}
-              >
-                Place Order
-              </Button>
+              </CartConsumer>
             </Paper>
           </Typography>
         </div>
@@ -465,6 +558,31 @@ class CartList extends Component {
       return (
         <>
           <ThankyouSaved></ThankyouSaved>
+          <Paper elevation={0} style={{ marginTop: "50px" }}>
+            <Grid container direction="row">
+              <Grid item sm>
+                {this.renderCarts()}
+              </Grid>
+              <Grid item sm>
+                {this.renderOrderSummary()}
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={3} style={{ marginTop: "80px" }}>
+            <Grid container>
+              <Grid item sm>
+                <div>{this.renderSave()}</div>
+              </Grid>
+            </Grid>
+          </Paper>
+        </>
+      );
+    }
+
+    if (this.state.bookAlreadySaved === true) {
+      return (
+        <>
+          <AlreadySavedBook></AlreadySavedBook>
           <Paper elevation={0} style={{ marginTop: "50px" }}>
             <Grid container direction="row">
               <Grid item sm>
