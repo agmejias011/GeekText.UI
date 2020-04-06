@@ -7,18 +7,21 @@ import CardActionArea from '@material-ui/core/CardActions';
 import Card from '@material-ui/core/Card';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import { useEffect } from 'react';
 
 
 class Details extends React.Component {
-
+   
     render() {
         return (
             <BookConsumer>
+           
                 {value => {
+                   
                     const {
-                        id, title, author, publisher, price, rating, description, img_url,genre
-                    } = value.bookDetail;
-
+                        id, title, author, publisher, price, rating, description, img_url, genre
+                    } = value.bookDetail
+                    
                     return (
                         <div className="container py-5">
                             <div className="row" >
