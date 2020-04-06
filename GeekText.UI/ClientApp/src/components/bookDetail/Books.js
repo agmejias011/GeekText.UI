@@ -1,5 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+﻿import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Book from './Book'
 import Button from '@material-ui/core/Button';
@@ -7,6 +6,7 @@ import { BookConsumer} from './Context'
 
 class Books extends React.Component {
     render() {
+        console.log('hello, I am Books');
         return (
             <React.Fragment>
                 <div className="App">
