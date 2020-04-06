@@ -8,7 +8,8 @@ import Books from "./components/bookDetail/Books";
 import Details from "./components/bookDetail/Details";
 import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
 import { BookProvider } from "./components/bookDetail/Context";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { CartProvider } from "./components/ShoppingCart/contextCart";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -22,13 +23,13 @@ import UserForm from "./components/userForm";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import SearchBar from "./components/SearchBar";
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <SiteContainer>
-         <BookProvider>
+      <CartProvider>
+        <SiteContainer>
+          <BookProvider>
             <Switch>
               <Route path="/example-route">Hello world.</Route>
               <Route path="/wishlists">
@@ -38,11 +39,11 @@ ReactDOM.render(
                 <Books />
               </Route>
               <Route path="/details">
-                 <Details />
+                <Details />
               </Route>
               <Route path="/BooksOfAuthor">
-                 < BooksOfAuthor />
-              </Route>       
+                <BooksOfAuthor />
+              </Route>
               <Route path="/login">
                 <LoginPage />
               </Route>
@@ -59,8 +60,9 @@ ReactDOM.render(
                 <Home />
               </Route>
             </Switch>
-         </BookProvider>
-      </SiteContainer>
+          </BookProvider>
+        </SiteContainer>
+      </CartProvider>
     </Router>
   </Provider>,
   document.getElementById("root")

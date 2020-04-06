@@ -22,7 +22,7 @@ export default function SimpleAlerts() {
     <div className={classes.root}>
       <Collapse in={open}>
         <Alert
-          severity="success"
+          severity="warning"
           action={
             <IconButton
               aria-label="close"
@@ -36,7 +36,7 @@ export default function SimpleAlerts() {
             </IconButton>
           }
         >
-          We have saved your book(s) into your account successfully!
+          This book was already saved. The quantites were added!
         </Alert>
       </Collapse>
     </div>

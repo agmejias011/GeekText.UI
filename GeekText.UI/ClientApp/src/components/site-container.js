@@ -5,18 +5,23 @@ import CartBar from "./ShoppingCart/CartBar";
 import SearchBar from "./SearchBar";
 import { Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
+import ReactDOM from "react-dom";
 
 const cartStyle = {
   position: "absolute",
-  top: "10px"
+  top: "10px",
 };
+
 class SiteContainer extends React.Component {
   render() {
     return (
       <div id="site-container">
         <Container maxWidth="lg" className="home">
           <div>
-            <SearchBar user={this.props.user} />
+            <SearchBar
+              user={this.props.user}
+              cartItemsTotal={this.props.cartItemsTotal}
+            />
           </div>
 
           {this.props.children}
@@ -26,6 +31,6 @@ class SiteContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps)(SiteContainer);
