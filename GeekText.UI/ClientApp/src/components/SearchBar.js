@@ -4,7 +4,7 @@ import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CartBar from "./ShoppingCart/CartBar";
-import ClassNames from 'docs/src/pages/customization/components/ClassNames';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 export default class SearchBar extends React.Component {
   state = {
@@ -41,9 +41,7 @@ export default class SearchBar extends React.Component {
           alignItems="center"
           spacing={1}
         >
-          <Grid>
-            <ClassNames>Books</ClassNames>;
-          </Grid> 
+          
           <Grid item md={2}>
             <a href={"/"}>
               <h2>GeekText</h2>
@@ -61,7 +59,12 @@ export default class SearchBar extends React.Component {
                 <FaSearch />
               </button>
             </div>
-          </Grid>
+            </Grid>
+                <Grid item>
+                    <a href={"/books" }>
+                        <MenuBookIcon color="primary" fontSize="large" />
+                    </a>
+                </Grid>               
           <Grid item>
             <a href={"/" + account_path}>
               <AccountCircleIcon color="primary" fontSize="large" />
