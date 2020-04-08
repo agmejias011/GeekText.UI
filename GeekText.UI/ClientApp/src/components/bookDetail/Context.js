@@ -14,10 +14,15 @@ class BookProvider extends Component
         bookDetail: JSON.parse(localStorage.getItem('book')),
     };
    
+   
 
-    componentDidMount() {
+   async componentDidMount() {
         this.populateBooksData();
-
+       if (localStorage.getItem("bookA")) {
+           this.setState({
+               booksOfAuthor: JSON.parse(localStorage.getItem("bookA")),
+           });
+       }
     }
 
     
@@ -48,11 +53,14 @@ class BookProvider extends Component
             this.setState(() => {
                 return { booksOfAuthor: bookA }
             }, () => {
-                    localStorage.setItem('bookA', JSON.stringify(this.state.booksOfAuthor))
+                     localStorage.setItem('bookA', JSON.stringify(this.state.booksOfAuthor))
             });
         })
     } 
    
+    showProduct = () => {
+        JSON.parse(localStorage.getItem('bookA')) // gets an array of the products
+    } 
 
     populateBooksData =() => {
         axios.get("http://localhost:5000/api/books/GetBooks").then(response => {
@@ -69,6 +77,7 @@ class BookProvider extends Component
                    ...this.state,
                     handleDetail: this.handleDetail,
                     populateBooksofAuthorData: this.populateBooksofAuthorData,
+                    showProduct:this.showProduct
                 }}
             >
                 {this.props.children}
