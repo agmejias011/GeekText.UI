@@ -10,15 +10,17 @@ class BookProvider extends Component
 
     state = {
         books: [],
+        booksOfAuthor: [],
         bookDetail: JSON.parse(localStorage.getItem('book')),
-        booksOfAuthor: JSON.parse(localStorage.getItem('bookA'))
     };
-
    
-    async componentDidMount() {
+
+    componentDidMount() {
         this.populateBooksData();
-       
+
     }
+
+    
 
     getItem = id => {
         const book = this.state.books.find(item => item.id === id);
@@ -27,8 +29,6 @@ class BookProvider extends Component
     };
    
 
-
-    
     handleDetail = id => {
         const product = this.getItem(id);
         this.setState(()=>{
@@ -39,22 +39,21 @@ class BookProvider extends Component
         
     };
 
-    populateBooksofAuthorData = id => {
-        let x = id;
-        console.log(id);
-        const url = "http://localhost:5000/api/authors/booksOfAuthor/" + x;
-        axios.get(url).then(response => {
-            const book = response.data;
 
+     populateBooksofAuthorData = id => {
+        const x = id;
+        const url = "http://localhost:5000/api/authors/booksA/" + x;
+        axios.get(url).then(response => {
+            const bookA = response.data 
             this.setState(() => {
-                return { booksOfAuthor: book }
+                return { booksOfAuthor: bookA }
             }, () => {
                     localStorage.setItem('bookA', JSON.stringify(this.state.booksOfAuthor))
             });
-
         })
     } 
    
+
     populateBooksData =() => {
         axios.get("http://localhost:5000/api/books/GetBooks").then(response => {
             this.setState({
@@ -63,17 +62,13 @@ class BookProvider extends Component
         })
     } 
 
-
-   
-
-   
     render() {
         return (
             <BookContext.Provider
                 value={{
                    ...this.state,
                     handleDetail: this.handleDetail,
-                    populateBooksofAuthorData: this.populateBooksofAuthorData
+                    populateBooksofAuthorData: this.populateBooksofAuthorData,
                 }}
             >
                 {this.props.children}
