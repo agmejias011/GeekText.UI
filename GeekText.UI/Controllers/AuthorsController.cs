@@ -143,6 +143,54 @@ namespace GeekText.UI.Controllers
             return Ok(booksDto);
         }
 
+
+        //GET ALL AUTHORS FOR BOOK
+        //api/authors/books/bookId
+        [HttpGet("booksA/{bookId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
+        public IActionResult GetBook(int bookId)
+        {
+            if (!_bookRepository.BookExists(bookId))
+                return NotFound();
+
+            var authors = _authorRepository.GetAuthorsOfBook(bookId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var booksDto = new List<BookDto>();
+            foreach (var author in authors)
+            {
+                if (!_bookRepository.BookExists(author.author_id))
+                    return NotFound();
+                var books = _authorRepository.GetBooksOfAuthor(author.author_id);
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+              
+                foreach (var book in books)
+                {
+                    booksDto.Add(new BookDto()
+                    {
+                        id = book.id,
+                        title = book.title,
+                        author = book.author,
+                        genre = book.genre,
+                        price = book.price,
+                        isbn = book.isbn,
+                        description = book.description,
+                        rating = book.rating,
+                        img_url = book.img_url,
+                        publisher = book.publisher,
+                        date = book.date
+                    });
+                    
+                }
+                
+            }
+            return Ok(booksDto);
+        }
+
     }
 
 }

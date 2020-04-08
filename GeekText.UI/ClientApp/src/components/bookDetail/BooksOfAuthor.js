@@ -10,15 +10,14 @@ export default class BooksOfAuthor extends Component {
 
     render() {
         return (
-            <React.Fragment>
                 <div className="App">
                     <Grid
                         container
                         spacing={10}
                         style={{ padding: '24px' }}
                     >
-                        <BookConsumer>{value => {
-                            return value.booksOfAuthor.map(book => {
+                    <BookConsumer>{value => {
+                        return value.booksOfAuthor.map(book => {
                                 return (
                                     <Grid
                                         key={book.id}
@@ -26,6 +25,7 @@ export default class BooksOfAuthor extends Component {
                                         xs={12} sm={6} md={4} lg={4} xl={3}
                                     >
                                         <BookCardDetail
+
                                             id={book.id}
                                             title={book.title}
                                             author={book.author}
@@ -43,7 +43,6 @@ export default class BooksOfAuthor extends Component {
                         </BookConsumer>
                     </Grid>
                 </div>
-            </React.Fragment>
         );
 
     }
