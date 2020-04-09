@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import ReactDOM from "react-dom";
 import siteContainer from "../site-container";
 import { CartConsumer } from "../ShoppingCart/contextCart";
+import ReactTextCollapse from "react-text-collapse";
 
 class Details extends React.Component {
   addToCartEvent = (
@@ -116,6 +117,7 @@ class Details extends React.Component {
             id,
             title,
             author,
+            bio,
             publisher,
             price,
             rating,
@@ -125,66 +127,74 @@ class Details extends React.Component {
           } = value.bookDetail;
 
           return (
-            <div className="container py-10">
+            <div className="container py-5">
               <div className="row">
-                <div className="col-10 mx-auto col-md-4 my-3">
+                <div className="col-10 mx-auto col-md-4 my-2">
                   <Zoom>
                     <img
                       className="img-fluid"
                       alt="Responsive image"
                       src={img_url}
-                      width="400"
-                      height="600"
+                      width="600"
+                      height="800"
                     />
                   </Zoom>
                 </div>
 
                 {/* prdoduct info */}
-                <div className="col-10 mx-auto col-md-7 my-3 text-capitalize">
+                <div className="col-10 mx-auto col-md-8 my-2 text-capitalize">
                   <h1>{title}</h1>
-                  <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
-                    <div className="text-uppercase">
+                  <h5 className="text-title  mt-3 mb-2">
+                    <div className>
                       <div
                          onClick={() => value.populateBooksofAuthorData(id)}
                       >
-                         by: <Link to="/BooksOfAuthor">{author}</Link>
+                          <strong>by:</strong> <Link to="/BooksOfAuthor">{author}</Link>
+                          <h5 className="text-capitalize font-weight-bold mt-2 mb-0">
+                             Biography:
+                          </h5>
+                          <strong>
+                              <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                                  <p className="text-muted lead">
+                                     {bio}
+                                  </p>
+                              </ReactTextCollapse>
+                          </strong>
                       </div>
+                    
                     </div>
-                  </h4>
-                  <h4 className="text-blue">
-                    <strong>
-                      <div> Publisher: {publisher}</div>
-                    </strong>
-                  </h4>
-                  <h4 className="text-blue">
-                    <strong>
-                      <div> price :$ {price}</div>
-                    </strong>
-                  </h4>
-                  <h4 className="text-blue">
-                    <strong>
-                      <div> Genre: {genre} </div>
-                    </strong>
-                  </h4>
+                  </h5>
+                  <h5 className="text-blue mt-4 mb-0">
+                  <div><strong> Publisher:</strong> {publisher}</div>
+                  </h5>
+                  <h5 className="text-blue mt-3 mb-0">
+                  <div> <strong> Genre: </strong> {genre} </div>
+                  </h5>
+                  <h5 className="text-blue mt-3 mb-0">
+                   <div><strong> price: $</strong>{price}</div>
+                  </h5>
 
-                  <p className="text-capitalize font-weight-bold mt-3 mb-0">
-                    Book's Description :
-                  </p>
-                  <p className="text-muted lead">{description}</p>
+                  <h5 className="font-weight-bold mt-3 mb-0">
+                    Book Description:
+                  </h5>
+                  <p className="text-muted lead mt-1 mb-0">{description}</p>
+                  
                   <Typography
                     gutterBottom
                     variant="h5"
                     component="h5"
                   ></Typography>
-                  <Typography gutterBottom variant="h5" component="h5">
-                    Rating:
+                  
+                  <div className="mt-2 mb-0">
                     <Rating
-                      name="half-rating-read"
+                      name="size-large"
                       defaultValue={rating}
                       precision={0.5}
                       readOnly
+                      size="large"
                     />
-                  </Typography>
+                   </div>
+                 
                   <CartConsumer>
                     {(value) => {
                       return (
@@ -229,3 +239,15 @@ class Details extends React.Component {
   }
 }
 export default Details;
+
+const TEXT_COLLAPSE_OPTIONS = {
+    collapse: false, // default state when component rendered
+    collapseText: '(...)', // text to show when collapsed
+    expandText: '(Hide)', // text to show when expanded
+    minHeight: 0, // component height when closed
+    maxHeight: 60, // expanded to
+    textStyle: { // pass the css for the collapseText and expandText here
+        color: "black",
+        fontSize: "16px"
+    }
+}

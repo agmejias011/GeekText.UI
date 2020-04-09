@@ -14,14 +14,6 @@ import Link from "@material-ui/core/Link";
 // import material ui smaller components to create card component
 
 // makeStyles for material ui
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 500,
-  },
-});
 
 // customize the media card from material ui to suit our user cards.
 export default function BookCardDetail({
@@ -36,24 +28,24 @@ export default function BookCardDetail({
   const classes = useStyles();
   return (
     <Card className={classes.card} style={{ width: 250 }}>
-      <CardActionArea href={img_url} size="large" color="primary">
+      <CardActionArea >
         <CardMedia className={classes.media} image={img_url} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              <span style={{ fontWeight: "bold", textAlign: "center" }}>{title}</span>
+           </Typography>
 
-          <Typography gutterBottom variant="h5" component="h2">
-            by {publisher}
-          </Typography>
+           <Typography gutterBottom variant="h5" component="h4">
+             <span style={{ fontSize: 20 }}>by {author}</span>
+           </Typography>
 
-          <Typography gutterBottom variant="h5" component="h2">
-            {author}
-          </Typography>
+           <Typography gutterBottom variant="h5" component="h2">
+             <span style={{ fontSize: 20 }}>by {publisher}</span>
+           </Typography>
 
-          <Typography gutterBottom variant="h5" component="h2">
-            $ {price}
-          </Typography>
+           <Typography gutterBottom variant="h5" component="h5">
+            <span style={{ fontSize: 20 }}>${price}</span>
+           </Typography>
 
           <Typography gutterBottom variant="h5" component="h2">
             <Rating
@@ -63,7 +55,6 @@ export default function BookCardDetail({
               readOnly
             />
           </Typography>
-
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
