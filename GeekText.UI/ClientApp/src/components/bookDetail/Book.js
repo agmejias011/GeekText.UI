@@ -18,7 +18,7 @@ export default class Book extends Component{
                         onClick={() => value.handleDetail(id)}
                     
                     >
-                        <Link to="/details">
+                        <Link to="/details" style={{ textDecoration: 'none' }}>
                             <BookCard
                                 id={id}
                                 title={title}

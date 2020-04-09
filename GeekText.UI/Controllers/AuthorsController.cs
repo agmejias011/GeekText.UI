@@ -130,6 +130,7 @@ namespace GeekText.UI.Controllers
                     id = book.id,
                     title = book.title,
                     author = book.author,
+                    bio = book.bio,
                     genre = book.genre,
                     price = book.price,
                     isbn = book.isbn,
@@ -144,7 +145,7 @@ namespace GeekText.UI.Controllers
         }
 
 
-        //GET ALL AUTHORS FOR BOOK
+        //GET ALL BOOKS FROM AUTHOR Using BOOK ID
         //api/authors/books/bookId
         [HttpGet("booksA/{bookId}")]
         [ProducesResponseType(400)]
@@ -175,6 +176,7 @@ namespace GeekText.UI.Controllers
                         id = book.id,
                         title = book.title,
                         author = book.author,
+                        bio = book.bio,
                         genre = book.genre,
                         price = book.price,
                         isbn = book.isbn,

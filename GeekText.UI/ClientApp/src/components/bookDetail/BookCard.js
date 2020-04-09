@@ -43,21 +43,21 @@ export default function BookCard({ id, title, author, publisher, price, rating, 
                 <CardContent>
 
                     <Typography gutterBottom variant="h5" component="h2">
-                        {title}
+                        <span style={{ fontWeight: "bold", textAlign: "center" }}>{title}</span>
                     </Typography>
 
-                    <Typography gutterBottom variant="h5" component="h2">
-                        by {author}
+                    <Typography gutterBottom variant="h5" component="h4">
+                        <span style={{fontSize: 20 }}>by {author}</span>
                     </Typography>
 
-                    <Typography gutterBottom variant="h5" component="h2">
-                        $ {price}   
+                    <Typography gutterBottom variant="h5" component="h5">
+                        <span style={{ fontSize: 20}}>${price}</span>  
                     </Typography>
 
                     <Typography gutterBottom variant="h5" component="h2">
                         <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                     </Typography>
-
+                   
                     <Typography variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
