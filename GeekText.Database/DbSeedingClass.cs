@@ -17,9 +17,9 @@ namespace GeekText.Database
                     book= new Book()
                     {
                        isbn = "B017V4NQGM",
-                       title = "Harry Potter",
+                       title = "Harry Potter and the Goblet of Fire",
                        author = "Joanne Rowling",
-                       genre = "Adventure",
+                       genre = "Fantasy",
                        description = "There will be three tasks, spaced throughout the school year, and they will test the champions in many different ways ... " +
                        "their magical prowess - their daring - their powers of deduction - and, of course, their ability to cope with danger.The Triwizard Tournament is to be held at Hogwarts. " +
                        "Only wizards who are over seventeen are allowed to enter - but that doesn't stop Harry dreaming that he will win the competition. Then at Hallowe'en, when the Goblet of Fire makes its selection, " +
@@ -41,6 +41,44 @@ namespace GeekText.Database
                     {
                         firstName = "Joanne",
                         lastName = "Rowling",
+
+                        Books_Author = new List<Book_Author>()
+                        {
+                              new Book_Author
+                              {
+                                  book = new Book()
+                                  {
+                                       isbn = "17VQBBFDSFS",
+                                       title = "Harry Potter and the Sorcerer's Stone ",
+                                       author = "Joanne Rowling",
+                                       genre = "Fantasy",
+                                       description = "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry.",
+                                       price = 10.99,
+                                       rating = 3,
+                                       img_url ="https://m.media-amazon.com/images/I/41lnLrvBnML.jpg",
+                                       publisher = "Bloomsbury (UK)",
+                                       date = new DateTime(1997,2,1),
+                                  }
+                              },
+                              new Book_Author
+                              {
+                                  book = new Book()
+                                  {
+                                       isbn = "17VPPFFDSFS",
+                                       title = "Harry Potter and the Chamber of Secrets",
+                                       author = "Joanne Rowling",
+                                       genre = "Adventure",
+                                       description = "Harry Potter's summer has included the worst birthday ever, doomy warnings from a house-elf called Dobby, and rescue from the Dursleys by his friend Ron Weasley in a magical flying car! Back at Hogwarts School of Witchcraft and Wizardry for his second year, Harry hears strange whispers echo through empty corridors - and then the attacks start. Students are found as though turned to stone... Dobby's sinister predictions seem to be coming true.",
+                                       price = 8.99,
+                                       rating = 4.5,
+                                       img_url ="https://m.media-amazon.com/images/I/51OZerWcGCL.jpg",
+                                       publisher = "Bloomsbury (UK)",
+                                       date = new DateTime(1998,1,1),
+                                  }
+                              },
+                             
+                        },
+
 
                     }
                 },
@@ -74,7 +112,7 @@ namespace GeekText.Database
                         firstName = " Andrzej ",
                         lastName = "Sapkowski",
                     }
-                   
+
                 },
 
                 new Book_Author()
@@ -134,7 +172,28 @@ namespace GeekText.Database
                     {
                         firstName = "Alexandre ",
                         lastName = "Dumas",
-                       
+
+                        Books_Author = new List<Book_Author>()
+                        {
+                              new Book_Author
+                              {
+                                  book = new Book()
+                                  {
+                                       isbn = "17VQFFDSFS",
+                                       title = "The Three Musketeers",
+                                       author = "Alexandre Dumas",
+                                       genre = "Fantasy",
+                                       description = "One of the most celebrated and popular historical romances ever written, " +
+                                       "The Three Musketeers tell the story of the early adventures of the young Gascon gentleman" +
+                                       " d’Artagnan and his three friends from the regiment of the King’s Musketeers: Athos, Porthos, and Aramis.",
+                                       price = 6.99,
+                                       rating = 4.5,
+                                       img_url ="https://m.media-amazon.com/images/I/51VvxTLUHkL.jpg",
+                                       publisher = "Oxford University Press",
+                                       date = new DateTime(1844,1,1),
+                                  }
+                              }
+                        },
                     }
                  },
 

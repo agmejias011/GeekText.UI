@@ -1,5 +1,6 @@
-﻿import React, { Component } from "react";
+﻿import React, { Component, useEffect } from "react";
 import axios from 'axios';
+import { useState } from "react";
 
 const BookContext = React.createContext();
 //Provider
@@ -9,67 +10,74 @@ class BookProvider extends Component
 
     state = {
         books: [],
-        bookDetail: [],
         booksOfAuthor: [],
+        bookDetail: JSON.parse(localStorage.getItem('book')),
+    };
+   
+   
+
+   async componentDidMount() {
+        this.populateBooksData();
+       if (localStorage.getItem("bookA")) {
+           this.setState({
+               booksOfAuthor: JSON.parse(localStorage.getItem("bookA")),
+           });
+       }
+    }
+
+    
+
+    getItem = id => {
+        const book = this.state.books.find(item => item.id === id);
+        return book;
+
+    };
+   
+
+    handleDetail = id => {
+        const product = this.getItem(id);
+        this.setState(()=>{
+            return { bookDetail: product }
+        }, () => {
+                localStorage.setItem('book', JSON.stringify(this.state.bookDetail))
+        });
         
     };
 
-    async componentDidMount() {
-        this.populateBooksData();
-    }
+
+     populateBooksofAuthorData = id => {
+        const x = id;
+        const url = "http://localhost:5000/api/authors/booksA/" + x;
+        axios.get(url).then(response => {
+            const bookA = response.data 
+            this.setState(() => {
+                return { booksOfAuthor: bookA }
+            }, () => {
+                     localStorage.setItem('bookA', JSON.stringify(this.state.booksOfAuthor))
+            });
+        })
+    } 
+   
+    showProduct = () => {
+        JSON.parse(localStorage.getItem('bookA')) // gets an array of the products
+    } 
+
     populateBooksData =() => {
         axios.get("http://localhost:5000/api/books/GetBooks").then(response => {
-            console.log(response.data);
             this.setState({
                 books: response.data
             })
         })
     } 
 
-    getItem = id => {
-        const book = this.state.books.find(item => item.id === id);
-        return book;
-    }
-
-
-
-    populateBooksofAuthorData = id => {
-        let x = id;
-        console.log(id);
-        const url = "http://localhost:5000/api/authors/booksOfAuthor/" + x;
-        axios.get(url).then(response => {
-            const book = response.data;
-            console.log(book)
-            this.setState(() => {
-                return { booksOfAuthor: book }
-            })
-
-        })
-    } 
-
-   
-   
-    handleDetail = id => {
-        const book = this.getItem(id);
-        this.setState(() => {
-            return { bookDetail: book}
-        })
-    }
-
-    handleBooksFromAuthor = () => {
-      
-    }
-
-
     render() {
         return (
-
             <BookContext.Provider
                 value={{
                    ...this.state,
                     handleDetail: this.handleDetail,
-                    handleBooksFromAuthor: this.handleBooksFromAuthor,
-                    populateBooksofAuthorData: this.populateBooksofAuthorData
+                    populateBooksofAuthorData: this.populateBooksofAuthorData,
+                    showProduct:this.showProduct
                 }}
             >
                 {this.props.children}

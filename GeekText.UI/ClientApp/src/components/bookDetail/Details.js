@@ -125,7 +125,7 @@ class Details extends React.Component {
           } = value.bookDetail;
 
           return (
-            <div className="container py-5">
+            <div className="container py-10">
               <div className="row">
                 <div className="col-10 mx-auto col-md-4 my-3">
                   <Zoom>
@@ -140,15 +140,14 @@ class Details extends React.Component {
                 </div>
 
                 {/* prdoduct info */}
-                <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
+                <div className="col-10 mx-auto col-md-7 my-3 text-capitalize">
                   <h1>{title}</h1>
                   <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
                     <div className="text-uppercase">
                       <div
-                        className="img-container"
-                        onClick={() => value.populateBooksofAuthorData(id)}
+                         onClick={() => value.populateBooksofAuthorData(id)}
                       >
-                        <Link to="/BooksOfAuthor">by : {author}</Link>
+                         by: <Link to="/BooksOfAuthor">{author}</Link>
                       </div>
                     </div>
                   </h4>

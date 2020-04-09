@@ -6,7 +6,6 @@ import Cart from "./components/ShoppingCart/cartList";
 import ThankyouPage from "./components/ShoppingCart/thankYou";
 import Books from "./components/bookDetail/Books";
 import Details from "./components/bookDetail/Details";
-import Book from "./components/bookDetail/Book";
 import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
 import { BookProvider } from "./components/bookDetail/Context";
 import { CartProvider } from "./components/ShoppingCart/contextCart";
@@ -42,9 +41,6 @@ ReactDOM.render(
               <Route path="/details">
                 <Details />
               </Route>
-              <Route path="/book">
-                <Book />
-              </Route>
               <Route path="/BooksOfAuthor">
                 <BooksOfAuthor />
               </Route>
@@ -60,7 +56,7 @@ ReactDOM.render(
               <Route path="/thankyou">
                 <ThankyouPage />
               </Route>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
             </Switch>
