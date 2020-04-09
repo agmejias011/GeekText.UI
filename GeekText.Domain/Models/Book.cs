@@ -16,6 +16,7 @@ namespace GeekText.Domain.Models
         public string title { get; set; }
         //[Required]
         public string author { get; set; }
+        public string bio { get; set; }
         //[Required]
         public string genre { get; set; }
         //[Required]

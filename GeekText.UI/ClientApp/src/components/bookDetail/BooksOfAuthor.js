@@ -11,6 +11,7 @@ export default class BooksOfAuthor extends Component {
     render() {
         return (
                 <div className="App">
+                    
                     <Grid
                         container
                         spacing={10}
@@ -19,13 +20,13 @@ export default class BooksOfAuthor extends Component {
                     <BookConsumer>{value => {
                         return value.booksOfAuthor.map(book => {
                                 return (
+
                                     <Grid
                                         key={book.id}
                                         item
                                         xs={12} sm={6} md={4} lg={4} xl={3}
                                     >
                                         <BookCardDetail
-
                                             id={book.id}
                                             title={book.title}
                                             author={book.author}

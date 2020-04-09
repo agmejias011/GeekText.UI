@@ -19,6 +19,7 @@ namespace GeekText.Database
                        isbn = "B017V4NQGM",
                        title = "Harry Potter and the Goblet of Fire",
                        author = "Joanne Rowling",
+                       bio = "J.K. Rowling is the author of the record-breaking, multi-award-winning Harry Potter novels.",
                        genre = "Fantasy",
                        description = "There will be three tasks, spaced throughout the school year, and they will test the champions in many different ways ... " +
                        "their magical prowess - their daring - their powers of deduction - and, of course, their ability to cope with danger.The Triwizard Tournament is to be held at Hogwarts. " +
@@ -51,6 +52,7 @@ namespace GeekText.Database
                                        isbn = "17VQBBFDSFS",
                                        title = "Harry Potter and the Sorcerer's Stone ",
                                        author = "Joanne Rowling",
+                                       bio ="J.K. Rowling is the author of the record-breaking, multi-award-winning Harry Potter novels.",
                                        genre = "Fantasy",
                                        description = "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry.",
                                        price = 10.99,
@@ -67,6 +69,7 @@ namespace GeekText.Database
                                        isbn = "17VPPFFDSFS",
                                        title = "Harry Potter and the Chamber of Secrets",
                                        author = "Joanne Rowling",
+                                       bio = "J.K. Rowling is the author of the record-breaking, multi-award-winning Harry Potter novels.",
                                        genre = "Adventure",
                                        description = "Harry Potter's summer has included the worst birthday ever, doomy warnings from a house-elf called Dobby, and rescue from the Dursleys by his friend Ron Weasley in a magical flying car! Back at Hogwarts School of Witchcraft and Wizardry for his second year, Harry hears strange whispers echo through empty corridors - and then the attacks start. Students are found as though turned to stone... Dobby's sinister predictions seem to be coming true.",
                                        price = 8.99,
@@ -76,7 +79,7 @@ namespace GeekText.Database
                                        date = new DateTime(1998,1,1),
                                   }
                               },
-                             
+
                         },
 
 
@@ -89,6 +92,7 @@ namespace GeekText.Database
                         isbn = "B017VQGM",
                         title = "The Witcher",
                         author = " Andrzej Sapkowski",
+                        bio = "Andrzej Sapkowski born 21 June 1948) is a Polish fantasy writer and former economist. He is best known for his best-selling book series The Witcher.",
                         genre = "Fiction",
                         description = "Now a Netflix original series!The Witcher, Geralt of Rivia, becomes the guardian of Ciri, surviving heiress of a bloody revolution and prophesied savior of " +
                         "the world, in the first novel of the New York Times bestselling series that inspired the Netflix series and the blockbuster video games. " +
@@ -122,6 +126,7 @@ namespace GeekText.Database
                        isbn = "17VQFDSF23",
                        title = "The Call Of The Wild",
                        author = "Jack London",
+                       bio = "John Griffith Jack London (born John Griffith Chaney, January 12, 1876 - November 22, 1916) was an American novelist, journalist, and social activist.",
                        genre ="Drama",
                        description = "The illustrations for this series were created by Scott McKowen, who, with his wife Christina Poddubiuk, operates Punch & Judy Inc., " +
                        "a company specializing in design and illustration for " +
@@ -153,6 +158,7 @@ namespace GeekText.Database
                        isbn = "17VQFDSF23",
                        title = "The Count of Monte Cristo",
                        author = "Alexandre Dumas",
+                       bio ="Alexandre Dumas, born Dumas Davy de la Pailleterie 24 July 1802 - 5 December 1870), also known as Alexandre Dumas, was a French writer. His works have been translated into nearly 100 languages, and he is one of the most widely read French authors.",
                        genre = "Fantasy",
                        description = "A classic tale of injustice, revenge and retribution, in which Edmond Dantes is falsely accused by three men of conspiring with Napoleon. Richard Chamberlain stars in this " +
                        "definitive adaptation of Alexandre Dumas' perennial favourite novel.",
@@ -183,6 +189,7 @@ namespace GeekText.Database
                                        title = "The Three Musketeers",
                                        author = "Alexandre Dumas",
                                        genre = "Fantasy",
+                                       bio = "Alexandre Dumas, born Dumas Davy de la Pailleterie 24 July 1802 - 5 December 1870), also known as Alexandre Dumas, was a French writer. His works have been translated into nearly 100 languages, and he is one of the most widely read French authors.",
                                        description = "One of the most celebrated and popular historical romances ever written, " +
                                        "The Three Musketeers tell the story of the early adventures of the young Gascon gentleman" +
                                        " d’Artagnan and his three friends from the regiment of the King’s Musketeers: Athos, Porthos, and Aramis.",
