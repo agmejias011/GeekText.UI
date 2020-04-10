@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from "react-redux";
 import { updateState } from "../../redux/actions/index";
+import { withRouter } from "react-router-dom";
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -103,7 +104,7 @@ class LoginForm extends React.Component {
 						</Button>
 						<Grid container>
 							<Grid item>
-								<Link href={"/signUp"} variant="body2">
+								<Link href={"/editProfile"} variant="body2">
 								{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
@@ -148,7 +149,12 @@ class LoginForm extends React.Component {
 				key   : "authenticated",
 				value : true
 			});
-		} catch {}
+
+		} catch { }
+		alert("Logged in.");
+
+		this.props.history.push('/');
+
 	}
 }
 
@@ -160,4 +166,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(useStyles)(LoginForm));
+export default connect(null, mapDispatchToProps)(withRouter(withStyles(useStyles)(LoginForm)));

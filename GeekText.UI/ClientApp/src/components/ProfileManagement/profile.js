@@ -131,28 +131,9 @@ export class profile extends Component {
         const { classes } = this.props;
 
         return (
+            <h1> hello world </h1>
 
-            <Container component="main" maxWidth="xs">
-
-                <div style={useStyles}>
-                    <Avatar style={{ height: 70, width: 70 }} alt="P" src="/profilePic.svg" />
-
-                    <br />
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={this.addUser}
-                        style={styles.button}
-                    >Edit Profile</Button>
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={this.addUser}
-                        style={styles.button}
-                    >Wishlists</Button>
-                </div>
-            </Container>
-
+           
         );
 
         /* user form

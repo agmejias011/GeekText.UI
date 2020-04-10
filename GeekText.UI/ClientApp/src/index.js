@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Books from "./components/Books";
 import Cart from "./components/ShoppingCart/cartList";
 import ThankyouPage from "./components/ShoppingCart/thankYou";
@@ -16,6 +16,8 @@ import Wishlists from "./components/wishlists";
 import signUppage from "./components/ProfileManagement/signUp-page";
 import UserForm from "./components/ProfileManagement/userForm";
 import profile from "./components/ProfileManagement/profile";
+import UserFormEdit from "./components/ProfileManagement/userFormEdit";
+
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import SearchBar from "./components/SearchBar";
@@ -37,9 +39,13 @@ ReactDOM.render(
 					<Route path="/signUp">
 						<UserForm />
 					</Route>
+					<Route path="/editProfile">
+						<UserFormEdit />
+					</Route>
 					<Route path="/">
 						<Home />
 					</Route>
+					
 				</Switch>
 			</SiteContainer>
 		</Router>

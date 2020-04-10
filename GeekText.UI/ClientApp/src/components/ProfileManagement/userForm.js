@@ -33,6 +33,7 @@ export class UserForm extends Component {
 
 
         this.state = {
+            id: '',
             username: '',
             first_name: '',
             last_name: '',
@@ -74,6 +75,8 @@ export class UserForm extends Component {
     home_address(event) {
         this.setState({ home_address: event.target.value })
     }
+
+   
 
     handleChange(e) {
         let state = {};
@@ -125,6 +128,27 @@ export class UserForm extends Component {
 
     }
 
+    async editUser(data) {
+        fetch(
+            `${API_URL}/user/${data.id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
+                    email: this.state.email,
+                    user_password: this.state.user_password,
+                    nickname: this.state.nickname,
+                    home_address: this.state.home_address,
+                })
+
+            })
+    }
+
 
     // Proceed to next step
     nextStep = () => {
@@ -162,7 +186,7 @@ export class UserForm extends Component {
                         <TextField
                             placeholder="Enter Your First Name"
                             label="First Name"
-                            onChange={this.first_name}
+                            onChange={this.handleChange}
                             defaultValue={values.first_name}
                             margin="normal"
                         />

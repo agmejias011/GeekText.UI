@@ -4,10 +4,11 @@ import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './confirm';
 import Success from './success';
 import { withStyles } from '@material-ui/core/styles';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Wishlists from './wishlists';
+import axios from "axios";
+
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -20,105 +21,131 @@ const useStyles = {
         width: '100%', // Fix IE 11 issue.
     }
     
-export class UserForm extends Component {
+export class UserFormEdit extends Component {
 
-    constructor() { 
-        super();
+    constructor(props) {
+        super(props);
 
-    this.state = {
-        id: '',
-        username: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        user_password: '',
-        nickname: '',
-        home_address: ''
+        this.state = {
+            id: '',
+            username: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            user_password: '',
+            nickname: '',
+            home_address: ''
         }
 
-        this.username = this.username.bind(this);
-        this.first_name = this.first_name.bind(this);
-        this.last_name = this.last_name.bind(this);
-        this.email = this.email.bind(this);
-        this.user_password = this.user_password.bind(this);
-        this.nickname = this.nickname.bind(this);
-        this.home_address = this.home_address.bind(this);
+        this.Cusername = this.Cusername.bind(this);
+        this.Cfirst_name = this.Cfirst_name.bind(this);
+        this.Clast_name = this.Clast_name.bind(this);
+        this.Cemail = this.Cemail.bind(this);
+        this.Cuser_password = this.Cuser_password.bind(this);
+        this.Cnickname = this.Cnickname.bind(this);
+        this.Chome_address = this.Chome_address.bind(this);
+        this.editUser = this.editUser.bind(this);
 
     }
 
-    username(event) {
+    Cusername(event) {
         this.setState({ username: event.target.value })
     }
-    first_name(event) {
+    Cfirst_name(event) {
         this.setState({ first_name: event.target.value })
     }
-    last_name(event) {
+    Clast_name(event) {
         this.setState({ last_name: event.target.value })
     }
-    email(event) {
+    Cemail(event) {
         this.setState({ email: event.target.value })
     }
-    user_password(event) {
+    Cuser_password(event) {
         this.setState({ user_password: event.target.value })
     }
-    nickname(event) {
+    Cnickname(event) {
         this.setState({ nickname: event.target.value })
     }
-    home_address(event) {
+    Chome_address(event) {
         this.setState({ home_address: event.target.value })
     }
 
-    populateUserData() {
-        axios.get("http://localhost:5000/api/user/GetUser").then(response => {
-            this.setState({
-                books: response.data, loading: false
-            });
-        });
-    }
-
-    async addUser(event) {
-        fetch(
-            `${API_URL}/User/create`,
-            {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username: this.state.username,
-                    first_name: this.state.first_name,
-                    last_name: this.state.last_name,
-                    email: this.state.email,
-                    user_password: this.state.user_password,
-                    nickname: this.state.nickname,
-                    home_address: this.state.home_address,
-                })
+    
+    componentDidMount() {
+        axios.get('http://localhost:5000/api/user/1000')
+            .then(response => {
+                this.setState({
+                    id: response.id,
+                    username: response.username,
+                    first_name: response.first_name,
+                    last_name: response.last_name,
+                    email: response.email,
+                    user_password: response.user_password,
+                    nickname: response.nickname,
+                    home_address: response.home_address,
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
             })
     }
 
-    render() {
-        const { step } = this.state;
-        const { username, first_name, last_name, email, user_password, nickname, home_address } = this.state;
-        const values = { username, first_name, last_name, email, user_password, nickname, home_address}
+    async editUser(event) {
+        event.preventDefault();
 
+        let data = {
+            id: this.state.id,
+            username: this.state.username,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            user_password: this.state.user_password,
+            nickname: this.state.nickname,
+            home_address: this.state.home_address,
+        }
+
+        let res = await fetch(
+            `${API_URL}/user/1000`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+
+            });
+
+        try {
+
+            res = await res.json();
+
+            if (res.error)
+                alert(res.message);
+
+   
+
+        }
+        catch{ }
+        }
+
+    render() {
+        
         return (
-            <MuiThemeProvider>
                 <React.Fragment>
 
                     <TextField
                         placeholder="Edit Your First Name"
                         label="First Name"
-                        onChange={this.first_name}
-                        defaultValue={values.first_name}
+                        onChange={this.Cfirst_name}
+                        defaultValue={this.state.first_name}
                         margin="normal"
                     />
                     <br />
                     <TextField
                         placeholder="Edit Your Last Name"
                         label="Last Name"
-                        onChange={this.last_name}
-                        defaultValue={values.last_name}
+                        onChange={this.Clast_name}
+                        defaultValue={this.state.last_name}
                         margin="normal"
                     />
                     <br />
@@ -126,8 +153,8 @@ export class UserForm extends Component {
                     <TextField
                         placeholder="Edit Your Nickname"
                         label="Nickname"
-                        onChange={this.nickname}
-                        defaultValue={values.nickname}
+                        onChange={this.Cnickname}
+                        defaultValue={this.state.nickname}
                         margin="normal"
                     />
                     <br />
@@ -135,16 +162,16 @@ export class UserForm extends Component {
                     <TextField
                         placeholder="Edit Your Username"
                         label="Username"
-                        onChange={this.username}
-                        defaultValue={values.username}
+                        onChange={this.Cusername}
+                        defaultValue={this.state.username}
                         margin="normal"
                     />
                     <br />
                     <TextField
                         placeholder="Edit Your Password"
                         label="Password"
-                        onChange={this.user_password}
-                        defaultValue={values.user_password}
+                        onChange={this.Cuser_password}
+                        defaultValue={this.state.user_password}
                         margin="normal"
                     />
                     <br />
@@ -152,8 +179,8 @@ export class UserForm extends Component {
                     <TextField
                         placeholder="Edit Your Email"
                         label="Email"
-                        onChange={this.email}
-                        defaultValue={values.email}
+                        onChange={this.Cemail}
+                        defaultValue={this.state.email}
                         margin="normal"
                     />
                     <br />
@@ -161,8 +188,8 @@ export class UserForm extends Component {
                     <TextField
                         placeholder="Edit Your Home Address"
                         label="Home Address"
-                        onChange={this.home_address}
-                        defaultValue={values.home_address}
+                        onChange={this.Chome_address}
+                        defaultValue={this.state.home_address}
                         margin="normal"
                     />
                     <br />
@@ -170,12 +197,11 @@ export class UserForm extends Component {
                     <Button
                         color="primary"
                         variant="contained"
-                        onClick={this.addUser}
+                        onClick={this.editUser}
                         style={styles.button}
                     >Update</Button>
 
                 </React.Fragment>
-            </MuiThemeProvider>
             )
     }
 }
@@ -186,4 +212,4 @@ const styles = {
     }
 }
 
-export default (withStyles(useStyles)(UserForm));
+export default (withStyles(useStyles)(UserFormEdit));

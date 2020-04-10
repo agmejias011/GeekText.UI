@@ -43,6 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\JavaScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GeekText.Application\GeekText.Application.csproj" />
     <ProjectReference Include="..\GeekText.Database\GeekText.Database.csproj" />
   </ItemGroup>

@@ -13,12 +13,12 @@ import CartList from "./ShoppingCart/cartList";
 
 export default class SearchBar extends React.Component {
   renderSearchBarWithCartAmount() {
-    let account_buttons = this.props.user ? (
+    let account_buttons = this.props.isAuthenticated ? (
       <Grid item>
         <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
       </Grid>
-    ) : null;
-    let account_path = this.props.user ? "account" : "login";
+      ) : null;
+      let account_path = this.props.isAuthenticated ? "profile" : "login";
 
     if (this.props.itemsCartTotal === 0) {
       return (
