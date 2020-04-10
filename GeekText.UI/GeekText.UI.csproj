@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\authenticate.js" />
     <None Remove="ClientApp\src\components\JavaScript.js" />
   </ItemGroup>
 

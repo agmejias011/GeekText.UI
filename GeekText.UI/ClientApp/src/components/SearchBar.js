@@ -12,13 +12,20 @@ import IconButton from "@material-ui/core/IconButton";
 import CartList from "./ShoppingCart/cartList";
 
 export default class SearchBar extends React.Component {
-  renderSearchBarWithCartAmount() {
-    let account_buttons = this.props.isAuthenticated ? (
+    
+    renderSearchBarWithCartAmount() {
+
+        const select = state => ({
+            authenticated: state.authenticated
+        })
+
+        let account_buttons = select.authenticated = true ? (
       <Grid item>
         <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
       </Grid>
       ) : null;
-      let account_path = this.props.isAuthenticated ? "profile" : "login";
+
+        let account_path = select.authenticated = true ? "profile" : "login";
 
     if (this.props.itemsCartTotal === 0) {
       return (

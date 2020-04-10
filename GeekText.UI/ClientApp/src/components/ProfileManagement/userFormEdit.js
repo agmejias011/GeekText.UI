@@ -27,7 +27,7 @@ export class UserFormEdit extends Component {
         super(props);
 
         this.state = {
-            id: '',
+            id: '1000',
             username: '',
             first_name: '',
             last_name: '',
@@ -72,22 +72,8 @@ export class UserFormEdit extends Component {
 
     
     componentDidMount() {
-        axios.get('http://localhost:5000/api/user/1000')
-            .then(response => {
-                this.setState({
-                    id: response.id,
-                    username: response.username,
-                    first_name: response.first_name,
-                    last_name: response.last_name,
-                    email: response.email,
-                    user_password: response.user_password,
-                    nickname: response.nickname,
-                    home_address: response.home_address,
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        const un = localStorage.getItem("username")
+        this.setState({ un })
     }
 
     async editUser(event) {
@@ -136,8 +122,8 @@ export class UserFormEdit extends Component {
                     <TextField
                         placeholder="Edit Your First Name"
                         label="First Name"
-                        onChange={this.Cfirst_name}
-                        defaultValue={this.state.first_name}
+                    onChange={this.Cfirst_name}
+                    defaultValue={localStorage.getItem("username")}
                         margin="normal"
                     />
                     <br />
