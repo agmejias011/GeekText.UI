@@ -41,7 +41,7 @@ export default function BookCard({ id, title, author, publisher, price, rating, 
                     image={img_url}
                 />
                 <CardContent>
-
+                    
                     <Typography gutterBottom variant="h5" component="h2">
                         <span style={{ fontWeight: "bold", textAlign: "center" }}>{title}</span>
                     </Typography>
