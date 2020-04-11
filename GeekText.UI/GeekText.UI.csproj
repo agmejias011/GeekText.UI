@@ -45,6 +45,9 @@
   <ItemGroup>
     <None Remove="ClientApp\src\components\authenticate.js" />
     <None Remove="ClientApp\src\components\JavaScript.js" />
+    <None Remove="ClientApp\src\components\JavaScript1.js" />
+    <None Remove="ClientApp\src\components\state.js" />
+    <None Remove="ClientApp\src\state.js" />
   </ItemGroup>
 
   <ItemGroup>

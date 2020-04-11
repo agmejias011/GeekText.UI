@@ -10,22 +10,21 @@ import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import CartList from "./ShoppingCart/cartList";
+import { connect } from 'react-redux'
 
-export default class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
     
     renderSearchBarWithCartAmount() {
+        const { authenticated } = this.props;
 
-        const select = state => ({
-            authenticated: state.authenticated
-        })
-
-        let account_buttons = select.authenticated = true ? (
+        console.log(this.props.authenticated);
+        let account_buttons = this.props.authenticated ? (
       <Grid item>
         <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
       </Grid>
       ) : null;
 
-        let account_path = select.authenticated = true ? "profile" : "login";
+        let account_path = this.props.authenticated ? "profile" : "login";
 
     if (this.props.itemsCartTotal === 0) {
       return (
@@ -110,3 +109,12 @@ export default class SearchBar extends React.Component {
     return this.renderSearchBarWithCartAmount();
   }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        authenticated: state.authenticated
+    };
+}
+
+export default connect(mapStateToProps)(SearchBar);
+

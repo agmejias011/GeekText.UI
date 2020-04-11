@@ -15,7 +15,7 @@ import LoginPage from "./components/login-page/login-page";
 import Wishlists from "./components/wishlists";
 import signUppage from "./components/ProfileManagement/signUp-page";
 import UserForm from "./components/ProfileManagement/userForm";
-import profile from "./components/ProfileManagement/profile";
+import Profile from "./components/ProfileManagement/profile";
 import UserFormEdit from "./components/ProfileManagement/userFormEdit";
 
 import "./index.css";
@@ -41,6 +41,9 @@ ReactDOM.render(
 					</Route>
 					<Route path="/editProfile">
 						<UserFormEdit />
+					</Route>
+					<Route path="/profile">
+						<Profile />
 					</Route>
 					<Route path="/">
 						<Home />

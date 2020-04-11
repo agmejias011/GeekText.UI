@@ -8,7 +8,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
-
+import { connect } from 'react-redux'
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -27,7 +27,7 @@ export class UserFormEdit extends Component {
         super(props);
 
         this.state = {
-            id: '1000',
+            id: '',
             username: '',
             first_name: '',
             last_name: '',
@@ -70,12 +70,6 @@ export class UserFormEdit extends Component {
         this.setState({ home_address: event.target.value })
     }
 
-    
-    componentDidMount() {
-        const un = localStorage.getItem("username")
-        this.setState({ un })
-    }
-
     async editUser(event) {
         event.preventDefault();
 
@@ -115,15 +109,16 @@ export class UserFormEdit extends Component {
         }
 
     render() {
-        
+        const { user } = this.props;
         return (
-                <React.Fragment>
+            <React.Fragment>
+                <div style={useStyles}>
 
                     <TextField
                         placeholder="Edit Your First Name"
                         label="First Name"
-                    onChange={this.Cfirst_name}
-                    defaultValue={localStorage.getItem("username")}
+                        onChange={this.Cfirst_name}
+                        defaultValue={this.props.user.first_name}
                         margin="normal"
                     />
                     <br />
@@ -131,7 +126,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Last Name"
                         label="Last Name"
                         onChange={this.Clast_name}
-                        defaultValue={this.state.last_name}
+                        defaultValue={this.props.user.last_name}
                         margin="normal"
                     />
                     <br />
@@ -140,7 +135,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Nickname"
                         label="Nickname"
                         onChange={this.Cnickname}
-                        defaultValue={this.state.nickname}
+                        defaultValue={this.props.user.nickname}
                         margin="normal"
                     />
                     <br />
@@ -149,7 +144,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Username"
                         label="Username"
                         onChange={this.Cusername}
-                        defaultValue={this.state.username}
+                        defaultValue={this.props.user.username}
                         margin="normal"
                     />
                     <br />
@@ -157,7 +152,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Password"
                         label="Password"
                         onChange={this.Cuser_password}
-                        defaultValue={this.state.user_password}
+                        defaultValue={this.props.user.user_password}
                         margin="normal"
                     />
                     <br />
@@ -166,7 +161,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Email"
                         label="Email"
                         onChange={this.Cemail}
-                        defaultValue={this.state.email}
+                        defaultValue={this.props.user.email}
                         margin="normal"
                     />
                     <br />
@@ -175,7 +170,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Home Address"
                         label="Home Address"
                         onChange={this.Chome_address}
-                        defaultValue={this.state.home_address}
+                        defaultValue={this.props.user.home_address}
                         margin="normal"
                     />
                     <br />
@@ -186,9 +181,10 @@ export class UserFormEdit extends Component {
                         onClick={this.editUser}
                         style={styles.button}
                     >Update</Button>
-
+                    </div>
                 </React.Fragment>
-            )
+        )
+        
     }
 }
 
@@ -198,4 +194,11 @@ const styles = {
     }
 }
 
-export default (withStyles(useStyles)(UserFormEdit));
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    };
+}
+
+
+export default connect(mapStateToProps)(UserFormEdit);

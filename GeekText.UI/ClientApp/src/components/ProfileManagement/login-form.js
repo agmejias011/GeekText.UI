@@ -104,7 +104,7 @@ class LoginForm extends React.Component {
 						</Button>
 						<Grid container>
 							<Grid item>
-								<Link href={"/editProfile"} variant="body2">
+								<Link href={"/signUp"} variant="body2">
 								{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
@@ -154,7 +154,6 @@ class LoginForm extends React.Component {
 		alert("Logged in.");
 
 		this.props.history.push('/');
-
 	}
 }
 
