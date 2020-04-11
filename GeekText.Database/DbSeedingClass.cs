@@ -133,7 +133,7 @@ namespace GeekText.Database
                    user_password = "ag2020",
                    nickname = "ag2020",
                    home_address = "2580 W 24 ST",
-                   user_nickname = "ag2020"
+                   user_nickname = 1
 
                 },
 
