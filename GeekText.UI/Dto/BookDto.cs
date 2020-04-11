@@ -11,6 +11,7 @@ namespace GeekText.UI.Dto
         public string isbn { get; set; }
         public string title { get; set; }
         public string author { get; set; }
+        public string bio { get; set; }
         public string genre { get; set; }
         public string description { get; set; }
         public double price { get; set; }
