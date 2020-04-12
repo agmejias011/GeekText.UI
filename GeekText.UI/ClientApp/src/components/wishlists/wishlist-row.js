@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Checkbox from '@material-ui/core/Checkbox';
@@ -46,12 +47,15 @@ class WishlistRow extends React.Component {
 			return (
 				<TableRow key={wishlist.id} data-id={wishlist.id}>
 					<TableCell>{wishlist.name}</TableCell>
-					<TableCell>0</TableCell>
+					<TableCell>{(wishlist.wishlist_books) ? wishlist.wishlist_books.length : 0}</TableCell>
 					<TableCell>
 						<Checkbox checked={this.state.primary_checked} onChange={this.makePrimary.bind(this, wishlist)}/>
 					</TableCell>
 					<TableCell className={classes.root}>
 						<Button variant="contained" onClick={this.delete.bind(this, wishlist)}>Delete</Button>
+						<Link to={"/wishlists/" + wishlist.id}>
+							<Button variant="contained">View</Button>
+						</Link>
 					</TableCell>
 				</TableRow>
 			);
@@ -80,7 +84,7 @@ class WishlistRow extends React.Component {
 		let data          = {
 			name    : name_input.value,
 			primary : primary_input.checked,
-			user_id : 1000
+			user_id : this.props.user_id
 		};
 
 		if (!data.name) {
