@@ -145,6 +145,7 @@ class LoginForm extends React.Component {
 				key   : "user",
 				value : res.user
 			});
+
 			this.props.updateState({
 				key   : "authenticated",
 				value : true

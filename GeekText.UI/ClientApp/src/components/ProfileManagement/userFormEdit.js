@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { connect } from 'react-redux'
 import { updateState } from "../../redux/actions/index";
+import bcrypt from 'bcryptjs';
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -84,13 +85,17 @@ export class UserFormEdit extends Component {
     async editUser(event) {
         event.preventDefault();
 
+        var bcrypt = require('bcryptjs');
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(this.state.user_password, salt);
+
         let data = {
             id: this.state.id,
             username: this.state.username,
             first_name: this.state.first_name,
             last_name: this.state.last_name,
             email: this.state.email,
-            user_password: this.state.user_password,
+            user_password: hash,
             nickname: this.state.nickname,
             home_address: this.state.home_address,
             home_address2: this.state.home_address2,
@@ -116,7 +121,10 @@ export class UserFormEdit extends Component {
             if (res.error)
                 alert(res.message);
 
-   
+            this.props.updateState({
+                key: "user",
+                value: res.user
+            });
 
         }
         catch{ }
