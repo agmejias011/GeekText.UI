@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Books from "./components/Books";
+//import Books from "./components/Books";
 import Cart from "./components/ShoppingCart/cartList";
 import ThankyouPage from "./components/ShoppingCart/thankYou";
-
+import Books from "./components/bookDetail/Books";
+import Details from "./components/bookDetail/Details";
+import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
+import { BookProvider } from "./components/bookDetail/Context";
+import { CartProvider } from "./components/ShoppingCart/contextCart";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -19,40 +24,49 @@ import UserForm from "./components/userForm";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import SearchBar from "./components/SearchBar";
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <SiteContainer>
-        <Switch>
-          <Route path="/example-route">Hello world.</Route>
-          <Route path="/wishlists/:id">
-            <Wishlist />
-          </Route>
-          <Route path="/wishlists">
-            <Wishlists />
-          </Route>
-          <Route path="/books">
-            <Books />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/signUp">
-            <UserForm />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/orderthankyou">
-            <ThankyouPage />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </SiteContainer>
+      <CartProvider>
+        <SiteContainer>
+          <BookProvider>
+            <Switch>
+              <Route path="/example-route">Hello world.</Route>
+              <Route path="/wishlists/:id">
+                <Wishlist />
+              </Route>
+              <Route path="/wishlists">
+                <Wishlists />
+              </Route>
+              <Route path="/books">
+                <Books />
+              </Route>
+              <Route path="/details">
+                <Details />
+              </Route>
+              <Route path="/BooksOfAuthor">
+                <BooksOfAuthor />
+              </Route>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/signUp">
+                <UserForm />
+              </Route>
+              <Route path="/cart">
+                <Cart />
+              </Route>
+              <Route path="/thankyou">
+                <ThankyouPage />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </BookProvider>
+        </SiteContainer>
+      </CartProvider>
     </Router>
   </Provider>,
   document.getElementById("root")

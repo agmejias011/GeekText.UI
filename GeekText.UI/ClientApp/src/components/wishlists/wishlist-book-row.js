@@ -54,9 +54,8 @@ class WishlistBookRow extends React.Component {
 					<TableCell className={classes.root}>
 						{move_button}
 						<Button variant="contained" onClick={this.delete.bind(this)}>Delete</Button>
-						<Link to={"/books/" + book.book.id}>
-							<Button variant="contained">View</Button>
-						</Link>
+						<Button variant="contained" onClick={this.viewDetail.bind(this, false)}>View</Button>
+						<Button variant="contained" onClick={this.viewDetail.bind(this, true)}>Add to Cart</Button>
 					</TableCell>
 				</TableRow>
 				<Modal open={this.state.modal_open} onClose={this.closeModal.bind(this)}>
@@ -82,6 +81,14 @@ class WishlistBookRow extends React.Component {
 				</Modal>
 			</React.Fragment>
 		);
+	}
+
+	viewDetail(add_to_cart) {
+		localStorage.setItem("book", JSON.stringify(this.props.book.book));
+
+		add_to_cart = (add_to_cart) ? "?add_to_cart=1" : "";
+		
+		window.location.href = `/details${add_to_cart}`;
 	}
 
 	delete() {
