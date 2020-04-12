@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -7,7 +8,7 @@ import CartBar from "./ShoppingCart/CartBar";
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { connect } from 'react-redux'
 
-export class SearchBar extends React.Component {
+export default class SearchBar extends React.Component {
   state = {
     cartItemsTotal: 0,
   };
@@ -32,7 +33,9 @@ export class SearchBar extends React.Component {
         console.log(this.props.authenticated);
         let account_buttons = this.props.authenticated ? (
       <Grid item>
-        <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        <Link to="/wishlists">
+          <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        </Link>
       </Grid>
       ) : null;
 
@@ -72,9 +75,9 @@ export class SearchBar extends React.Component {
                     </a>
                 </Grid>               
           <Grid item>
-            <a href={"/" + account_path}>
+            <Link to={"/" + account_path}>
               <AccountCircleIcon color="primary" fontSize="large" />
-            </a>
+            </Link>
           </Grid>
           <Grid item>
             <CartBar></CartBar>

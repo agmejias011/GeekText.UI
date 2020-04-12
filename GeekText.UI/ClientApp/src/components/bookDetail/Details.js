@@ -1,4 +1,5 @@
-﻿import React from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { BookConsumer } from "./Context";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +13,9 @@ import ReactDOM from "react-dom";
 import siteContainer from "../site-container";
 import { CartConsumer } from "../ShoppingCart/contextCart";
 import ReactTextCollapse from "react-text-collapse";
+
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 class Details extends React.Component {
   addToCartEvent = (
@@ -109,6 +113,41 @@ class Details extends React.Component {
     value.updateCartItemTotal(cartItemsTotal);
   };
 
+  async addToWishlist(id) {
+    if (!this.props.state.authenticated) {
+      return false;
+    }
+
+    let data = {
+      book_id     : id,
+      wishlist_id : this.props.state.user.id
+    };
+    let res  = await fetch(
+      `${API_URL}/WishlistBooks/`,
+      {
+        method  : "POST",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(data)
+      }
+    );
+
+    try {
+      res = await res.json();
+      
+      if (res.error) {
+        alert(res.message);
+      }
+    } catch {}
+  }
+
+  componentDidMount() {
+    if (window.location.search === "?add_to_cart=1") {
+      window.$(document).find("#add-to-cart").trigger("click");
+    }
+  }
+
   render() {
     return (
       <BookConsumer>
@@ -198,34 +237,53 @@ class Details extends React.Component {
                   <CartConsumer>
                     {(value) => {
                       return (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="large"
-                          style={{
-                            borderRadius: 0,
-                            color: "#fff",
-                            background: "#111",
-                            height: "4em",
-                            marginTop: "25px",
-                          }}
-                          onClick={() =>
-                            this.addToCartEvent(
-                              id,
-                              title,
-                              author,
-                              publisher,
-                              price,
-                              rating,
-                              description,
-                              img_url,
-                              genre,
-                              value
-                            )
-                          }
-                        >
-                          Add to Cart
-                        </Button>
+                      <React.Fragment>                                            
+                          <Button
+                            id="add-to-cart"
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            style={{
+                              borderRadius: 0,
+                              color: "#fff",
+                              background: "#111",
+                              height: "4em",
+                              marginTop: "25px",
+                            }}
+                            onClick={() =>
+                              this.addToCartEvent(
+                                id,
+                                title,
+                                author,
+                                publisher,
+                                price,
+                                rating,
+                                description,
+                                img_url,
+                                genre,
+                                value
+                              )
+                            }
+                          >
+                            Add to Cart
+                          </Button>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            style={{
+                              borderRadius: 0,
+                              color: "#fff",
+                              background: "#111",
+                              height: "4em",
+                              marginTop: "25px",
+                              marginLeft: "10px"
+                            }}
+                            onClick={this.addToWishlist.bind(this, id)}
+                          >
+                            Add to Wishlist
+                          </Button>
+                        </React.Fragment>
                       );
                     }}
                   </CartConsumer>
@@ -238,7 +296,14 @@ class Details extends React.Component {
     );
   }
 }
-export default Details;
+
+const mapStateToProps = (state) => {
+	return {
+		state : state
+	};
+}
+
+export default connect(mapStateToProps)(Details);
 
 const TEXT_COLLAPSE_OPTIONS = {
     collapse: false, // default state when component rendered
