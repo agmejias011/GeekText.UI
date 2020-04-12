@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { connect } from 'react-redux'
+import { updateState } from "../../redux/actions/index";
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -28,15 +29,15 @@ export class UserFormEdit extends Component {
 
         this.state = {
             id: this.props.user.id,
-            username: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            user_password: '',
-            nickname: '',
-            home_address: '',
-            home_address2: '',
-            home_address3: ''
+            username: this.props.username,
+            first_name: this.props.first_name,
+            last_name: this.props.last_name,
+            email: this.props.email,
+            user_password: this.props.user_password,
+            nickname: this.props.nickname,
+            home_address: this.props.home_address,
+            home_address2: this.props.home_address2,
+            home_address3: this.props.home_address3
         }
 
         this.Cusername = this.Cusername.bind(this);
@@ -98,7 +99,7 @@ export class UserFormEdit extends Component {
         }
 
         let res = await fetch(
-            `${API_URL}/user/1001`,
+            `${API_URL}/user/${this.props.user.id}`,
             {
                 method: "PUT",
                 headers: {
@@ -119,6 +120,7 @@ export class UserFormEdit extends Component {
 
         }
         catch{ }
+
         }
 
     render() {
@@ -229,4 +231,12 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps)(UserFormEdit);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateState: (data) => {
+            dispatch(updateState(data));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserFormEdit);

@@ -31,14 +31,15 @@ const useStyles = theme => ({
     },
 });
 
-function logout() {
-    this.props.updateState({
-        key: "authenticated",
-        value: false
-    });
-}
 
 export class Profile extends Component {
+
+    logout() {
+        this.props.updateState({
+            key: "authenticated",
+            value: false
+        });
+    }
 
     render() {
         console.log(this.props.authenticated);
@@ -60,7 +61,7 @@ export class Profile extends Component {
                 href={"/"}
                 color="primary"
                 variant="contained"
-                onClick={this.logout}
+                onClick={this.logout.bind(this)}
                 style={styles.button}
                 >Logout</Button>
             </div>
