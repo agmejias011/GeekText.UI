@@ -80,10 +80,9 @@ namespace GeekText.UI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("create")]
-        public async Task<int> PostCart([FromBody]OrderItems order_json)
+        public async Task<ActionResult<Order>> PostCart([FromBody]OrderItems order_json)
         {
-            Order order = new Order();           
-
+            Order order = new Order(); 
             try
             {
                 Cart cart = new Cart();
@@ -102,11 +101,11 @@ namespace GeekText.UI.Controllers
 
                     cart_book_line.cart = cart;
  
-                    cart_book_line.book = _context.Books.Find(item.book_id);
+                    cart_book_line.book = _context.Books.Find(item.book_id);                   
+
+                    cart_book_line.ordered_qty = item.ordered_qty; 
 
                     cart_book_line.book_price = item.book_price;
-
-                    cart_book_line.ordered_qty = item.ordered_qty;
 
                     _context.Cart_Book_Line.Add(cart_book_line);
                     await _context.SaveChangesAsync();
@@ -158,11 +157,11 @@ namespace GeekText.UI.Controllers
                 _context.Cart_User.Add(cart_user);
                 await _context.SaveChangesAsync();
 
-                return order.id;
+                return order;
             }
             catch (FormatException)
             {
-                return -1;
+                return null;
             }
         }
 
