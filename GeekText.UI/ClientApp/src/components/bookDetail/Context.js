@@ -1,6 +1,8 @@
 ﻿import React, { Component, useEffect } from "react";
 import axios from 'axios';
 import { useState } from "react";
+import { gg } from "./CommentData"
+
 
 const BookContext = React.createContext();
 //Provider
@@ -9,6 +11,7 @@ class BookProvider extends Component
 {
 
     state = {
+        comments:[],
         books: [],
         booksOfAuthor: [],
         bookDetail: JSON.parse(localStorage.getItem('book')),
@@ -17,7 +20,8 @@ class BookProvider extends Component
    
 
    async componentDidMount() {
-        this.populateBooksData();
+       this.populateBooksData();
+       this.populateComments();
        if (localStorage.getItem("bookA")) {
            this.setState({
                booksOfAuthor: JSON.parse(localStorage.getItem("bookA")),
@@ -44,6 +48,16 @@ class BookProvider extends Component
         
     };
 
+    async populateComments(){
+        
+        this.setState(() => {
+            console.log(gg);
+            return { comments: gg }
+            console.log(this.state.comments);
+            
+        });
+ 
+    } 
 
      populateBooksofAuthorData = id => {
         const x = id;
@@ -56,10 +70,6 @@ class BookProvider extends Component
                      localStorage.setItem('bookA', JSON.stringify(this.state.booksOfAuthor))
             });
         })
-    } 
-   
-    showProduct = () => {
-        JSON.parse(localStorage.getItem('bookA')) // gets an array of the products
     } 
 
     populateBooksData =() => {
@@ -77,7 +87,7 @@ class BookProvider extends Component
                    ...this.state,
                     handleDetail: this.handleDetail,
                     populateBooksofAuthorData: this.populateBooksofAuthorData,
-                    showProduct:this.showProduct
+                    
                 }}
             >
                 {this.props.children}

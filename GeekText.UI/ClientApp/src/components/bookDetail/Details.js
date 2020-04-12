@@ -12,8 +12,10 @@ import ReactDOM from "react-dom";
 import siteContainer from "../site-container";
 import { CartConsumer } from "../ShoppingCart/contextCart";
 import ReactTextCollapse from "react-text-collapse";
-
+import Comments from "./Comments"
+import BookCard  from './BookCard'
 class Details extends React.Component {
+    
   addToCartEvent = (
     id,
     title,
@@ -109,8 +111,8 @@ class Details extends React.Component {
     value.updateCartItemTotal(cartItemsTotal);
   };
 
-  render() {
-    return (
+   render() {
+      return (
       <BookConsumer>
         {(value) => {
           const {
@@ -145,7 +147,7 @@ class Details extends React.Component {
                 <div className="col-10 mx-auto col-md-8 my-2 text-capitalize">
                   <h1>{title}</h1>
                   <h5 className="text-title  mt-3 mb-2">
-                    <div className>
+                    <div className = "rows">
                       <div
                          onClick={() => value.populateBooksofAuthorData(id)}
                       >
@@ -228,7 +230,8 @@ class Details extends React.Component {
                         </Button>
                       );
                     }}
-                  </CartConsumer>
+                    </CartConsumer>
+                         
                 </div>
               </div>
             </div>
@@ -251,3 +254,6 @@ const TEXT_COLLAPSE_OPTIONS = {
         fontSize: "16px"
     }
 }
+
+
+
