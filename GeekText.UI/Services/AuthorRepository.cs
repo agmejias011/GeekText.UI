@@ -37,7 +37,7 @@ namespace GeekText.UI.Services
 
         public ICollection<Book> GetBooksOfAuthor(int authorId)
         {
-            throw new NotImplementedException();
+            return _authorContext.Books_Authors.Where(a => a.author_id == authorId).Select(b => b.book).ToList();
         }
     }
 }

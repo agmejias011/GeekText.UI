@@ -17,7 +17,7 @@ class ThankyouPage extends Component {
               <div
                 style={{
                   height: "15em",
-                  width: "35em"
+                  width: "35em",
                 }}
               >
                 <Paper elevation={3} m={5} style={{ textAlign: "center" }}>
@@ -31,14 +31,17 @@ class ThankyouPage extends Component {
                     . We have emailed your order confirmation, and will send you
                     an update when your order has shipped.
                   </p>
-                  <Link to="/">
+                  <Link to="/books">
                     <Button
                       variant="contained"
-                      color="primary"
                       size="large"
                       fullWidth
-                      style={{ height: "4em" }}
-                      onClick={this.handleContinueShopping}
+                      style={{
+                        borderRadius: 0,
+                        color: "#fff",
+                        background: "#111",
+                        height: "4em",
+                      }}
                     >
                       Continue Shopping
                     </Button>
