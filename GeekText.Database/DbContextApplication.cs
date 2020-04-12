@@ -43,9 +43,9 @@ namespace GeekText.Database
                 .Entity<Book>().Property(b => b.id).UseIdentityAlwaysColumn()
                 .HasIdentityOptions(startValue: 1000);
 
-            modelBuilder
+            /* modelBuilder
                 .Entity<WishlistBook>()
-                .HasKey(wb => new { wb.wishlist_id, wb.book_id });
+                .HasKey(wb => new { wb.wishlist_id, wb.book_id }); */
             modelBuilder
                 .Entity<WishlistBook>()
                 .HasOne(wb => wb.wishlist)

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { Grid } from "@material-ui/core";
 import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -27,7 +28,9 @@ export default class SearchBar extends React.Component {
   renderSearchBarWithCartAmount() {
     let account_buttons = this.props.user ? (
       <Grid item>
-        <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        <Link to="/wishlists">
+          <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
+        </Link>
       </Grid>
     ) : null;
     let account_path = this.props.user ? "account" : "login";
@@ -66,9 +69,9 @@ export default class SearchBar extends React.Component {
                     </a>
                 </Grid>               
           <Grid item>
-            <a href={"/" + account_path}>
+            <Link to={"/" + account_path}>
               <AccountCircleIcon color="primary" fontSize="large" />
-            </a>
+            </Link>
           </Grid>
           <Grid item>
             <CartBar></CartBar>
