@@ -20,7 +20,9 @@ import LoginPage from "./components/login-page";
 import Wishlist from "./components/wishlist";
 import Wishlists from "./components/wishlists";
 import signUppage from "./components/signUp-page";
-import UserForm from "./components/userForm";
+import UserForm from "./components/ProfileManagement/userForm";
+import Profile from "./components/ProfileManagement/profile";
+import UserFormEdit from "./components/ProfileManagement/userFormEdit";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
@@ -36,6 +38,7 @@ ReactDOM.render(
               <Route path="/wishlists/:id">
                 <Wishlist />
               </Route>
+
               <Route path="/wishlists">
                 <Wishlists />
               </Route>
@@ -63,6 +66,14 @@ ReactDOM.render(
               <Route exact path="/">
                 <Home />
               </Route>
+
+	<Route path="/editProfile">
+	<UserFormEdit />
+	</Route>
+	<Route path="/profile">
+		<Profile />
+		</Route>
+
             </Switch>
           </BookProvider>
         </SiteContainer>
