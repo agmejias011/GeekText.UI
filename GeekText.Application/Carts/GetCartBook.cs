@@ -4,20 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekText.Application.Publishers
+namespace GeekText.Application.Carts
 {
-    class GetPublisher
+    public class GetCartBook
     {
         private DbContextApplication context;
 
-        public GetPublisher(DbContextApplication context)
+        public GetCartBook(DbContextApplication context)
         {
             this.context = context;
         }
 
-        public Publisher Get(int id)
+        public Cart_Book_Line Get(Cart cart)
         {
-            return context.Publishers.Find(id);
+            return context.Cart_Book_Line.Find(cart);
         }
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 
 import logo from '../logo.svg';
 import '../App.css';
@@ -13,9 +13,7 @@ class SampleComponent extends React.Component {
 					<p>
 						Edit <code>src/components/sample-component.js</code> and save to reload.
 					</p>
-					<Button variant="contained" color="primary" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-						Learn React
-					</Button>
+					
 				</header>
 			</div>
 		);
