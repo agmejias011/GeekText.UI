@@ -39,24 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\UserController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ClientApp\src\components\authenticate.js" />
-    <None Remove="ClientApp\src\components\JavaScript.js" />
-    <None Remove="ClientApp\src\components\JavaScript1.js" />
-    <None Remove="ClientApp\src\components\state.js" />
-    <None Remove="ClientApp\src\state.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GeekText.Application\GeekText.Application.csproj" />
     <ProjectReference Include="..\GeekText.Database\GeekText.Database.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\components\books\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

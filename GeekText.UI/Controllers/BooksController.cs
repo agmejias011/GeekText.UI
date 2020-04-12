@@ -37,19 +37,56 @@ namespace GeekText.UI.Controllers
             {
                 booksDto.Add(new BookDto
                 {
-                 id = book.id,
-                 title = book.title,
-                 isbn = book.isbn,
-                 description = book.description,
-                 rating = book.rating,
-                 img_url = book.img_url,
-                 date = book.date,
-                 top_seller = book.top_seller,
-                 featured = book.featured
+                    id = book.id,
+                    title = book.title,
+                    author = book.author,
+                    bio = book.bio,
+                    genre = book.genre,
+                    price = book.price,
+                    isbn = book.isbn,
+                    description = book.description,
+                    rating = book.rating,
+                    img_url = book.img_url,
+                    publisher = book.publisher,
+                    date = book.date,
                 });
             }
             return Ok(booksDto);
         }
 
+        //GET SPECIFIC Book
+        //api/Books/BookId
+        [HttpGet("{bookId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(BookDto))]
+        public IActionResult GetBook(int bookId)
+        {
+            if (!_bookRepository.BookExists(bookId))
+                return NotFound();
+
+            var book = _bookRepository.GetBook(bookId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var bookDto = new BookDto()
+            {
+                id = book.id,
+                title = book.title,
+                author = book.author,
+                bio = book.bio,
+                genre = book.genre,
+                price = book.price,
+                isbn = book.isbn,
+                description = book.description,
+                rating = book.rating,
+                img_url = book.img_url,
+                publisher = book.publisher,
+                date = book.date,
+
+            };
+            return Ok(bookDto);
+        }
     }
 }

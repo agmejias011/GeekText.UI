@@ -8,7 +8,9 @@ namespace GeekText.Domain.Models
 {
     [Table("user_payment_options")]
     public class user_payment_options
-    {       
+    {
+        [Key]
+        public int id { get; set; }
         [ForeignKey("user_id")]
         public User user { get; set; }
        

@@ -46,7 +46,7 @@ namespace GeekText.UI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, [FromBody] User user)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.id)
             {
