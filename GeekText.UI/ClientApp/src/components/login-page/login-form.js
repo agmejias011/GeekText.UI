@@ -149,7 +149,10 @@ class LoginForm extends React.Component {
 				key   : "authenticated",
 				value : true
 			});
-		} catch {}
+		} catch { }
+
+		alert("Logged in, view your profile.");
+
 	}
 }
 

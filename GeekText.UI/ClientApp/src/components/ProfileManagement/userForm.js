@@ -12,6 +12,7 @@ import LoginForm from './login-form';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import { withRouter } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 
 
@@ -140,29 +141,6 @@ export class UserForm extends Component {
 
     }
 
-    async editUser(data) {
-        fetch(
-            `${API_URL}/user/${data.id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username: this.state.username,
-                    first_name: this.state.first_name,
-                    last_name: this.state.last_name,
-                    email: this.state.email,
-                    user_password: this.state.user_password,
-                    nickname: this.state.nickname,
-                    home_address: this.state.home_address,
-                    home_address2: this.state.home_address2,
-                    home_address3: this.state.home_address3
-                })
-
-            })
-    }
-
 
     // Proceed to next step
     nextStep = () => {
@@ -200,7 +178,7 @@ export class UserForm extends Component {
                         <TextField
                             placeholder="Enter Your First Name"
                             label="First Name"
-                            onChange={this.handleChange}
+                            onChange={this.first_name}
                             defaultValue={values.first_name}
                             margin="normal"
                         />

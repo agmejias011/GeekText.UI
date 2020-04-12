@@ -55,31 +55,31 @@ export class UserFormEdit extends Component {
     }
 
     Cusername(event) {
-        this.setState({ username: event.target.value })
+        this.props.user.username = event.target.value
     }
     Cfirst_name(event) {
-        this.setState({ first_name: event.target.value })
+        this.props.user.first_name = event.target.value
     }
     Clast_name(event) {
-        this.setState({ last_name: event.target.value })
+        this.props.user.last_name = event.target.value
     }
     Cemail(event) {
-        this.setState({ email: event.target.value })
+        this.props.user.email = event.target.value
     }
     Cuser_password(event) {
-        this.setState({ user_password: event.target.value })
+        this.props.user.user_password = event.target.value
     }
     Cnickname(event) {
-        this.setState({ nickname: event.target.value })
+        this.props.user.nickname = event.target.value
     }
     Chome_address(event) {
-        this.setState({ home_address: event.target.value })
+        this.props.user.home_address = event.target.value
     }
     Chome_address2(event) {
-        this.setState({ home_address2: event.target.value })
+        this.props.user.home_address2 = event.target.value
     }
     Chome_address3(event) {
-        this.setState({ home_address3: event.target.value })
+        this.props.user.home_address3 = event.target.value
     }
 
     async editUser(event) {
@@ -87,19 +87,19 @@ export class UserFormEdit extends Component {
 
         var bcrypt = require('bcryptjs');
         var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(this.state.user_password, salt);
+        var hash = bcrypt.hashSync(this.props.user.user_password, salt);
 
         let data = {
-            id: this.state.id,
-            username: this.state.username,
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
+            id: this.props.user.id,
+            username: this.props.user.username,
+            first_name: this.props.user.first_name,
+            last_name: this.props.user.last_name,
+            email: this.props.user.email,
             user_password: hash,
-            nickname: this.state.nickname,
-            home_address: this.state.home_address,
-            home_address2: this.state.home_address2,
-            home_address3: this.state.home_address3
+            nickname: this.props.user.nickname,
+            home_address: this.props.user.home_address,
+            home_address2: this.props.user.home_address2,
+            home_address3: this.props.user.home_address3
 
         }
 
@@ -133,6 +133,9 @@ export class UserFormEdit extends Component {
 
     render() {
         const { user } = this.props;
+        const fn = this.props.user.first_name;
+        const p = this.props.user.user_password;
+
         return (
                 <React.Fragment>
                 <div style={useStyles}>
@@ -140,7 +143,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your First Name"
                         label="First Name"
                         onChange={this.Cfirst_name}
-                        defaultValue={this.props.user.first_name}
+                        defaultValue={fn}
                         margin="normal"
                     />
                     <br />
@@ -174,7 +177,7 @@ export class UserFormEdit extends Component {
                         placeholder="Edit Your Password"
                         label="Password"
                         onChange={this.Cuser_password}
-                        defaultValue={this.props.user.user_password}
+                        defaultValue={p}
                         margin="normal"
                     />
                     <br />
@@ -201,7 +204,7 @@ export class UserFormEdit extends Component {
                         placeholder="Enter Your Second Address"
                         label="Second Home Address"
                         onChange={this.Chome_address2}
-                        defaultValue={this.props.home_address2}
+                        defaultValue={this.props.user.home_address2}
                         margin="normal"
                     />
                     <br />
@@ -210,7 +213,7 @@ export class UserFormEdit extends Component {
                         placeholder="Enter Your Third Address"
                         label="Third Home Address"
                         onChange={this.Chome_address3}
-                        defaultValue={this.props.home_address3}
+                        defaultValue={this.props.user.home_address3}
                         margin="normal"
                     />
                     <br />

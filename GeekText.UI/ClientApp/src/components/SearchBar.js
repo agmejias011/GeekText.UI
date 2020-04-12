@@ -11,19 +11,19 @@ export class SearchBar extends React.Component {
   state = {
     cartItemsTotal: 0,
   };
-  componentWillMount() {
-    const cartItemsTotal = JSON.parse(localStorage.getItem("cartItemsTotal"));
-    if (cartItemsTotal) {
-      this.setState({ cartItemsTotal });
-    }
-  }
+  //componentWillMount() {
+  //  const cartItemsTotal = JSON.parse(localStorage.getItem("cartItemsTotal"));
+  //  if (cartItemsTotal) {
+  //    this.setState({ cartItemsTotal });
+  //  }
+  //}
 
-  shouldComponentUpdate() {
-    const cartItemsTotal = JSON.parse(localStorage.getItem("cartItemsTotal"));
-    if (cartItemsTotal) {
-      this.setState({ cartItemsTotal });
-    }
-  }
+  //shouldComponentUpdate() {
+  //  const cartItemsTotal = JSON.parse(localStorage.getItem("cartItemsTotal"));
+  //  if (cartItemsTotal) {
+  //    this.setState({ cartItemsTotal });
+  //  }
+  //}
 
   renderSearchBarWithCartAmount() {
 
