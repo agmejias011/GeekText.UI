@@ -24,6 +24,7 @@ namespace GeekText.Domain.Models
         [Required]
         public string home_address { get; set; }
         public string home_address2 { get; set; }
+        public string home_address3 { get; set; }
 
         public int user_nickname { get; set; }
 

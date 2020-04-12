@@ -39,7 +39,9 @@ export class UserForm extends Component {
             email: '',
             user_password: '',
             nickname: '',
-            home_address: ''
+            home_address: '',
+            home_address2: '',
+            home_address3: ''
         };
 
         this.username = this.username.bind(this);
@@ -49,6 +51,8 @@ export class UserForm extends Component {
         this.user_password = this.user_password.bind(this);
         this.nickname = this.nickname.bind(this);
         this.home_address = this.home_address.bind(this);
+        this.home_address2 = this.home_address2.bind(this);
+        this.home_address3 = this.home_address3.bind(this);
         this.addUser = this.addUser.bind(this);
 
     }
@@ -74,6 +78,13 @@ export class UserForm extends Component {
     home_address(event) {
         this.setState({ home_address: event.target.value })
     }
+    home_address2(event) {
+        this.setState({ home_address2: event.target.value })
+    }
+    home_address3(event) {
+        this.setState({ home_address3: event.target.value })
+    }
+
 
    
 
@@ -96,6 +107,8 @@ export class UserForm extends Component {
             user_password: this.state.user_password,
             nickname: this.state.nickname,
             home_address: this.state.home_address,
+            home_address2: this.state.home_address2,
+            home_address3: this.state.home_address3
         }
 
         let res = await fetch(
@@ -143,6 +156,8 @@ export class UserForm extends Component {
                     user_password: this.state.user_password,
                     nickname: this.state.nickname,
                     home_address: this.state.home_address,
+                    home_address2: this.state.home_address2,
+                    home_address3: this.state.home_address3
                 })
 
             })
@@ -172,8 +187,8 @@ export class UserForm extends Component {
     
     render() {
         const { step } = this.state;
-        const { username, first_name, last_name, email, user_password, nickname, home_address } = this.state;
-        const values = { username, first_name, last_name, email, user_password, nickname, home_address }
+        const { username, first_name, last_name, email, user_password, nickname, home_address, home_address2, home_address3 } = this.state;
+        const values = { username, first_name, last_name, email, user_password, nickname, home_address, home_address2, home_address3 }
 
         const { classes } = this.props;
 
@@ -243,6 +258,23 @@ export class UserForm extends Component {
                         />
                         <br />
 
+                        <TextField
+                            placeholder="Enter Your Second Address"
+                            label="Home Address"
+                            onChange={this.home_address2}
+                            defaultValue={values.home_address2}
+                            margin="normal"
+                        />
+                        <br />
+
+                        <TextField
+                            placeholder="Enter Your Third Address"
+                            label="Home Address"
+                            onChange={this.home_address3}
+                            defaultValue={values.home_address3}
+                            margin="normal"
+                        />
+                        <br />
                         <Button
                             color="primary"
                             variant="contained"

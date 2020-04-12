@@ -27,14 +27,16 @@ export class UserFormEdit extends Component {
         super(props);
 
         this.state = {
-            id: '',
+            id: this.props.user.id,
             username: '',
             first_name: '',
             last_name: '',
             email: '',
             user_password: '',
             nickname: '',
-            home_address: ''
+            home_address: '',
+            home_address2: '',
+            home_address3: ''
         }
 
         this.Cusername = this.Cusername.bind(this);
@@ -44,6 +46,8 @@ export class UserFormEdit extends Component {
         this.Cuser_password = this.Cuser_password.bind(this);
         this.Cnickname = this.Cnickname.bind(this);
         this.Chome_address = this.Chome_address.bind(this);
+        this.Chome_address2 = this.Chome_address2.bind(this);
+        this.Chome_address3 = this.Chome_address3.bind(this);
         this.editUser = this.editUser.bind(this);
 
     }
@@ -69,6 +73,12 @@ export class UserFormEdit extends Component {
     Chome_address(event) {
         this.setState({ home_address: event.target.value })
     }
+    Chome_address2(event) {
+        this.setState({ home_address2: event.target.value })
+    }
+    Chome_address3(event) {
+        this.setState({ home_address3: event.target.value })
+    }
 
     async editUser(event) {
         event.preventDefault();
@@ -82,10 +92,13 @@ export class UserFormEdit extends Component {
             user_password: this.state.user_password,
             nickname: this.state.nickname,
             home_address: this.state.home_address,
+            home_address2: this.state.home_address2,
+            home_address3: this.state.home_address3
+
         }
 
         let res = await fetch(
-            `${API_URL}/user/1000`,
+            `${API_URL}/user/1001`,
             {
                 method: "PUT",
                 headers: {
@@ -111,9 +124,8 @@ export class UserFormEdit extends Component {
     render() {
         const { user } = this.props;
         return (
-            <React.Fragment>
+                <React.Fragment>
                 <div style={useStyles}>
-
                     <TextField
                         placeholder="Edit Your First Name"
                         label="First Name"
@@ -175,13 +187,30 @@ export class UserFormEdit extends Component {
                     />
                     <br />
 
+                    <TextField
+                        placeholder="Enter Your Second Address"
+                        label="Second Home Address"
+                        onChange={this.Chome_address2}
+                        defaultValue={this.props.home_address2}
+                        margin="normal"
+                    />
+                    <br />
+
+                    <TextField
+                        placeholder="Enter Your Third Address"
+                        label="Third Home Address"
+                        onChange={this.Chome_address3}
+                        defaultValue={this.props.home_address3}
+                        margin="normal"
+                    />
+                    <br />
                     <Button
                         color="primary"
                         variant="contained"
                         onClick={this.editUser}
                         style={styles.button}
                     >Update</Button>
-                    </div>
+                </div>
                 </React.Fragment>
         )
         
@@ -199,6 +228,5 @@ const mapStateToProps = (state) => {
         user: state.user
     };
 }
-
 
 export default connect(mapStateToProps)(UserFormEdit);

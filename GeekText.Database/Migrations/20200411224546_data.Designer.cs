@@ -3,15 +3,17 @@ using System;
 using GeekText.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GeekText.Database.Migrations
 {
     [DbContext(typeof(DbContextApplication))]
-    partial class DbContextApplicationModelSnapshot : ModelSnapshot
+    [Migration("20200411224546_data")]
+    partial class data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -451,10 +453,6 @@ namespace GeekText.Database.Migrations
 
                     b.Property<string>("home_address2")
                         .HasColumnName("home_address2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("home_address3")
-                        .HasColumnName("home_address3")
                         .HasColumnType("text");
 
                     b.Property<string>("last_name")

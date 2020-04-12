@@ -146,7 +146,7 @@ namespace GeekText.Database
                    user_password = "mj2020",
                    nickname = "mj2020",
                    home_address = "1500 W 12 ST",
-                   user_nickname = "jm2020"
+                   user_nickname = 0
 
                 }
             };
