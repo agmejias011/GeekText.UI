@@ -65,7 +65,6 @@ namespace ecommercewebsite
                 line below, it will create duplicate data in the DB*/
                 //var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
                 //DbSeedingClass.SeedDataContext(context);
-
             }
 
             if (env.IsDevelopment())

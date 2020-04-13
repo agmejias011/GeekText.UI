@@ -10,6 +10,7 @@ import BooksOfAuthor from "./components/bookDetail/BooksOfAuthor";
 import { BookProvider } from "./components/bookDetail/Context";
 import { CartProvider } from "./components/ShoppingCart/contextCart";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import CommentDisplay from "./components/bookDetail/CommentDisplay";
 // Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -50,6 +51,9 @@ ReactDOM.render(
               </Route>
               <Route path="/BooksOfAuthor">
                 <BooksOfAuthor />
+              </Route>
+              <Route path="/Comments">
+               <CommentDisplay />
               </Route>
               <Route path="/login">
                 <LoginPage />

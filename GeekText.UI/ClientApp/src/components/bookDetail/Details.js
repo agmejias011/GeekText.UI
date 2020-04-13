@@ -13,6 +13,8 @@ import ReactDOM from "react-dom";
 import siteContainer from "../site-container";
 import { CartConsumer } from "../ShoppingCart/contextCart";
 import ReactTextCollapse from "react-text-collapse";
+import Comments from "./Comments"
+import BookCard from './BookCard'
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -283,6 +285,24 @@ class Details extends React.Component {
                           >
                             Add to Wishlist
                           </Button>
+                              <Button
+                                  variant="contained"
+                                  color="primary"
+                                  size="large"
+                                  style={{
+                                      borderRadius: 0,
+                                      color: "#fff",
+                                      background: "#111",
+                                      height: "4em",
+                                      marginTop: "25px",
+                                      marginLeft: "10px"
+                                  }}
+
+                              >
+                                  <Link to="/Comments" style={{ textDecoration: 'none' }}> Comments/Ratings</Link>
+
+                              </Button>
+
                         </React.Fragment>
                       );
                     }}
