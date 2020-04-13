@@ -219,7 +219,7 @@ namespace GeekText.Database
                    user_password = "ag2020",
                    nickname = "ag2020",
                    home_address = "2580 W 24 ST",
-                   user_nickname = "ag2020"
+                   user_nickname = 0
 
                 },
 
@@ -232,7 +232,7 @@ namespace GeekText.Database
                    user_password = "mj2020",
                    nickname = "mj2020",
                    home_address = "1500 W 12 ST",
-                   user_nickname = "jm2020"
+                   user_nickname = 0
 
                 }
             };

@@ -63,7 +63,6 @@ namespace ecommercewebsite
                 /*uncoment for seeding the database and comment after running the code for the first time
                 this is just to seed the database. If the code is run multiple times without commenting the
                 line below, it will create duplicate data in the DB*/
-
                 //var context = scope.ServiceProvider.GetRequiredService<DbContextApplication>();
                 //DbSeedingClass.SeedDataContext(context);
             }

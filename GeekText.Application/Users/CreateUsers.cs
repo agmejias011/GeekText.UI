@@ -14,8 +14,8 @@ namespace GeekText.Application.Books
             this.context = context;
         }
 
-        public void Create(int id, string username, string first_name, string last_name,
-           string email, string user_password, string nickname, string home_address, string user_nickname)
+       public void Create(int id, string username, string first_name, string last_name,
+           string email, string user_password, string nickname, string home_address, string home_address2, string home_address3, int user_nickname)
         {
             User newUser = new User();
             newUser.id = id;
@@ -26,6 +26,8 @@ namespace GeekText.Application.Books
             newUser.user_password = user_password;
             newUser.nickname = nickname;
             newUser.home_address = home_address;
+            newUser.home_address2 = home_address2;
+            newUser.home_address3 = home_address3;
             newUser.user_nickname = user_nickname;
 
             this.context.Users.Add(newUser);

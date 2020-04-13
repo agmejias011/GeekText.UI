@@ -6,6 +6,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CartBar from "./ShoppingCart/CartBar";
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { connect } from 'react-redux'
 
 export default class SearchBar extends React.Component {
   state = {
@@ -26,14 +27,19 @@ export default class SearchBar extends React.Component {
   }
 
   renderSearchBarWithCartAmount() {
-    let account_buttons = this.props.user ? (
+
+    const { authenticated } = this.props;
+
+        console.log(this.props.authenticated);
+        let account_buttons = this.props.authenticated ? (
       <Grid item>
         <Link to="/wishlists">
           <FavoriteIcon htmlColor="#ec407a" fontSize="large" />
         </Link>
       </Grid>
-    ) : null;
-    let account_path = this.props.user ? "account" : "login";
+      ) : null;
+
+        let account_path = this.props.authenticated ? "profile" : "login";
 
     return (
       <>
@@ -87,3 +93,11 @@ export default class SearchBar extends React.Component {
     return this.renderSearchBarWithCartAmount();
   }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        authenticated: state.authenticated
+    };
+}
+
+export default connect(mapStateToProps)(SearchBar);

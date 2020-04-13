@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { BookConsumer } from "./Context";
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ import Comments from "./Comments"
 import BookCard from './BookCard'
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 
 class Details extends React.Component {
   addToCartEvent = (
@@ -238,7 +239,7 @@ class Details extends React.Component {
                   <CartConsumer>
                     {(value) => {
                       return (
-                        <React.Fragment>
+                      <React.Fragment>                                            
                           <Button
                             id="add-to-cart"
                             variant="contained"
