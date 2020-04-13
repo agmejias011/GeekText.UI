@@ -18,6 +18,7 @@ import store from "./redux/store";
 import Home from "./components/Home";
 import SiteContainer from "./components/site-container";
 import LoginPage from "./components/login-page";
+import Wishlist from "./components/wishlist";
 import Wishlists from "./components/wishlists";
 import signUppage from "./components/signUp-page";
 import UserForm from "./components/userForm";
@@ -33,6 +34,9 @@ ReactDOM.render(
           <BookProvider>
             <Switch>
               <Route path="/example-route">Hello world.</Route>
+              <Route path="/wishlists/:id">
+                <Wishlist />
+              </Route>
               <Route path="/wishlists">
                 <Wishlists />
               </Route>

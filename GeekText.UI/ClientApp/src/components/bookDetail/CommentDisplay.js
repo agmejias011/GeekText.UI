@@ -2,7 +2,6 @@
 import { BookConsumer } from "./Context";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import Rating from "@material-ui/lab/Rating";
 import CardActionArea from "@material-ui/core/CardActions";
 import Card from "@material-ui/core/Card";
 import Zoom from "react-medium-image-zoom";
@@ -16,13 +15,15 @@ import Comments from "./Comments"
 import BookCard from './BookCard'
 
 
-export default class CommentDisplay extends React.Component {
 
+
+export default class CommentDisplay extends React.Component {
+  
     render() {
-        console.log('hello, I am Books');
         return (
             <React.Fragment>
-                <div className="App">
+                <div className="text-capitalize text-center container py-5">
+                     <h1>Comments and Ratings</h1>
                     <div
                         container
                         spacing={10}
@@ -39,6 +40,7 @@ export default class CommentDisplay extends React.Component {
                                             name={book.name}
                                             email={book.email}
                                             body={book.body}
+                                            rating={book.rating}
                                         />
                                     </div>
                                 );

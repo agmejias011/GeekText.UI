@@ -149,6 +149,8 @@ class LoginForm extends React.Component {
 				key   : "authenticated",
 				value : true
 			});
+
+			window.location.href = "/";
 		} catch {}
 	}
 }
