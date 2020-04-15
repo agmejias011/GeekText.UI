@@ -12,7 +12,36 @@ import ReactDOM from "react-dom";
 import siteContainer from "../site-container";
 import { CartConsumer } from "../ShoppingCart/contextCart";
 import ReactTextCollapse from "react-text-collapse";
+import CommentAndRatingCard from "../CommentAndRatingCard";
 
+const bookDetail = {
+  id: "123cd",
+  title: "The Little Prince",
+  author: "Exupery",
+  bio: "A great writer, also a pilot",
+  publisher: "Gente Nueva",
+  price: 12.34,
+  rating: 4,
+  description: "Great Book",
+  img_url: "https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG",
+  genre: "children's fantasy",
+};
+
+const user = {
+  id: "12356njko",
+  fullname: 'Andy',
+  nickname: 'Gonzalez',
+  purchases: [
+    {
+      userId: "asdf324",
+      bookId: "123cd",
+      reviewComment: "Great Book",
+      rating: 5,
+      signature: "fullname",
+      reviewDate: new Date(),
+    },
+  ],
+};
 class Details extends React.Component {
   addToCartEvent = (
     id,
@@ -113,6 +142,19 @@ class Details extends React.Component {
     return (
       <BookConsumer>
         {(value) => {
+          // const {
+          //   id,
+          //   title,
+          //   author,
+          //   bio,
+          //   publisher,
+          //   price,
+          //   rating,
+          //   description,
+          //   img_url,
+          //   genre,
+          // } = value.bookDetail;
+
           const {
             id,
             title,
@@ -124,7 +166,7 @@ class Details extends React.Component {
             description,
             img_url,
             genre,
-          } = value.bookDetail;
+          } = bookDetail;
 
           return (
             <div className="container py-5">
@@ -133,7 +175,7 @@ class Details extends React.Component {
                   <Zoom>
                     <img
                       className="img-fluid"
-                      alt="Responsive image"
+                      alt="Responsive"
                       src={img_url}
                       width="600"
                       height="800"
@@ -146,55 +188,43 @@ class Details extends React.Component {
                   <h1>{title}</h1>
                   <h5 className="text-title  mt-3 mb-2">
                     <div className>
-                      <div
-                         onClick={() => value.populateBooksofAuthorData(id)}
-                      >
-                          <strong>by:</strong> <Link to="/BooksOfAuthor">{author}</Link>
-                          <h5 className="text-capitalize font-weight-bold mt-2 mb-0">
-                             Biography:
-                          </h5>
-                          <strong>
-                              <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
-                                  <p className="text-muted lead">
-                                     {bio}
-                                  </p>
-                              </ReactTextCollapse>
-                          </strong>
+                      <div onClick={() => value.populateBooksofAuthorData(id)}>
+                        <strong>by:</strong>{" "}
+                        {/* <Link to="/BooksOfAuthor">{author}</Link> */}
+                        <h5 className="text-capitalize font-weight-bold mt-2 mb-0">
+                          Biography:
+                        </h5>
+                        <strong>
+                          <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                            <p className="text-muted lead">{bio}</p>
+                          </ReactTextCollapse>
+                        </strong>
                       </div>
-                    
                     </div>
                   </h5>
                   <h5 className="text-blue mt-4 mb-0">
-                  <div><strong> Publisher:</strong> {publisher}</div>
+                    <div>
+                      <strong> Publisher:</strong> {publisher}
+                    </div>
                   </h5>
                   <h5 className="text-blue mt-3 mb-0">
-                  <div> <strong> Genre: </strong> {genre} </div>
+                    <div>
+                      {" "}
+                      <strong> Genre: </strong> {genre}{" "}
+                    </div>
                   </h5>
                   <h5 className="text-blue mt-3 mb-0">
-                   <div><strong> price: $</strong>{price}</div>
+                    <div>
+                      <strong> price: $</strong>
+                      {price}
+                    </div>
                   </h5>
 
                   <h5 className="font-weight-bold mt-3 mb-0">
                     Book Description:
                   </h5>
                   <p className="text-muted lead mt-1 mb-0">{description}</p>
-                  
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h5"
-                  ></Typography>
-                  
-                  <div className="mt-2 mb-0">
-                    <Rating
-                      name="size-large"
-                      defaultValue={rating}
-                      precision={0.5}
-                      readOnly
-                      size="large"
-                    />
-                   </div>
-                 
+
                   <CartConsumer>
                     {(value) => {
                       return (
@@ -229,6 +259,13 @@ class Details extends React.Component {
                       );
                     }}
                   </CartConsumer>
+                  <CommentAndRatingCard
+                    user={user}
+                    book={bookDetail}
+                    onCardLike={() => {
+                      alert("You like this book!");
+                    }}
+                  ></CommentAndRatingCard>
                 </div>
               </div>
             </div>
@@ -241,13 +278,14 @@ class Details extends React.Component {
 export default Details;
 
 const TEXT_COLLAPSE_OPTIONS = {
-    collapse: false, // default state when component rendered
-    collapseText: '(...)', // text to show when collapsed
-    expandText: '(Hide)', // text to show when expanded
-    minHeight: 0, // component height when closed
-    maxHeight: 60, // expanded to
-    textStyle: { // pass the css for the collapseText and expandText here
-        color: "black",
-        fontSize: "16px"
-    }
-}
+  collapse: false, // default state when component rendered
+  collapseText: "(...)", // text to show when collapsed
+  expandText: "(Hide)", // text to show when expanded
+  minHeight: 0, // component height when closed
+  maxHeight: 60, // expanded to
+  textStyle: {
+    // pass the css for the collapseText and expandText here
+    color: "black",
+    fontSize: "16px",
+  },
+};

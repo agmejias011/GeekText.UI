@@ -41,7 +41,6 @@ export default function BookCard({ id, title, author, publisher, price, rating, 
                     image={img_url}
                 />
                 <CardContent>
-                    
                     <Typography gutterBottom variant="h5" component="h2">
                         <span style={{ fontWeight: "bold", textAlign: "center" }}>{title}</span>
                     </Typography>
@@ -57,13 +56,8 @@ export default function BookCard({ id, title, author, publisher, price, rating, 
                     <Typography gutterBottom variant="h5" component="h2">
                         <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                     </Typography>
-                   
                     <Typography variant="body2" color="textSecondary" component="p">
                         {description}
-                    </Typography>
-
-                    <Typography gutterBottom variant="h5" component="h2">
-
                     </Typography>
                 </CardContent>
             </CardActionArea>
